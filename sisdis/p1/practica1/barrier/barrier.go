@@ -73,7 +73,7 @@ func acceptAndHandleConnections(listener net.Listener, quitChannel chan bool,
 		select {
 		case <-quitChannel:
 			fmt.Println("Stopping the listener...")
-			break
+			return
 		default:
 			conn, err := listener.Accept()
 			if err != nil {
@@ -136,9 +136,7 @@ func main() {
 		go acceptAndHandleConnections(listener, quitChannel, barrierChan,
 			&receivedMap, &mu, len(endPoints))
 
-		// Añadimos un tiempo de set-up, para que se habrán los listeners del resto de conexiones.
-		time.Sleep(5 * time.Second)
-
+		// Bloquea hasta que se haya notificado al resto de procesos
 		notifyOtherDistributedProcesses(endPoints, lineNumber)
 
 		fmt.Println("Waiting for all the processes to reach the barrier")
@@ -154,6 +152,7 @@ func main() {
 
 		fmt.Println("Finished the synchronization")
 
+		// Añadimos un tiempo para que se acaben de envíar los mensajes propios.
+		time.Sleep(1 * time.Second)
 	}
-
 }
