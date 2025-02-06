@@ -1,5 +1,6 @@
 # Aprendizaje Automático
 - [ ] Acabar resumen Tema 1
+- [ ] Mirar vídeos del Tema 1 para interiorizar conceptos confusos. Para que sirve la regresión, minimos cuadrados, escalado, ...
 - [ ] Leer todo lo relacionado con el Tema 1, ver última diapositiva Tema 1
 - [ ] Avanzar la práctica 1 de Aprendizaje Automático.
 
