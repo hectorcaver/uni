@@ -15,6 +15,7 @@ import (
 	"os"
 	"net"
 	"practica1/com"
+	"strconv"
 )
 
 // PRE: verdad = !foundDivisor
@@ -40,18 +41,25 @@ func findPrimes(interval com.TPInterval) (primes []int) {
 	return primes
 }
 
-func processRequest(conn net.Conn){
-	var request com.Request
-	decoder := gob.NewDecoder(conn)
-	err := decoder.Decode(&request)
-	com.CheckError(err)
-	primes := findPrimes(request.Interval)
-	reply := com.Reply{Id: request.Id, Primes: primes}
-	encoder := gob.NewEncoder(conn)
-	encoder.Encode(&reply)
+func processRequests(id int, conn_chan chan(net.Conn)){
+	for{
+		conn := <- conn_chan
+		log.Println("GORUTINE " + strconv.Itoa(id) + ": accepted new connection")
+		var request com.Request
+		decoder := gob.NewDecoder(conn)
+		err := decoder.Decode(&request)
+		com.CheckError(err)
+		primes := findPrimes(request.Interval)
+		reply := com.Reply{Id: request.Id, Primes: primes}
+		encoder := gob.NewEncoder(conn)
+		encoder.Encode(&reply)
+		conn.Close()
+	}
 }
 
 func main() {
+
+	GORUTINE_POOL_SIZE := 50
 	args := os.Args
 	if len(args) != 2 {
 		log.Println("Error: endpoint missing: go run server.go ip:port")
@@ -62,14 +70,20 @@ func main() {
 	com.CheckError(err)
 
 	log.SetFlags(log.Lshortfile | log.Lmicroseconds)
-
 	
+	conn_chan := make(chan(net.Conn))
+
+	log.Println("Launching gorutine pool")
+
+	for id:=0; id < GORUTINE_POOL_SIZE; id++ {
+		go processRequests(id, conn_chan)
+	}
+
 	log.Println("***** Listening for new connection in endpoint ", endpoint)
 	for {
 		conn, err := listener.Accept()
-		defer conn.Close()
 		com.CheckError(err)
-		log.Println("Processing new connection")
-		processRequest(conn)
+		log.Println("New connection: waiting for a gorutine end")
+		conn_chan <- conn
 	}
 }

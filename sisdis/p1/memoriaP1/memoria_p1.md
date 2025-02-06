@@ -125,3 +125,6 @@ También se ha pensado en otras barreras buscando una complejidad `O(n)`.
 Entre ellas se descartó un diseño que consistía en que el nodo i envía al nodo i+1 un mensaje de acceso cuando ya ha recibido un mensaje de acceso del nodo i-1.
 Esto se debe a lo ineficiente que sería el acceso en el caso peor. El nodo 1 le envía al 2, el 2 al 3, y así hasta el N. Si N es muy grande, se perdería mucho tiempo.
 
+
+Me cago en los muertos del profesor que hizo esta práctica
+
