@@ -172,7 +172,42 @@ Es el algoritmo que suelen implementar las librerías.
 
 # Escalado de Atributos
 
+Es necesario para descenso de gradiente (y otros algoritmos).
 
+## Escalado estandarizado
+
+|Estandarizado| Media|Desviación típica|
+|:-:|:-:|:-:|
+|$x_i' = \frac{x_i - \mu_i}{s_i}$|$\mu_i = \frac{1}{N}\sum_{j=1}^N(x_i^{(j)})$| $s_i = \sqrt{\frac{\sum_{j=1}^N(x_i^{(j)}-\mu_i)^2}{N-1}}$|
+
+- Este escalado consigue que $x'$ se quede con media 0 y varianza 1.
+- Se debe usar **siempre con datos de entrenamiento**, **NO con validación y test**.
+
+Ver `sklearn.preprocessing.StandarScaler`. Escala el 95% de los valores entre -2 y 2.
+
+## Escalado Min-Max
+
+Meter muestras en un intervalo prefijado: [0, 1] ó [-1, 1].
+
+Ver `sklearn.preprocessing.MinMaxScaler`. Es mejor para expansión polinómica posterior.
+
+# Regresión Robusta
+
+Los datos espurios[^3] pueden influir demasiado en la solución.Con coste cuadrático, un error el doble de grande influye cuatro veces más.
+
+[^3]: Datos espurios: datos que son muy diferentes al resto de datos.
+
+|Coste cuadrático ($L_2$)|Coste valor absoluto ($L_1$)|Coste de Huber|
+|:-:|:-:|:-:|
+|Derivable|No derivable|Derivable|
+|$J_{L2}(\theta) = \frac{1}{2}\sum_{i=1}^N(h_{\theta}(x^{(i)}) - y^{(i)})^2$|$J_{L1}(\theta) = \sum_{i=1}^N(h_{\theta}(x^{(i)}) - y^{(i)})^2$||
+
+
+![grafica_cmp_costes]()
+
+
+
+## Coste cuadrático ($L_2$)
 
 
 
