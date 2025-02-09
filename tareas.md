@@ -9,7 +9,7 @@
 - [x] Acabar práctica 1, solo queda última parte.
 - [ ] Repasar primeros temas, aunque sea por encima, o hacer resumen (UPDATE, resumir tema Interrupciones y acabar Multiciclo?).
 - [ ] Mirar práctica 2.
-- [ ] Entregar práctica 1.
+- [x] Entregar práctica 1.
 
 # Multiprocesadores
 - [ ] Acabar práctica 1.
