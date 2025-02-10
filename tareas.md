@@ -6,9 +6,13 @@
 - [ ] Acabar la práctica 1 y entregarla.
 
 # Procesadores comerciales
+- [ ] Acabar práctica 2.
+- [ ] Entregar práctica 2.
+- [ ] Hacer resumen Interrupciones.
+- [ ] Hacer resumenes a partir de Fuera de Orden. 
 - [x] Acabar práctica 1, solo queda última parte.
-- [ ] Repasar primeros temas, aunque sea por encima, o hacer resumen (UPDATE, resumir tema Interrupciones y acabar Multiciclo?).
-- [ ] Mirar práctica 2.
+- [x] Repasar primeros temas, aunque sea por encima, o hacer resumen (UPDATE, acabar Multiciclo?).
+- [x] Mirar práctica 2.
 - [x] Entregar práctica 1.
 
 # Multiprocesadores
