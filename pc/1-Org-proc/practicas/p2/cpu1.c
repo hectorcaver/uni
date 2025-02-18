@@ -76,9 +76,9 @@ void sim(IREG instr)
         // Trabajo por hacer
 
         // Si la op en D requiere un fuente y su ciclo de disponibilidad es menor al ciclo actual se detiene.
-        if ((etapa_Din.cf0 && disp_reg[etapa_Din.rf0] > tiempo)
-            ||(etapa_Din.cf1 && disp_reg[etapa_Din.rf1] > tiempo)
-            ||(etapa_Din.cf2 && disp_reg[etapa_Din.rf2] > tiempo)) { 
+        if ((etapa_Din.cf0 && tiempo < disp_reg[etapa_Din.rf0])
+            ||(etapa_Din.cf1 && tiempo < disp_reg[etapa_Din.rf1])
+            ||(etapa_Din.cf2 && tiempo < disp_reg[etapa_Din.rf2])) { 
             craw++;
             carga_D = 0;
         } 
@@ -98,7 +98,8 @@ void sim(IREG instr)
                     } 
 		            else {
                         // deteccion y parada RIESGO WAW
-                        if(disp_reg[etapa_Din.rd0] > tiempo){
+                        if(tiempo + latenciasWR[etapa_Din.co] < disp_reg[etapa_Din.rd0]){
+                            // Si acabo la etapa de ejecución antes que una inst. anterior que escribe en el mismo registro, espero.
                             cWAW++;
                             carga_D = 0;
                         }
@@ -110,13 +111,15 @@ void sim(IREG instr)
         if(carga_D) {              
             /* lanzo la inst. por el camino correspondiente */
             if (etapa_Din.co == FLOAT) ciclos_parada_AF=5; /* para una latencia de 5 */
-            
+
             /* si escribe un registro ocupo wBR */
             if (etapa_Din.cd0) {
-                 //Representa la ocupación en el banco de registros
-                 wBR=wBR | aux;
-                 // Si puede continuar, registramos nueva disponibilidad del registro, ciclo actual + latencia de op.
-                 disp_reg[etapa_Din.rd0] = tiempo + latenciasWR[etapa_Din.co];
+                
+                //Representa la ocupación en el banco de registros
+                wBR=wBR | aux;
+
+                // Si puede continuar, registramos nueva disponibilidad del registro, ciclo actual + latencia de op.
+                disp_reg[etapa_Din.rd0] = tiempo + latenciasWR[etapa_Din.co];
             }
         }   
 
@@ -131,7 +134,7 @@ void sim(IREG instr)
                 tomado = 1;
             }
             etapa_PreDecode();
-	    if (!carga_P) cpredec++;
+	        if (!carga_P) cpredec++;
         }
         
         /* etapa Busqueda: si no hay problemas la instruccion pasa a D */

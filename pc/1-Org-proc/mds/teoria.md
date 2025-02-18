@@ -318,3 +318,116 @@ En caso de interrupción:
 
 ![Ruta de datos con un BRc, ROB y MT](resources/alt_br_rob_mt.png)
 
+# Ejecución fuera de orden
+
+## Procesadores que lanzan en orden
+
+### Resumen
+
+- No existen puntos donde acumular instrucciones.
+  - Los bloqueos se propagan hacia la etapa de búsqueda.
+
+- Control de riesgos:
+  
+  - **WAR**: NO
+    - Porque no se acumulan instrucciones y se lanzan con todos los operandos leídos.
+  
+  - **Resto de riesgos** se resuelven en **decodificación**:
+    - RAW, WAW, estructurales.
+
+- Para disminuir el número de detenciones, se debe **planificar en compilación**:
+  - Alejar productoras de consumidoras respetando las dependencias.
+
+### Limitaciones
+
+- Las instrucciones, tal como entran, deben lanzarse a una UF o bloquean la entrada.
+- Una UF (alu, branch, +fp, *fp ...) puede bloquear la entrada de instrucciones aunque existan UF desocupadas.
+- Una instrucción que debe esperar por riesgo RAW bloquea la entrada de instrucciones.
+- Es posible que en el futuro existe trabajo que puede hacerse pero del que no hay noticia. Por ejemplo:
+  
+  ```
+    divd f0 , f2, f4
+    addd f10, f0, f8 ; bloqueo por riesgo RAW
+    subd f6 , f8, f4 ; PODRÍA EJECUTARSE
+  ```
+
+## Procesadores que lanzan fuera de orden
+
+Se realiza mediante planificación dinámica de instrucciones. El hardware cambia el orden secuencial de ejecución.
+
+Si una instrucción no se puede ejecutar:
+
+  1. Acumulo la instrucción no ejecutable en un **buffer**, conocido como **Ventana de lanzamiento** (**IW**).
+  2. Observo si la siguiente se puede ejecutar.
+
+  Hay que tener cuidado con los riesgos de memoria. Se debe **desambiguar**: una instrucción de memoria (**i+k**) solo puede ejecutarse después de un store (**i**) si se comparan sus direcciones y son diferentes.
+
+### División del trabajo en etapas
+
+#### Etapa D (Decode)
+
+- Inserta las instrucciones en la ventana de lanzamiento y en ROB.
+- Para si no hay hueco en alguna de las dos estructuras.
+
+#### Etapa I (Issue)
+
+- En cada ciclo, selecciona, entre todas las instrucciones de la ventana, la más antigua de las que tienen sus operandos preparados y su UF libre.
+- Organización en dos sub-etapas:
+  - **Despertar**: entre las instrucciones de la ventana, detectar las que tienen preparados sus operandos.
+  - **Seleccionar**: entre las instrucciones despertadas, seleccionar las que pasan a ejecutar en el siguiente ciclo.
+    - Las más antiguas entre las que tienen su UF libre.
+
+#### Etapa R (Read)
+
+- Lectura de operandos en el banco de registros.
+- Se puede colocar después o antes de etapa de lanzamiento.
+
+![En esta figura se muestra la ruta de datos correspondiente al procesador fuera de orden.](resources/ruta_datos_fuera_orden.png)
+
+### Ventana de lanzamiento: Despertar
+
+#### Implementación mediante CAM (Content-Addressable Memory)
+  - Instrucciones leen bits Ready para sus operandos en etapa D.
+  - Las instrucciones productoras difunden el id de su Rd cuando está disponible. _**(Esto no podría causar problemas)**_.
+  - Se despiertan las instrucciones con operandos disponibles (desde BR o Cortos) y su UF disponible.
+
+![Estructura de la ventana de lanzamiento implementada con CAM.](resources/iw_cam.png)
+
+
+#### Implementación mediante matriz
+
+ - A la larga no es viable por el coste hardware, hay que añadir muchas puertas.
+
+![Estructura de la ventana de lanzamiento implementada mediante matriz.](resources/iw_matriz.png)
+
+### Ventana de lanzamiento: Seleccionar
+
+El tiempo es crítico: despertar y seleccionar en un ciclo.
+
+- Implementación mediante varios schedulers (planificadores, árbitros, puertos).
+- Cada scheduler es un codificador con prioridad.
+- Ejemplo:
+
+![Estructura de ruta de datos con schedulers para asignación de caminos.](resources/scheduler.png)
+  
+
+### Temporización
+
+Latencia entre instrucciones dependientes. Se soluciona teniendo en cuenta cuándo estará disponible el registro.
+
+### Otras alternativas: Read antes de Issue
+
+- Etapa R: se leen los operandos disponibles.
+- Etapa I: la ventana de instrucciones almacena los valores de los operandos disponibles y los identificadores de los no disponibles
+  - Cuando una instrucción produce resultado, éste se difunde junto con el identificador del registro destino.
+  - Instrucciones en la ventana capturan el valore de los operandos que les faltan.
+  - Cuando tienen todos los operandos despiertan.
+
+### Otras alternativas: Estaciones de reserva
+
+Propuesta por Tomasulo.
+
+- Cada UF tiene un almacen de instrucciones que quieren ejecutarse en ella: estaciones de reserva (RS).
+- Las RS tienen hueco para guardar el valor de los operandos: etapa R antes de etapa I.
+- Los operandos se difunden desde las UF hacia las RS junto al identificador de registro (en realidad identificador de RS).
+
