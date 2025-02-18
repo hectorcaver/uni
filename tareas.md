@@ -6,6 +6,7 @@
 - [x] Leer todo lo relacionado con el Tema 1, ver última diapositiva Tema 1
 - [x] Avanzar la práctica 1 de Aprendizaje Automático.
 - [x] Acabar la práctica 1 y entregarla.
+- [x] Hacer resumen Tema 2.
 
 # Procesadores comerciales
 - [ ] Hacer práctica 3.

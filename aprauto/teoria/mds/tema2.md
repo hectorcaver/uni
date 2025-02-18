@@ -153,3 +153,113 @@ $$
 
 > **SIEMPRE SE DEBE ANOTAR EN UNA TABLA LOS RESULTADOS**
 
+# Regularización
+
+La idea es penalizar la complejidad del modelo con tal de reducir el sobre-ajuste.
+
+## Regulación $L_2$
+
+Valores pequeños para los parámetros $\theta_1, \cdots ,\theta_D$.
+
+- Hipótesis "más simples"
+- Menos propenso al sobre-ajuste
+
+### Regresión Ridge
+
+$$
+    J(\theta) = \frac{1}{2} (\sum_{i=1}^N(h_{\theta}(x^{(i)} - y^{(i)})^2) + \lambda \sum_{j=1}^D \theta_j^2)
+$$
+
+$$
+    \widehat{\theta} = argmin_{theta} J(\theta)
+$$
+
+**Necesita datos escalados**.
+
+Valores mayores de lambda, disminuye el valor de los $\theta$ (sub-ajuste). Si uso valores pequeños de lambda puede no afectar a los valores de los pesos.
+
+Se puede solucionar también por medio de **Descenso de Gradiente**.
+
+## Regularización $L_1$
+
+Valores nulos para algunos parámetros $\theta_1, \cdots ,\theta_D$.
+
+- Selección automática de atributos importantes.
+- Proporciona modelos más simples.
+
+### Regresión Lasso
+
+$$
+    J(w) = \frac{1}{2} \sum_{i=1}^N(w^Tx^{(i)} - y^{(i)})^2 + \lambda \sum_{j=1}^D|w_j|
+$$
+
+$$
+    \widehat{w} = argmin_w J(w)
+$$
+
+**Necesita datos escalados**.
+
+Valores mayores de lambda, vuelve nulos los pesos $w$ (sub-ajuste). Si uso valores pequeños de lambda puede no afectar a los valores de los pesos o puede disminuir algunos y haciendo nulos otros.
+
+## Como ajustar el parámetro $\lambda$
+
+|Diferencia de ajuste de una regresión para diferentes valores de $\lambda$|
+|:-:|
+|![Diferencia de ajuste de una regresión para diferentes valores de $\lambda$](mds/resources_t2/ajuste_lambda.png)|
+
+### Validación cruzada
+
+Probar valores de $\lambda$ en progresión geométrica: $[0.0001, 0.001, 0.01, 0.1, \cdots]$
+
+Se puede hacer un plot de una gráfica que relacione el $RMSE$ y el $\lambda$.
+
+|Ajuste de lambda|
+|:-:|
+|![Ajuste de lambda](mds/resources_t2/ajuste_lambda_plot.png)|
+
+Ver numpy.logspace y matplotlib.pyplot.semilogx.
+
+## Regularización en RN
+
+No parece que haya sobre-ajuste, o no se manifiesta.
+
+### Regularización L1 y L2
+
+### Dropout
+
+Apagado aleatorio de neuronas.
+
+### Double descent (no se comprende muy bien)
+
+Muchas veces no hace falta.
+
+# Curvas de aprendizaje
+
+Al aumentar las muestras de entrenamiento, la curva de aprendizaje converge.
+
+|Curva de aprendizaje|
+|:-:|
+|![Curva de aprendizaje con respecto al número de muestras](mds/resources_t2/curva_aprendizaje.png)|
+
+Usar **muchos datos**:
+
+- Puede reducir el sobre-ajuste.
+- Si hay sub-ajuste, no mejora.
+
+# ¿Cómo depurar el aprendizaje?
+
+Supongamos que hemos resuelto la regresión lineal regularizada. Pero probamos con datos nuevos y comete errores inaceptables. **¿Qué hacemos a continuación?**:
+
+Si hay **sobre-ajuste**:
+
+- Más muestras de entrenamiento.
+- Usar menos atributos.
+- Aumentar $\lambda$.
+
+Si hay **sub-ajuste**:
+
+- Conseguir atributos nuevos.
+- Atributos polinómicos y otros.
+- Disminuir $\lambda$.
+
+**Siempre que se tome una decisión se debe de escribir.**

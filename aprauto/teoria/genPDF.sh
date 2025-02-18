@@ -37,8 +37,15 @@ pandoc \
 # Verificar si la conversión fue exitosa
 if [ $? -eq 0 ]; then
   echo "Conversión completada: $OUTPUT_FILE"
+  
+  read -p "¿Desea abrir el archivo? (Y/N): " respuesta
+  case "$respuesta" in
+    [Yy]* ) code "pdfs/$OUTPUT_FILE";;
+    * ) ;;
+  esac
 else
   echo "Error en la conversión"
   exit 1
 fi
+
 
