@@ -387,10 +387,72 @@ En este procesador se replican los caminos de proceso y memoria:
 
 ## Rendimiento sin seccionar
 
+### Rendimiento $n \leq MVL$
+
+El rendimiento depende de n, el tamaño del vector. Matemáticamente se puede calcular de la siguiente manera:
+
+$$
+  R_n = \frac{n \times k}{T_n} = \frac{n \times k \times F}{C_n} \text{ donde k es el número de FLOPs}
+$$
+
+Supongamos $n \leq MVL$ , donde $MVL$ es el tamaño máximo del vector (Maximum Vector Length, número de elementos de un RV). 
+Los costes de ejecutar n elementos es el siguiente:
+
+### Costes ejecución
+
+$$
+  C_{n (n \leq MVL)} = C_{fijos} + n \times C_e \text{ ciclos}
+$$
+
+Donde los ciclos fijos son:
+
+$$
+  C_{fijos} = \text{latencia UFs + penalizaciones(riesgos estructurales, ...)}
+$$
+
+Y $C_e$:
+
+$$
+  C_e = \text{ciclos por elemento}
+$$
+
+El tiempo será el siguiente:
+
+$$
+  T_{n (n \leq MVL) } = C_n \times T_C
+$$
+
+### Rendimiento pico $R_{\infty}$
+
+El rendimiento si tuviesemos un vector infinito y MVL fuese infinito. El rendimiento sería  
+
+$$
+  R_{\infty (MVL \infty)} =  \frac{k \times f}{C_e} \text{ donde k es el número de FLOPs}
+$$
+
+### n para MITAD de rendimiento máximo $N_{\frac{1}{2}}$
+
+$$
+  N_{\frac{1}{2}} = \frac{C_{fijos}}{C_e} = \frac{T_{fijos}}{T_e}
+$$
+
+- Da una idea sobre la sobrecarga vectorial (latencias y penalizaciones).
+  - Si $N_{\frac{1}{2}}$ es muy grande, tiene menos sobrecarga y viceversa.
+- Es independiente del tiempo de ciclo, solo depende de la arquitectura y del algoritmo.
 
 
+### $N_V$
+
+Longitud mínima de vector que consigue igual velocidad en las versiones escalar y vectorial.
+Puede servir para decidir la compilación del código. También mide la sobrecarga vectorial y la velocidad relativa entre los procesadores vectorial y escalar.
+Se calcula de la siugiente manera:
+
+$$
+  R_{N_V} = R_{esc} \rightarrow N_V = \frac{C_{fijos}}{C_{esc} - C_e} = \frac{T_{fijos}}{T_{esc} - T_e}
+$$
 
 
+> **Continuar por la página 52**
 
 
 
