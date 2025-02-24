@@ -8,7 +8,9 @@ author: "Héctor Lacueva Sacristán"
 
 # Generalización
 
-Es la capacidad de predecir la salida para nuevos datos.
+**Es la capacidad de predecir la salida para nuevos datos**.
+
+En el apartado [1.2.3 del libro Probabilistic Machine Learning](https://probml.github.io/pml-book/book1.html) se explica mejor el concepto y sus consecuencias. 
 
 ![Ejemplo de ajuste polinómico. En esta imagen se observa como ajustar un modelo simple a unos datos vs. un modelo complejo. Se puede ver que el modelo simple no ajusta perfectamente los datos de entrenamiento, pero hace un trabajo decente para nuevos datos. En el segundo caso, se ajusta perfectamente a los datos de entrenamiento pero hace un trabajo pésimo para los nuevos datos. Por tanto, el segundo modelo generaliza peor que el primero. IMPORTANTE[^0]](mds/resources_t2/ejemplo_ajuste_polinomico.png)
 
@@ -115,14 +117,14 @@ Los errores de entrenamiento y validación sirven para comprobar sobreajuste o s
 ### Sub-ajuste
 
 $$
-    E_{train}(\theta) es alto
+    E_{train}(\theta) \text{ es alto   y }
     E_{validation}(\theta) \approxeq E_{train}(\theta)
 $$
 
 ### Sobre-ajuste
 
 $$
-    E_{train}(\theta) es bajo
+    E_{train}(\theta) \text{ es bajo   y }
     E_{validation}(\theta) > E_{train}(\theta)
 $$
 
@@ -164,6 +166,10 @@ Valores pequeños para los parámetros $\theta_1, \cdots ,\theta_D$.
 - Hipótesis "más simples"
 - Menos propenso al sobre-ajuste
 
+Penaliza más a los pesos que se vuelven más grandes en magnitud.
+
+El peso $\theta_0$ no se penaliza ya que solo afecta a la media global de la salida y no contribuye al sobre-ajuste.
+
 ### Regresión Ridge
 
 $$
@@ -180,12 +186,17 @@ Valores mayores de lambda, disminuye el valor de los $\theta$ (sub-ajuste). Si u
 
 Se puede solucionar también por medio de **Descenso de Gradiente**.
 
+### Escoger el regularizador
+
+Escoger un número finito de $\lambda$, usar cross validation y elegir el mejor. Si el problema es muy grande, usar warm start para mejorar la eficiencia.
+
+
 ## Regularización $L_1$
 
 Valores nulos para algunos parámetros $\theta_1, \cdots ,\theta_D$.
 
 - Selección automática de atributos importantes.
-- Proporciona modelos más simples.
+- **Proporciona modelos más simples**.
 
 ### Regresión Lasso
 
@@ -201,11 +212,14 @@ $$
 
 Valores mayores de lambda, vuelve nulos los pesos $w$ (sub-ajuste). Si uso valores pequeños de lambda puede no afectar a los valores de los pesos o puede disminuir algunos y haciendo nulos otros.
 
-## Como ajustar el parámetro $\lambda$
+## Como ajustar el parámetro regularizador $\lambda$
 
 |Diferencia de ajuste de una regresión para diferentes valores de $\lambda$|
 |:-:|
 |![Diferencia de ajuste de una regresión para diferentes valores de $\lambda$](mds/resources_t2/ajuste_lambda.png)|
+
+Se explica mejor en el apartado [4.5.4 del libro Probabilistic Machine Learning](https://probml.github.io/pml-book/book1.html).
+
 
 ### Validación cruzada
 
