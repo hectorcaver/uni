@@ -12,8 +12,8 @@ package main
 import (
 	"encoding/gob"
 	"log"
-	"os"
 	"net"
+	"os"
 	"practica1/com"
 )
 

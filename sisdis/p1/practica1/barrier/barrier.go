@@ -25,7 +25,6 @@ func readEndpoints(filename string) ([]string, error) {
 		if line != "" {
 			endpoints = append(endpoints, line)
 		}
-		fmt.Println(line)
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, err
@@ -118,20 +117,20 @@ func main() {
 	} else if endPoints, lineNumber, err := getEndpoints(); err == nil {
 		// Get the endpoint for current process
 		localEndpoint := endPoints[lineNumber-1]
-		fmt.Println(localEndpoint)
+
 		if listener, err = net.Listen("tcp", localEndpoint); err != nil {
 			fmt.Println("Error creating listener:", err)
 		} else {
-			fmt.Println("Listening on", localEndpoint)
+			fmt.Println(localEndpoint, " listening on", localEndpoint)
 		}
 
 		// Barrier synchronization
 		var mu sync.Mutex
-		quitChannel := make(chan bool)
+		quitChannel := make(chan bool, 1)
 		receivedMap := make(map[string]bool)
 		barrierChan := make(chan bool)
 
-		fmt.Println(len(endPoints))
+		fmt.Println(localEndpoint, len(endPoints))
 
 		go acceptAndHandleConnections(listener, quitChannel, barrierChan,
 			&receivedMap, &mu, len(endPoints))
@@ -139,20 +138,21 @@ func main() {
 		// Bloquea hasta que se haya notificado al resto de procesos
 		notifyOtherDistributedProcesses(endPoints, lineNumber)
 
-		fmt.Println("Waiting for all the processes to reach the barrier")
+		fmt.Println(localEndpoint, "Waiting for all the processes to reach the barrier")
 
 		// Espero a recibir los n-1 mensajes que me toca recibir
 		<-barrierChan
 
-		// Cierro el listener para evitar el bloqueo en accept
-		listener.Close()
-
 		// Informo del cierre del listener para que finalice el proceso de aceptación de peticiones
 		quitChannel <- true
+
+		// Cierro el listener para evitar el bloqueo en accept
+		listener.Close()
 
 		fmt.Println("Finished the synchronization")
 
 		// Añadimos un tiempo para que se acaben de envíar los mensajes propios.
-		time.Sleep(1 * time.Second)
+		time.Sleep(6 * time.Second)
+
 	}
 }

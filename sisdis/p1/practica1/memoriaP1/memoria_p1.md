@@ -16,8 +16,8 @@ Ambos procesos son lanzados en la máquina r14 (192.168.3.14).
 
 |Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Conexión fallida|521.19µs|521.34µs|662.86µs|584.53µs|501.32µs|:-:|:-:|:-:|
-|Conexión establecida|1.186ms|1.244ms|1.119ms|1.227ms|1.138ms|:-:|:-:|:-:|
+|No OK|521.19µs|521.34µs|662.86µs|584.53µs|501.32µs|501.32µs|558.24µs|662.86µs|
+|OK|1.186ms|1.244ms|1.119ms|1.227ms|1.138ms|1.119ms|1.182ms|1.244ms|
 
 ## Conexión TCP en distinta máquina
 
@@ -25,8 +25,8 @@ El cliente es lanzado en la máquina r14 (192.168.3.14) y el servidor en la máq
 
 |Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Conexión fallida|874.52µs|583.47µs|615.49µs|591.78µs|631.84µs|:-:|:-:|:-:|
-|Conexión establecida|1.218ms|1.218ms|1.22ms|1.315ms|1.118ms|:-:|:-:|:-:|
+|No OK|874.52µs|583.47µs|615.49µs|591.78µs|631.84µs|:-:|:-:|:-:|
+|OK|1.218ms|1.218ms|1.22ms|1.315ms|1.118ms|:-:|:-:|:-:|
 
 > Aquí añadir una explicación de qué realiza la operación Dial en el primer caso (cuando el servidor no está desplegado) y cuando está desplegado.
 
@@ -35,14 +35,14 @@ Ambos procesos son lanzados en la máquina r14 (192.168.3.14).
 
 |Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Envío de una letra|316.662µs|305.791µs|324.18µs|312.199µs|345.347µs|:-:|:-:|:-:|
+|Send|316.662µs|305.791µs|324.18µs|312.199µs|345.347µs|:-:|:-:|:-:|
 
 ## Envío de una letra con UDP en distinta máquina
 El cliente ha sido lanzado en la máquina r14 (192.168.3.14) y el servidor en la máquina r15 (192.168.3.15).
 
 |Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Envío de una letra|659.304µs|658.174µs|629.916µs|558.083µs|576.935µs|:-:|:-:|:-:|
+|Send|659.304µs|658.174µs|629.916µs|558.083µs|576.935µs|:-:|:-:|:-:|
 
 
 # Sincronización Barrera Distribuida

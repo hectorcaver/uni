@@ -12,9 +12,9 @@ import (
 	"encoding/gob"
 	"log"
 	"net"
+	"os"
 	"practica1/com"
 	"time"
-	"os"
 )
 
 func sendEnd(endpoint string) {
