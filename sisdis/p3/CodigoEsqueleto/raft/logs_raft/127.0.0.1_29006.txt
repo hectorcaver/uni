@@ -1,0 +1,1451 @@
+127.0.0.1_29006 -> 16:48:04.475539 raft.go:150: logger initialized
+127.0.0.1_29006 -> 16:48:04.475840 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.485918 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.486040 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.486053 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.486103 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.486112 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.540681 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.540711 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.540718 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.541414 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.541445 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.590721 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.593072 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.593086 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.593153 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.593163 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.644358 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.644569 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.644586 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.644694 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.644713 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.741302 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.742245 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.742271 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.742484 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.742502 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.796072 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.798448 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.798465 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.799852 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.802020 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.893534 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.893622 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.893635 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.893686 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.893696 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:06.975902 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:06.975933 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:06.975943 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:06.975991 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:06.976002 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.039583 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.039691 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.039706 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.039762 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.039773 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.104869 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.104896 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.104905 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.104955 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.104966 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.143311 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.143339 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.143348 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.143385 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.143395 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.218245 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.219230 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.219299 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.220717 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.223000 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.333564 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.333660 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.333801 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.333996 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.334063 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.414776 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.416609 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.416629 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.417612 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.417637 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:07.485313 raft.go:382: Nodo: 0. Antes de copy
+127.0.0.1_29006 -> 16:48:07.485345 raft.go:384: Nodo: 0. Después de copy
+127.0.0.1_29006 -> 16:48:07.485353 raft.go:395: Nodo: 0. Recibido latido
+127.0.0.1_29006 -> 16:48:07.485399 raft.go:641: Nodo: 0. Latido RECIBIDO
+127.0.0.1_29006 -> 16:48:07.485407 raft.go:590: Nodo: 0. Estado: SEGUIDOR
+127.0.0.1_29006 -> 16:48:08.817591 raft.go:638: Nodo: 0. Vence timeout, ELECCIÓN
+127.0.0.1_29006 -> 16:48:08.821401 raft.go:595: Nodo: 0. Estado: CANDIDATO
+127.0.0.1_29006 -> 16:48:08.822860 raft.go:663: Nodo: 0. Elección GANADA
+127.0.0.1_29006 -> 16:48:08.823053 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:08.873755 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:08.873841 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:08.924469 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:08.924567 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:08.977259 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:08.977292 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.030654 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.030750 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.080998 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.081074 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.132079 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.132185 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.183334 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.183888 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.242570 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.242713 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.293149 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.293267 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.350014 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.354304 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.414356 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.414411 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.480228 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.480721 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.540267 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.540386 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.635444 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.635593 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.719633 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.719871 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.776929 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.777064 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.896768 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.896877 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:09.950857 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:09.953030 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.008780 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.008901 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.095917 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.096049 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.147189 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.147341 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.241763 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.241898 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.293782 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.293948 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.345335 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.345547 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.396670 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.396771 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.447985 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.448119 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.498688 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.498812 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.549868 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.549914 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.601069 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.601126 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.651331 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.651460 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.702905 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.702954 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.753698 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.753744 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.805762 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.807068 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.858360 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.858408 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.912581 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.912633 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:10.966684 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:10.966737 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.029479 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.029527 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.083546 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.083595 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.136196 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.136254 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.188309 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.189002 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.243327 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.243378 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.295337 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.302934 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.354167 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.354220 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.407376 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.407428 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.458678 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.458725 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.514598 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.516837 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.568372 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.568899 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.632658 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.632800 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.687871 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.687983 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.739764 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.739913 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.798281 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.798589 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.850295 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.850636 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.902854 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.904867 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:11.955492 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:11.955572 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.006247 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.006531 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.058381 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.065063 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.115170 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.115254 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.165696 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.165798 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.218372 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.219831 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.271569 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.271670 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.322275 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.322385 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.373191 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.373277 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.428554 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.430472 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.480803 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.480924 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.535210 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.535260 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.585550 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.585646 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.639121 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.640575 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.692302 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.695035 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.752713 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.752862 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.804493 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.804547 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.862202 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.862255 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.922903 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.922968 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:12.974784 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:12.981477 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.036530 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.036581 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.087756 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.087809 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.140505 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.142718 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.196085 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.196274 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.246775 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.246826 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.297532 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.297590 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.350869 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.350918 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.406954 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.416104 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.466722 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.466862 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.517308 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.517876 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.572866 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.573285 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.627474 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.629467 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.687551 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.687608 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.750577 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.750623 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.801665 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.801851 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.859688 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.859850 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.914367 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.915810 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:13.991198 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:13.991476 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.049810 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.049957 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.100662 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.100758 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.157512 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.162063 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.213375 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.213396 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.289811 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.289869 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.342478 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.342533 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.395753 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.395803 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.447085 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.447135 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.498684 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.498737 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.550156 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.550363 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.601962 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.602178 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.657177 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.657221 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.707567 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.707765 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.758919 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.758984 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.812177 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.812230 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.862500 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.862608 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.919202 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.924081 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:14.974244 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:14.974299 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.033461 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.036831 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.089616 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.091466 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.141692 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.141841 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.192775 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.192944 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.244251 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.244521 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.312320 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.312538 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.364549 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.364815 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.418116 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.420187 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.473809 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.473862 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.524654 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.524885 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.577472 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.577708 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.628774 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.628942 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.687995 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.690084 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.742023 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.742183 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.792840 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.792962 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.844124 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.844279 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.895277 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.895423 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.948169 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:15.948253 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:15.999853 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.000182 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.096653 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.096873 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.148312 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.148672 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.203777 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.203828 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.266774 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.266831 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.324839 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.324887 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.377454 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.377506 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.430268 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.432021 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.484997 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.485051 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.536591 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.543502 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.599420 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.601776 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.660080 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.660213 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.777506 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.777614 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.851671 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.851763 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.903267 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.911022 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:16.965508 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:16.966543 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.018324 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.018376 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.072077 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.072124 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.124282 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.124332 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.176995 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.179701 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.234240 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.234285 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.295517 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.297915 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.348668 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.348845 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.401227 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.401275 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.451349 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.452241 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.503494 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.503603 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.558259 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.558310 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.610829 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.612111 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.667808 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.667868 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.718262 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.718352 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.776091 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.777052 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.840897 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.841070 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.892646 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.892774 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:17.956676 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:17.956771 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.007930 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.008252 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.059212 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.059300 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.111419 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.111708 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.161846 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.164466 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.214630 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.221517 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.284270 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.288994 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.340622 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.340806 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.391689 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.391796 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.448898 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.448998 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.504164 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.504221 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.554365 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.556043 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.613576 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.613656 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.670747 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.670799 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.723639 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.737123 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.792050 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.794607 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.847519 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.847563 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.900857 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.900906 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:18.952474 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:18.952539 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.004045 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.004097 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.057212 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.057254 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.107554 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.110401 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.162347 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.162401 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.219181 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.219228 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.269827 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.269877 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.324788 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.324915 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.382720 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.382771 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.438853 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.438912 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.491768 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.491814 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.541972 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.542023 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.594837 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.604518 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.658163 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.660828 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.719831 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.719882 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.771272 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.794191 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.847874 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.847920 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.898296 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.898547 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:19.961767 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:19.961862 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.017461 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.017522 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.067645 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.067754 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.118746 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.118813 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.172477 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.176809 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.227408 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.235045 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.293506 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.293587 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.345399 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.345447 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.396198 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.396248 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.450494 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.454502 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.505829 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.506885 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.558747 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.562030 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.614899 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.614954 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.668694 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.668766 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.720669 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.720715 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.776699 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.776786 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.834082 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.834126 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.886808 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.889256 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.943251 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.943306 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:20.994701 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:20.994827 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.050315 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.050366 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.110483 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.110539 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.162056 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.162177 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.214899 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.214954 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.268184 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.277325 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.336439 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.336494 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.387279 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.387338 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.440669 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.440840 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.492719 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.492866 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.548013 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.551000 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.601089 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.601250 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.652148 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.652305 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.703149 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.706656 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.773189 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.773585 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.825147 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.825257 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.876216 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.876272 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.926675 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.926739 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:21.994926 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:21.995056 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.045534 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.045686 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.097196 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.097273 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.152075 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.152245 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.203210 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.203325 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.266762 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.267312 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.327675 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.327835 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.380055 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.384645 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.455300 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.458897 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.511623 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.511901 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.564541 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.564646 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.618520 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.618672 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.671931 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.672069 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.745263 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.745427 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.805006 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.805217 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.859796 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.859861 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.918305 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.918552 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:22.990099 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:22.990414 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.040773 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.045146 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.095799 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.097999 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.149730 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.149840 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.201063 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.201217 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.255650 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.255731 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.307839 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.307968 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.359058 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.361494 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.414781 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.414916 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.465729 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.465868 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.516587 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.516757 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.579616 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.579730 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.630275 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.630646 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.682937 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.682990 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.733977 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.734090 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.788770 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.788880 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.854027 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.854105 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.920754 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.921302 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:23.976934 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:23.977025 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.033690 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.035273 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.087396 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.091498 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.145270 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.145342 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.195556 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.195643 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.246357 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.246405 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.305885 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.305934 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.356473 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.360299 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.413268 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.413316 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.464706 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.467281 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.520552 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.520598 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.572109 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.572193 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.625253 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.625504 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.676094 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.676156 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.728045 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.728101 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.778726 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.781428 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.834869 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.834918 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.884998 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.885142 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.937297 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.937397 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:24.992659 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:24.992767 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.049156 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.051008 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.102500 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.102661 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.154503 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.155693 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.206514 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.206630 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.257237 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.260691 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.311865 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.311916 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.364901 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.366890 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.418096 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.418470 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.479498 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.479632 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.542932 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.542983 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.593971 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.598383 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.656230 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.656275 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.709114 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.712401 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.765640 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.771284 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.825431 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.825481 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.878518 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.878662 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.929805 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.929962 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:25.981004 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:25.981111 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.032078 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.032348 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.083240 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.083589 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.133968 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.134045 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.184697 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.185779 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.237808 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.237868 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.292385 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.292802 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.345186 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.345280 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.399877 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.399985 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.460875 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.461035 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.514308 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.514578 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.569592 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.572032 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.624462 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.629845 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.695175 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.697906 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.758275 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.762117 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.835727 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.835813 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.889559 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.894304 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:26.960832 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:26.961361 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.020727 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.020804 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.077939 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.080167 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.130601 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.130761 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.181204 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.181249 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.233013 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.234636 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.284904 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.285017 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.335921 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.336026 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.389177 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.389309 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.492845 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.492968 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.545322 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.545582 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.604641 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.604898 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.657670 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.664822 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.715426 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.715700 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.767662 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.767935 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.823193 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.825123 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.876248 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.876351 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.927429 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.927505 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:27.978783 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:27.978863 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.029504 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.029587 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.081505 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.081982 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.133014 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.133153 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.192258 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.192306 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.248706 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.248755 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.298964 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.308274 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.369817 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.369984 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.420152 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.420288 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.471819 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.471972 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.541696 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.541807 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.637608 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.637687 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.691126 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.691172 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.745062 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.745114 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.812765 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.814093 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.864220 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.864270 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.915794 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.916306 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:28.967381 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:28.967444 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.020622 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.020673 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.071370 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.073760 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.125218 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.125269 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.178782 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.181217 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.236280 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.236329 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.286912 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.295760 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.350320 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.350366 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.408958 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.409006 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.466086 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.466139 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.516380 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.517978 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.580001 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.581173 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.643581 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.643721 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.714171 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.714484 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.869330 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.869381 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.919653 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.927111 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:29.990464 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:29.995185 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.048522 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.050224 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.100600 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.100729 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.152118 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.154466 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.223864 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.223917 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.278874 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.281318 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.333222 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.333272 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.389740 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.392220 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.481543 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.481676 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.535578 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.535749 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.595552 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.598446 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.650687 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.654354 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.707896 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.707946 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.758216 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.758504 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.809324 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.809743 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.863591 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.863805 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.930124 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.931187 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:30.981559 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:30.981728 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.033628 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.034388 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.085508 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.085595 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.139182 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.139229 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.192611 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.194058 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.245632 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.245753 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.297512 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.302858 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.353479 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.353585 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.404598 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.404711 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.457569 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.458285 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.517970 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.525874 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.577250 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.577391 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.627770 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.627856 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.699793 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.699978 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.825799 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.825966 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.925163 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.925306 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:31.977566 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:31.980351 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.058877 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.059162 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.143250 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.144022 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.200588 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.200728 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.264237 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.264380 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.314517 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.314625 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.368079 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.368213 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.419722 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.421004 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.514826 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.514949 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.567903 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.568070 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.621420 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.621464 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.672009 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.672100 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.726932 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.727051 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.808341 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.809519 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.868206 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.868300 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.923628 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.925943 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:32.977638 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:32.977736 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.028904 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.029065 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.099727 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.099938 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.157550 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.157715 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.210455 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.210505 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.273157 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.273316 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.343810 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.343992 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.398906 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.399023 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.449263 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.449602 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.514104 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.514285 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.612920 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.617249 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.670245 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.676369 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.726722 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.726836 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.798844 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.798935 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.861773 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.861914 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.912444 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.912814 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:33.963616 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:33.963721 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.070520 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.070781 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.121680 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.121850 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.190294 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.191720 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.246072 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.246231 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.297244 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.297297 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.364956 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.365092 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.437943 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.437998 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.501067 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.501109 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.551812 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.551912 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.603599 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.605737 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.677085 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.677183 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.762614 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.762747 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.827710 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.827825 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.892471 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.892622 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:34.946021 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:34.946068 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.014812 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.014976 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.065140 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.065313 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.115492 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.116351 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.194021 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.194287 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.250042 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.250158 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.304601 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.306587 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.399559 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.399698 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.450001 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.450137 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.515174 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.516242 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.567077 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.567284 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.617976 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.618154 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.672035 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.672084 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.724157 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.724296 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.776898 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.777416 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.828568 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.829008 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.879723 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.879861 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.932986 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.933064 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:35.983816 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:35.983869 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.043925 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.043973 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.094073 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.101222 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.157436 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.157517 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.215229 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.215277 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.265577 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.265776 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.316485 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.325853 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.380131 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.380178 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.431305 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.431386 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.482411 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.483747 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.536450 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.536514 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.594517 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.596525 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.654228 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.656838 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.712478 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.713820 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.769677 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.769728 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.826672 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.826721 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.877879 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.878007 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.933345 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.933392 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:36.987229 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:36.989019 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.040467 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.040601 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.090817 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.092949 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.144838 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.144968 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.197327 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.197663 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.248180 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.248326 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.324999 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.325133 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.397755 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.397871 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.451993 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.452044 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.558627 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.558726 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.620650 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.622999 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.715850 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.715902 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.767313 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.767511 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.820493 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.820545 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.872026 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.873509 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.925546 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.925595 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:37.976806 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:37.976880 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.027896 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.030788 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.081073 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.085089 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.141493 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.142354 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.192815 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.192869 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.243806 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.243878 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.295395 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.296451 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.348222 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.348280 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.399523 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.399634 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.454277 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.456039 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.510815 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.510864 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.563653 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.563705 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.617704 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.618887 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.672358 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.672408 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.725200 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.730340 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.785722 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.785768 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.839485 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.839534 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.890591 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.890693 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.941228 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.941526 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:38.992566 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:38.993830 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.050524 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.050575 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.101656 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.105020 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.162753 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.162803 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.214404 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.217192 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.277731 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.277780 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.328755 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.328871 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.384566 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.384619 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.489138 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.489308 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.545741 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.545915 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.599656 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.599703 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.657870 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.664757 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.718570 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.718729 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.770771 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.772179 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.822767 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.825195 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.875586 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.875750 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.930804 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.930865 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:39.982241 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:39.982288 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.034828 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.034883 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.090247 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.090337 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.174613 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.175966 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.227453 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.230874 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.281996 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.282269 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.365614 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.367772 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.420678 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.420806 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.473448 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.474544 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.540892 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.541110 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.591879 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.592048 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.648835 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.651731 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.706675 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.706834 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.758322 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.759067 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.814406 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.818712 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.886987 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.888584 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.938850 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.939054 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:40.990920 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:40.991080 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.041877 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.042021 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.092775 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.092891 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.169525 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.169738 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.220777 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.220956 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.277174 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.277523 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.327900 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.328021 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.378278 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.378534 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.429944 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.430112 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.486003 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.486053 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.568844 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.568998 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.625006 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.627033 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.677134 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.677431 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.730391 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.735477 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.786354 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.786691 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.838013 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.838164 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.890993 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.891093 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.944571 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.944619 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:41.995000 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:41.995119 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.051500 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.051550 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.105359 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.105407 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.156468 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.156669 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.219109 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.219269 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.289956 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.290113 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.344619 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.344667 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.417824 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.417952 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.470339 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.470637 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.529141 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.531048 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.581212 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.581652 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.632577 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.632688 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.684544 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.684610 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.735626 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.735735 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.789407 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.789458 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.841665 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.841764 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.926646 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.926819 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:42.978226 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:42.978372 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.028473 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.030332 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.093396 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.093444 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.145022 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.145152 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.199937 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.200093 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.253352 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.253404 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.304804 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.305143 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.356117 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.356211 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.413312 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.413574 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.501190 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.501494 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.551566 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.551692 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.603815 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.604730 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.657333 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.657389 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.711123 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.711452 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.761774 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.761815 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.823384 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.823708 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.874412 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.874714 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.925530 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.925608 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:43.976005 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:43.976131 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.037977 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.038111 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.088805 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.088917 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.141344 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.141402 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.194891 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.195003 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.258692 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.258742 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.309854 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.309902 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.360698 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.361604 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.414877 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.415098 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.465913 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.466070 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.521960 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.522076 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.573167 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.573215 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.626755 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.626808 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.695102 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.695512 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.748445 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.753141 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.831137 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.831256 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.884848 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.884979 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:44.937962 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:44.938113 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.012525 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.012912 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.072721 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.072998 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.124317 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.124574 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.187405 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.191822 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.245185 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.245337 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.306518 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.306565 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.359541 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.359641 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.412050 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.412108 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.507088 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.507218 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.558490 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.558640 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.610902 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.610961 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.674913 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.675042 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.725799 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.726041 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.776997 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.777187 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.827853 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.828017 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.880040 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.880155 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.944162 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.944606 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:45.995934 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:45.996050 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.065947 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.066079 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.121684 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.121824 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.173167 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.173305 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.227592 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.227643 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.278717 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.278847 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.373334 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.374246 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.424472 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.424639 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.477048 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.479428 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.532666 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.532796 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.600058 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.600108 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.661236 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.662296 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.714797 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.714857 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.768273 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.768428 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.838815 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.838936 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.892044 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.892091 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.942605 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.942766 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:46.994001 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:46.994053 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.045610 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.045725 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.097656 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.097839 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.153418 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.153762 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.229796 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.229927 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.281921 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.282057 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.333503 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.337595 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.389454 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.389577 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.443124 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.443171 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.505849 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.505940 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.564873 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.564920 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.615736 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.615915 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.666743 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.666791 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.718489 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.723516 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.779963 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.780091 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.834340 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.836194 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.903289 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.903337 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:47.953726 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:47.954034 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:48.037006 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:48.037363 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:48.147312 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:48.147430 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:48.199773 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:48.199901 raft.go:600: Nodo: 0. Estado: LIDER
+127.0.0.1_29006 -> 16:48:48.249993 raft.go:677: Nodo: 0. Vence timeout, Mandar Latido
+127.0.0.1_29006 -> 16:48:48.252220 raft.go:600: Nodo: 0. Estado: LIDER
