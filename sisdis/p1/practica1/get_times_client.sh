@@ -28,8 +28,8 @@ exec_count=0
 mode=""
 host1=""
 
-# path="/misc/practicas/alumnos/sd2425..."
-path="~/uni/sisdis/p1/practica1/"
+path="/misc/alumnos/sd/sd2425/a869637/practica1"
+# path="~/uni/sisdis/p1/practica1/"
 
 while [[ "$1" != "" ]]; do
     case $1 in
@@ -70,10 +70,13 @@ ip=$(echo "$host1" | cut -d':' -f1)
 
 if [[ $protocol == "u" ]]; then
 
-    echo "Estoy en la mierda"
-    
-    ssh "$ip" "bash --login -c 'cd $path && ./get_times_server.sh -u$exec_count $host1'" &
-    
+
+    if [[ $mode == "l" ]]; then
+        ./get_times_server.sh -u$exec_count $host1 &
+    else
+        ssh "$ip" "bash --login -c 'cd $path && ./get_times_server.sh -u$exec_count $host1'" &
+    fi
+
     sleep 2
 
 fi
@@ -94,8 +97,12 @@ for ((i = 1; i <= exec_count; i++)); do
     
     else
 
-        ssh "$ip" "bash --login -c 'cd $path && ./get_times_server.sh -t $host1'" &
-
+        if [[ $mode == "l" ]]; then
+            ./get_times_server.sh -t $host1 &
+        else
+            ssh "$ip" "bash --login -c 'cd $path && ./get_times_server.sh -t $host1'" &
+        fi
+        
         output=$(go run network/client_tcp/tcp_client.go "$host1" | tee /dev/tty)
 
         # Extraer el número decimal con grep y sed

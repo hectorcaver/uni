@@ -1,49 +1,97 @@
----
-title: "Memoria Práctica 1"
-author:
-    - "Héctor Lacueva Sacristán"
-    - "Adrián Nasarre Sánchez"
-date: "24 de enero de 2025"
----
+% Memoria Práctica 1:
+    Conceptos y Mecanismos Básicos
+    Sistemas Distribuidos
+% Autor: Héctor Lacueva Sacristán
+    NIP: 869637
+% Fecha: 31/03/2025
 
 \newpage
 
 # Análisis de Prestaciones de Red
 
-## Conexión TCP en la misma máquina
+Para cada caso se han ejecutado 7 pruebas y se ha extraído la media de los resultados.
+
+## Prestaciones de red para conexión TCP
+
+### Conexión TCP en la misma máquina
 
 Ambos procesos son lanzados en la máquina r14 (192.168.3.14).
+Se han obtenido los siguientes resultados:
 
-|Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|No OK|521.19µs|521.34µs|662.86µs|584.53µs|501.32µs|501.32µs|558.24µs|662.86µs|
-|OK|1.186ms|1.244ms|1.119ms|1.227ms|1.138ms|1.119ms|1.182ms|1.244ms|
+|Resultado|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Error|529,38µs|654,73µs|551,565µs|573,454µs|675,101µs|682,433µs|549,88µs|
+|Ok|1,055057ms|917,522µs|844,302µs|1,121964ms|997,429µs|976,91µs|1,023336ms|
 
-## Conexión TCP en distinta máquina
+La media por tanto es de **602.36µs** para el caso de fallo de conexión y de **0.9909ms** para el caso de conexión establecida.
+
+### Conexión TCP en distinta máquina
 
 El cliente es lanzado en la máquina r14 (192.168.3.14) y el servidor en la máquina r15 (192.168.3.15).
+Se han obtenido los siguientes resultados:
 
-|Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|No OK|874.52µs|583.47µs|615.49µs|591.78µs|631.84µs|:-:|:-:|:-:|
-|OK|1.218ms|1.218ms|1.22ms|1.315ms|1.118ms|:-:|:-:|:-:|
+|Resultado|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Error|695,093µs|635,111µs|636,019µs|850,129µs|729,796µs|719,167µs|638,518µs|
+|Ok|1,228148ms|1,220815ms|1,358593ms|1,456926ms|1,107537ms|1,174574ms|1,236796ms|
 
-> Aquí añadir una explicación de qué realiza la operación Dial en el primer caso (cuando el servidor no está desplegado) y cuando está desplegado.
+La media por tanto es de **700.55µs** para el caso de fallo de conexión y de **1.2548ms** para el caso de conexión establecida.
 
-## Envío de una letra con UDP en la misma máquina
+### Conclusiones
+
+#### Conclusiones con respecto fallo de Dial.
+
+El coste de ejecutar la **operación Dial de TCP en Golang** se debe a que se encarga de establecer la conexión con un servidor.
+Para ello, lleva a cabo el "**3-way-handshake**" propio del protocolo TCP:
+
+1. Cliente envía `SYN`.
+2. Servidor recibe `SYN` y envía recibe `SYN+ACK`.
+3. Cliente recibe `SYN+ACK` y envía `ACK`.
+
+Cuando **Dial falla**, en nuestro caso porque el servidor no está desplegado se lleva a cabo lo siguiente:
+
+1. Cliente envía `SYN`.
+2. Al no haber ningún proceso escuchando en el puerto al que se ha realizado la petición,
+   el SO envía un `RST`, lo que lleva a un error de conexión.
+
+Se llevan a cabo dos envíos, uno para `SYN` y otro para `RST`.
+
+Cuando **Dial funciona correctamente** se realiza el protocolo completo, de ahí los tiempos superiores.
+
+#### Conclusiones con respecto a la ejecución en máquinas diferentes.
+
+Al ejecutar la operación en distinta máquina los paquetes deben ser enviados a través de la red del rack que conecta las diferentes máquinas, lo que conlleva un sobrecoste.
+Al ejecutar las operaciones en la misma máquina los paquetes se envían a través de la red de la propia máquina, y por lo general, esta es más rápida que la red del rack.
+De ahí que los tiempos para la ejecución en la misma máquina sean menores que para distintas máquinas.
+
+## Prestaciones de red para conexión UDP
+
+### Envío de una letra con UDP en la misma máquina
+
 Ambos procesos son lanzados en la máquina r14 (192.168.3.14).
+Se han obtenido los siguientes resultados:
 
-|Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Send|316.662µs|305.791µs|324.18µs|312.199µs|345.347µs|:-:|:-:|:-:|
+|Resultado|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Char Sent|296,296µs|321,37µs|286,778µs|294,055µs|326,185µs|354,981µs|320,019µs|
 
-## Envío de una letra con UDP en distinta máquina
+La media del RTT es de **314,241µs**.
+
+### Envío de una letra con UDP en distinta máquina
 El cliente ha sido lanzado en la máquina r14 (192.168.3.14) y el servidor en la máquina r15 (192.168.3.15).
+Se han obtenido los siguientes resultados:
 
-|Resultado|Prueba 1| Prueba 2 | Prueba 3 | Prueba 4 | Prueba 5 | Mínimo | Media | Máximo |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Send|659.304µs|658.174µs|629.916µs|558.083µs|576.935µs|:-:|:-:|:-:|
+|Resultado|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Char Sent|606,167µs|517,426µs|590,333µs|558,333µs|559,889µs|656,24µs|565,5µs|
 
+La media del RTT es de **579,127µs**.
+
+### Conclusiones
+
+La diferencia entre ejecutar en la misma máquina y en distintas es el tiempo de propagación de los mensajes.
+En el caso de la misma máquina, el tiempo de propagación medio es de **157,120µs** (RTT = **314,241µs**) y en el caso de máquinas distintas es de **289,563µs** (RTT = **579,127µs**).
+Al igual que en TCP al ejecutar en la misma máquina se obtienen resultados mejores (la red local es más rápida que la del rack).
 
 # Sincronización Barrera Distribuida
 

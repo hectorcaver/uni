@@ -1,0 +1,40 @@
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+||||||||
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+||||||||
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|296,296µs|321,37µs|286,778µs|294,055µs|326,185µs|354,981µs|320,019µs|
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+||||||||
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|548,307µs|357,217µs|326,791µs|368,402µs|393,179µs|308,718µs|310,829µs|
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|361,587µs|292,866µs|374,235µs|359,495µs|413,66µs|413,142µs|502,308µs|
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|300,569µs|432,697µs|531,992µs|472,9µs|383,013µs|418,438µs|366,569µs|
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|491,4µs|474,937µs|526,769µs|300,884µs|309,495µs|272,699µs|280,385µs|
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|328,828µs|345,902µs|401,901µs|428,197µs|350,921µs|332,199µs|301,828µs|
+
+|Prueba 1|Prueba 2|Prueba 3|Prueba 4|Prueba 5|Prueba 6|Prueba 7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|439,696µs|347,698µs|350,865µs|343,475µs|338,364µs|353,624µs|509,991µs|
+
