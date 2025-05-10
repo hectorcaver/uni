@@ -8,7 +8,7 @@ const Carta = ({ palo, numero, callbackClick, enMano = false, puntos}) => {
 
   let numeroReal = numero < 7 ? numero + 1 : numero + 3;
 
-  const spriteSrc = `/src/assets/cartas/${traduccion[palo]}_${numeroReal}.png`;
+  const spriteSrc = `/assets/cartas/${traduccion[palo]}_${numeroReal}.png`;
 
   return (
     <div className={`carta`}

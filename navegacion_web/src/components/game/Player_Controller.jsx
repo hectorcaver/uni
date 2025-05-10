@@ -3,7 +3,7 @@ import Carta from "./Carta";
 import '/src/styles/Game.css';
 
 const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete }) => {
-  const spriteSrc = `/src/assets/Mano.png`;
+  const spriteSrc = `/assets/Mano.png`;
   const esMiTurno = controller.state.esMiTurno;
 
   const [isHovered, setIsHovered] = useState([false, false, false, false, false]);

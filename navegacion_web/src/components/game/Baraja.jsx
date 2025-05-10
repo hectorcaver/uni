@@ -4,7 +4,7 @@ import { useUser } from '../../context/UserContext';
 const Baraja = ({ controller }) => {
     
     const { cartas } = useUser();
-    const spriteSrc = `/src/assets/stacks/${cartas}.png`;
+    const spriteSrc = `/assets/stacks/${cartas}.png`;
 
     return (
         <div className="baraja">
