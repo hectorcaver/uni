@@ -3,9 +3,9 @@ import { useUser } from '../../context/UserContext';
 import '/src/styles/TapeteChangeModal.css';
 import usePut from '../../customHooks/usePut';
 
-import tapete1Image from '../../assets/tapetes/tapete1.png';
-import tapete2Image from '../../assets/tapetes/tapete2.png';
-import tapete3Image from '../../assets/tapetes/tapete3.png';
+import tapete1Image from '/assets/tapetes/tapete1.png';
+import tapete2Image from '/assets/tapetes/tapete2.png';
+import tapete3Image from '/assets/tapetes/tapete3.png';
 
 const tapetes = {
   tapete1: tapete1Image,
