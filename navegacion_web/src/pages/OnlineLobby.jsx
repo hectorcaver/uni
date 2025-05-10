@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import backButton from '/src/assets/back_button.png';
+import backButton from '/assets/back_button.png';
 import '/src/styles/Lobby.css'
 import usePost from '../customHooks/usePost';
 import '/src/styles/Homepage.css'
