@@ -1,0 +1,126 @@
+/* RankingComponent.css */
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.friends-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 100%;
+    background-color: white; /* Match the ranking modal background */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Match the ranking modal shadow */
+    z-index: 1000;
+}
+
+.friends-modal.show {
+    animation: slideIn 0.5s forwards;
+}
+
+.friends-modal.hide {
+    animation: slideOut 0.5s forwards;
+}
+
+.modal-exit-button {
+    position: absolute;
+    background-color: white;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+.friends-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5); /* Match the ranking overlay background */
+    display: block;
+}
+
+.friend-list-back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+}
+
+.friend-list-back-button img {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+}
+
+.friend-list-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.friend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: calc(100% - 4rem);
+    overflow-y: auto;
+}
+
+.friend-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para modo oscuro */
+@media (prefers-color-scheme: dark) {
+    .friends-modal {
+        background-color: #242424; /* Match the ranking modal dark mode background */
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Match the ranking modal shadow */
+    }
+
+    .modal-exit-button {
+        background-color: #242424;
+    }
+
+    .modal-exit-button img {
+        filter: invert(1);
+    }
+
+    .friends-overlay {
+        background-color: rgba(0, 0, 0, 0.5); /* Make the background fully visible */
+    }
+
+    .friend-list-back-button {
+        background-color: #242424;
+    }
+
+    .friend-list-back-button img {
+        background-color: #dbdbdb;
+        filter: invert(1);
+    }
+
+    .friend-list-title {
+        color: white; /* Texto más visible */
+    }
+}

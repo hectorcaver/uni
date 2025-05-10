@@ -1,0 +1,50 @@
+/* Estilo para modo claro */
+.cb_button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cb_img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 5px auto;
+    margin-bottom: 5px;
+}
+
+.button span {
+    font-size: 14px;
+}
+
+.cb_button:hover {
+    background-color: #d7dbdf;
+    color: black;
+}
+
+/* Estilo para modo oscuro */
+@media (prefers-color-scheme: dark) {
+    .cb_button {
+        background-color: #242424;
+        color: white;
+    }
+
+    .cb_img {
+        filter: invert(1); /* Ajusta los íconos para que se vean mejor en modo oscuro */
+    }
+
+    .cb_button:hover .cb_img {
+        filter: invert(0); /* Invierte el color del ícono cuando ocurre el hover */
+    }
+
+    .button span {
+        color: white; /* Texto más visible en modo oscuro */
+    }
+}
