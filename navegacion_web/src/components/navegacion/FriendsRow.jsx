@@ -17,8 +17,8 @@ import React, { useState, useRef } from 'react';
 import '/src/styles/FriendsRow.css';
 import usePost from '../../customHooks/usePost';
 
-const assetsUrl = '/src/assets/';
-const avataresUrl = '/src/assets/avatares/';
+const assetsUrl = '/assets/';
+const avataresUrl = '/assets/avatares/';
 
 const {postData}  = usePost('https://guinyoteonline-hkio.onrender.com/amigos/eliminarAmigo/');
 
