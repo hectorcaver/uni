@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import Carta from "./Carta";
 import '/src/styles/Game.css';
 
-const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete }) => {
-  const spriteSrc = `/assets/Mano.png`;
+const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete, handleCantar }) => {
+  const spriteSrc = `/src/assets/Mano.png`;
   const esMiTurno = controller.state.esMiTurno;
 
   const [isHovered, setIsHovered] = useState([false, false, false, false, false]);
 
   const palos = [ "bastos", "copas", "espadas", "oros" ];
+
+  const jugarCarta = (index) => {
+    controller.state.input.carta = index;
+    if(controller.turno()){
+      handleCartaClick(index);
+    }
+    controller.comprobarCantarYCambiar();
+  };
 
   const handleMouseEnter = (index) => {
     const newHovered = [...isHovered]; // Copia del array
@@ -28,7 +36,7 @@ const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete 
         <button
           key={index}
           className={`boton cantar${palo} ${
-            controller.state.sePuedeCantar[index]
+            controller.state.sePuedeCantar[index] && esMiTurno && !controller.state.cantadoEsteTurno && controller.state.ganador
               ? isHovered[index]
                 ? "hover"
                 : "activo"
@@ -37,8 +45,9 @@ const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete 
           onMouseEnter={() => handleMouseEnter(index)} // Activa el hover
           onMouseLeave={() => handleMouseLeave(index)} // Desactiva el hover
           onClick={() => {
-            if (controller.state.sePuedeCantar[index]) {
+            if (controller.state.sePuedeCantar[index] && esMiTurno && !controller.state.cantadoEsteTurno && controller.state.ganador) {
               controller.cantar(index);
+              handleCantar(index);
               console.log(`Cantar activado para ${palo}`);
             } else {
               console.log(`Cantar desactivado para ${palo}`);
@@ -50,7 +59,7 @@ const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete 
       ))}
       <button
           className={`boton siete ${
-            esMiTurno && controller.state.sePuedeCambiarSiete
+            esMiTurno && controller.state.sePuedeCambiarSiete && controller.state.ganador
               ? isHovered[4]
                 ? "hover"
                 : "activo"
@@ -59,7 +68,7 @@ const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete 
           onMouseEnter={() => handleMouseEnter(4)} // Activa el hover
           onMouseLeave={() => handleMouseLeave(4)} // Desactiva el hover
           onClick={() => {
-            if (controller.state.sePuedeCambiarSiete) {
+            if (esMiTurno && controller.state.sePuedeCambiarSiete && controller.state.ganador) {
               handleCambiarSiete();
               console.log(`Cambiar siete activado`);
             } else {
@@ -93,7 +102,7 @@ const Player = ({ controller, cartaJugada, handleCartaClick, handleCambiarSiete 
                     key={carta.palo + "_" + carta.numero}
                     palo={carta.palo}
                     numero={carta.numero}
-                    callbackClick={() => handleCartaClick(index)}
+                    callbackClick={() => jugarCarta(index)}
                     enMano={true}
                   />
                 ) : (

@@ -1,15 +1,24 @@
+/**
+ * GameManager class
+ * - Manages the game state and logic for a IA game.
+ * 
+ */
+
 import TurnManager from "./TurnManager";
 import PlayerBase from "./PlayerBase";
+import Online_PlayerBase from "./Online_PlayerBase";
 import IA_PlayerBase from "./IA_PlayerBase";
 import BarajaClass from "./BarajaBase";
 
 class GameManager {
-    constructor(_numPlayers) {
+    constructor(_numPlayers, esOnline) {
         this.state = {
             turnManager: null,
             players: Array(_numPlayers).fill(null),
             orden: Array(_numPlayers).fill(null),
+            puntosJugadores: Array(_numPlayers).fill(0),
             numPlayers: _numPlayers,
+            esOnline: esOnline,
             baraja: null,
             cartasJugadas: Array(_numPlayers).fill(null),
             triunfo: null,
@@ -18,58 +27,108 @@ class GameManager {
             arrastre: false,
             finRonda: false,
             finJuego: false,
+            /**
+             * ! indexGanador: null,
+             * ! ganador: null,
+             * ! mostrarCantar: null,
+             * ! cartasMoviendo: null,
+             */
         };
 
         this.Evaluar = this.Evaluar.bind(this);
         this.TurnChange = this.TurnChange.bind(this);
     }
 
-    Init() {
+    Init(arrayDeCartas, primero, index) {
         this.state.arrastre = false;
         this.state.segundaBaraja = false;
         this.state.finRonda = false;
         this.state.finJuego = false;
 
-        this.state.baraja = new BarajaClass();
-        //this.state.baraja.barajar();
+        // * -------------------------- INICIAR BARAJA ----------------------------
+        if (this.state.esOnline && arrayDeCartas) {
+            this.state.baraja = new BarajaClass(arrayDeCartas) ;
+        } else {
+            this.state.baraja = new BarajaClass() ;
+            //this.state.baraja.barajar();
+        }
+        // * ----------------------------------------------------------------------
+
+        
+        this.InitJugadores(index);
 
         this.state.triunfo = this.state.baraja.darCarta();
         this.state.baraja.anyadirAlFinal(this.state.triunfo);
-
-        this.InitJugadores();
-
+            
         this.state.turnManager = new TurnManager(this.state.numPlayers, this.Evaluar, this.TurnChange, this.state.players);
         this.state.turnManager.reset();
 
-        for (let i = 0; i < this.state.numPlayers; i++) {
-            this.state.orden[i] = i;
+
+        // * -------------------------- INICIAR ORDEN ----------------------------
+        if(primero != null) {
+            for (let i = 0; i < this.state.numPlayers; i++) {
+                this.state.cartasJugadas[i] = i;
+            }
+        } else {
+            for (let i = 0; i < this.state.numPlayers; i++) {
+                let j = primero;
+                this.state.orden[i] = j;
+                primero = (primero + 1) % this.state.numPlayers;
+            }
         }
 
-        this.state.turnManager.tick();
+        // * ----------------------------------------------------------------------
+
+        this.state.turnManager.tick(); 
+
     }
 
-    InitJugadores() {
-        this.state.players[0] = new PlayerBase(this);
-        for (let j = 0; j < 6; j++) {
-            this.state.players[0].anyadirCarta(this.state.baraja.darCarta());
+    InitJugadores(index) {
+
+        if (this.state.esOnline && index != null) {
+            // * Si es online y recibimos el index del server inicializamos los jugadores
+            // * El jugador 0 es el local y el resto son online
+            this.state.players[0] = new PlayerBase(this);
+            for (let j = 0; j < 6; j++) {
+                this.state.players[0].anyadirCarta(this.state.baraja.darCarta());
+            }
+
+            // * Estos usuarios se inicializan dependiendo del número de jugadores
+            // * Cada jugador se inicializa a partir del index recibido
+            for (let i = 1; j < _numPlayers; i++) {
+
+                index = (index + i) % this.state.numPlayers;
+                this.state.players[i] = new Online_PlayerBase(this.state.numPlayers, this, index);
+                for (let j = 0; j < 6; j++) {
+                    this.state.players[i].anyadirCarta(this.state.baraja.darCarta());
+                }
+
+            }
+
         }
-        if (this.state.numPlayers === 2) {
-            this.state.players[1] = new IA_PlayerBase(this.state.numPlayers, this, 1);
+        else {
+            this.state.players[0] = new PlayerBase(this);
             for (let j = 0; j < 6; j++) {
-                this.state.players[1].anyadirCarta(this.state.baraja.darCarta());
+                this.state.players[0].anyadirCarta(this.state.baraja.darCarta());
             }
-        } else if (this.state.numPlayers === 4) {
-            this.state.players[1] = new IA_PlayerBase(this.state.numPlayers, this, 1);
-            for (let j = 0; j < 6; j++) {
-                this.state.players[1].anyadirCarta(this.state.baraja.darCarta());
-            }
-            this.state.players[2] = new IA_PlayerBase(this.state.numPlayers, this, 2);
-            for (let j = 0; j < 6; j++) {
-                this.state.players[2].anyadirCarta(this.state.baraja.darCarta());
-            }
-            this.state.players[3] = new IA_PlayerBase(this.state.numPlayers, this, 3);
-            for (let j = 0; j < 6; j++) {
-                this.state.players[3].anyadirCarta(this.state.baraja.darCarta());
+            if (this.state.numPlayers === 2) {
+                this.state.players[1] = new IA_PlayerBase(this.state.numPlayers, this, 1);
+                for (let j = 0; j < 6; j++) {
+                    this.state.players[1].anyadirCarta(this.state.baraja.darCarta());
+                }
+            } else if (this.state.numPlayers === 4) {
+                this.state.players[1] = new IA_PlayerBase(this.state.numPlayers, this, 1);
+                for (let j = 0; j < 6; j++) {
+                    this.state.players[1].anyadirCarta(this.state.baraja.darCarta());
+                }
+                this.state.players[2] = new IA_PlayerBase(this.state.numPlayers, this, 2);
+                for (let j = 0; j < 6; j++) {
+                    this.state.players[2].anyadirCarta(this.state.baraja.darCarta());
+                }
+                this.state.players[3] = new IA_PlayerBase(this.state.numPlayers, this, 3);
+                for (let j = 0; j < 6; j++) {
+                    this.state.players[3].anyadirCarta(this.state.baraja.darCarta());
+                }
             }
         }
     }
@@ -153,7 +212,14 @@ class GameManager {
         if (this.state.finRonda) {
             this.state.players[this.state.orden[0]].state.puntos += 10;
             this.terminarRonda();
-            this.barajarYRepartir();
+            // Si no es online, barajamos y reportimos
+            if (!this.state.esOnline) {
+                this.barajarYRepartir();
+            } else {
+                // * Si es online, 
+                // * - se espera a recibir la baraja del server
+                // * - se reparte a los jugadores
+            }
             return;
         } // 10 ultimas
 

@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
-import { useUser } from '../../context/UserContext';
+import { useUser,stackToCarta } from '../../context/UserContext';
 import '/src/styles/CartasChangeModal.css'; // Asegúrate de tener este CSS o copiar el del tapete y adaptarlo
 import usePut from '../../customHooks/usePut';
 
-import cartas1Image from '/assets/stacks/cartas1.png';
-import cartas2Image from '/assets/stacks/cartas2.png';
-import cartas3Image from '/assets/stacks/cartas3.png';
-
-const opcionesCartas = {
-  cartas1: cartas1Image,
-  cartas2: cartas2Image,
-  cartas3: cartas3Image
-};
+const stacksUrl = '/src/assets/stacks/';
+const stack1 = 'default.png';
+const stack2 = 'stack2.png';
+const stack3 = 'stack3.png';
 
 function CartasChangeModal({ show, handleClose }) {
-  const { mail, setCartas, cartas } = useUser();
-  const [newCartas, setNewCartas] = useState(cartas);
+
+  const exampleStacks = [stack1,stack2,stack3];
+  const { mail, setCartas, setStack, stack } = useUser();
+  const [newStack, setNewStack] = useState(stack);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const { putData } = usePut('https://guinyoteonline-hkio.onrender.com');
 
   const handleSubmit = async () => {
-    if (newCartas !== cartas) {
+    if (newStack !== stack) {
       setLoading(true);
       setErrorMsg('');
+      console.log(`Stack seleccionado: ${newStack}`);
+      const cartas = stackToCarta(newStack);
+      console.log(cartas);
 
       const encodedMail = encodeURIComponent(mail);
-      const response = await putData({ imagen_carta: newCartas }, `/usuarios/perfil/cambiarCartas/${encodedMail}`);
+      const response = await putData({ imagen_carta: cartas }, `/usuarios/perfil/cambiarCartas/${encodedMail}`);
 
       setLoading(false);
 
@@ -34,7 +34,8 @@ function CartasChangeModal({ show, handleClose }) {
         console.error('Error actualizando cartas:');
         setErrorMsg('Error al guardar el cambio. Intenta de nuevo.');
       } else {
-        setCartas(newCartas);
+        setCartas(cartas);
+        setStack(newStack);
         handleClose();
       }
     } else {
@@ -48,20 +49,20 @@ function CartasChangeModal({ show, handleClose }) {
     <div className="cartas-modal-overlay" onClick={handleClose}>
       <div className="cartas-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="cartas-options">
-          {Object.entries(opcionesCartas).map(([key, src]) => (
+          {exampleStacks.map((filename) => (
             <div
-              key={key}
-              className={`cartas-option ${newCartas === key ? 'selected' : ''}`}
-              onClick={() => setNewCartas(key)}
+              key={filename}
+              className={`cartas-option ${newStack === filename ? 'selected' : ''}`}
+              onClick={() => setNewStack(filename)}
             >
-              <img src={src} alt={key} />
+              <img src={stacksUrl + filename} alt={filename} />
             </div>
           ))}
         </div>
 
         <div className="cartas-preview">
           <h3>Vista previa</h3>
-          <img src={opcionesCartas[newCartas]} alt="Vista previa de las cartas" />
+          <img src={stacksUrl + newStack} alt="Vista previa de las cartas" />
           {loading && <p className="cartas-modal-loading">Guardando...</p>}
           {errorMsg && <p className="cartas-modal-error">{errorMsg}</p>}
           <div className="cartas-modal-buttons">

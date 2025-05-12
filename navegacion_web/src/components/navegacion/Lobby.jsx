@@ -3,15 +3,18 @@ import LobbySlots from './LobbySlots';
 import { useUser } from '../../context/UserContext';
 import usePost from '../../customHooks/usePost';
 import { useSocket } from '../../context/SocketContext';
+import { useNavigate } from 'react-router-dom';
+import PrivateRoomModal from './PrivateRoomModal';
 
 const Lobby = ({ pairs }) => {
 
     const { postData } = usePost('https://guinyoteonline-hkio.onrender.com') ;
     
     const socket = useSocket();
-
+    const navigate = useNavigate();
     const [matchmaking, setMatchmaking] = useState(false);
     const [counter, setCounter] = useState("0:00");
+    const [showModal, setShowModal] = useState(false);
     const timerRef = useRef(null); // ← store timer ID
     const { username, mail, profilePic } = useUser();
     const [users, setUsers] = useState([{
@@ -23,14 +26,19 @@ const Lobby = ({ pairs }) => {
 
     const maxPlayers = !pairs ? 2 : 4;
 
+    const handleIniciarPartida = () => {
+        console.log("Recibido 'iniciarPartida' del servidor");
+        socket.emit("ack");
+        navigate("/online_match");
+    };
+
     useEffect(() => {
         if (!socket) return;
 
-        const handleIniciarPartida = () => {
-            console.log("Recibido 'iniciarPartida' del servidor");
-            socket.emit("ack");
-        };
-
+        console.log("Borrando todos los listeners de iniciarPartida")
+        socket.off("iniciarPartida");
+        // Listen for the "iniciarPartida" event from the server
+        console.log("Escuchando 'iniciarPartida' del servidor");
         socket.on("iniciarPartida", handleIniciarPartida);
 
         return () => {
@@ -93,6 +101,13 @@ const Lobby = ({ pairs }) => {
         setUsers(auxUsers);
     }
 
+
+    const joinRoom = () => {
+        setShowModal(true); // Mostrar el modal
+    };
+
+    const closeModal = () => setShowModal(false);
+
     return (
         <>
             <h1>{pairs ? "Sala de Partida 2 vs 2" : "Sala de Partida 1 vs 1"}</h1>
@@ -100,7 +115,10 @@ const Lobby = ({ pairs }) => {
             <LobbySlots slotCount={maxPlayers} playerSlotArgs={users} handleSlotClick={handleSlotClick}/>
 
             {!matchmaking ? (
-                <button onClick={startMatchmaking}>Empezar</button>
+                <div className="lobby-buttons">
+                    <button onClick={startMatchmaking}>Empezar</button>
+                    <button onClick={joinRoom}>Sala privada</button>
+                </div>
             ) : (
                 <div className="waiting-matchmaking-counter">
                     <h2>{counter}</h2>
@@ -109,6 +127,18 @@ const Lobby = ({ pairs }) => {
                         <img />
                     </button>
                 </div>
+            )}
+
+            {showModal && (
+                <PrivateRoomModal
+                    onClose={() => setShowModal(false)}
+                    onJoin={(roomCode) => {
+                        console.log("Unirse a sala con código:", roomCode);
+
+                        setShowModal(false);
+                    }}
+                    pairs
+                />
             )}
         </>
     );

@@ -20,10 +20,16 @@ class Carta{
 
 
 class BarajaBase {
-    constructor() {
+    constructor(arrayCartas) {
+        
         this.cartas = [];
-        this.inicializarBaraja();
-        //this.barajar();
+        if (!arrayCartas) {
+            this.inicializarBaraja();
+            this.barajar();
+        }
+        else {
+            this.crearBaraja(arrayCartas);
+        }   
     }
 
     inicializarBaraja() {
@@ -32,7 +38,7 @@ class BarajaBase {
             this.cartas.push(new Carta(i % 4, Math.floor(i / 4)));
 
         }*/
-       /* Para comprobar cantos
+       
        this.cartas = [
             new Carta(0, 7), new Carta(1, 7), new Carta(2, 7), new Carta(3, 7),
             new Carta(0, 9), new Carta(1, 9),new Carta(2, 9), new Carta(3, 9),
@@ -43,8 +49,8 @@ class BarajaBase {
             new Carta(0, 7), new Carta(1, 7), new Carta(2, 7), new Carta(3, 7),
             new Carta(0, 9), new Carta(1, 9),new Carta(2, 9), new Carta(3, 9)
         ];
-        */
-       this.cartas = [
+        
+       /*this.cartas = [
         new Carta(0, 7), new Carta(0, 6), new Carta(2, 6), new Carta(3 ,6),
         new Carta(0, 6), new Carta(1, 6),new Carta(2, 6), new Carta(3, 6),
         new Carta(0, 6), new Carta(1, 6), new Carta(2, 6), new Carta(3 ,6),
@@ -53,7 +59,18 @@ class BarajaBase {
         new Carta(0, 6), new Carta(1, 6),new Carta(2, 6), new Carta(3, 6),
         new Carta(0, 7), new Carta(1, 7), new Carta(2, 7), new Carta(3, 7),
         new Carta(0, 9), new Carta(1, 9),new Carta(2, 9), new Carta(3, 9)
-       ]
+       ];*/
+    }
+
+    /**
+     * Funcion que crea la baraja a partir de un array de cartas
+     * @param {Array} arrayCartas 
+     */
+    crearBaraja(arrayCartas) {
+        this.cartas = [];
+        for (let i = 0; i < arrayCartas.length; i++) {
+            this.cartas.push(new Carta(arrayCartas[i].palo, arrayCartas[i].numero));
+        }
     }
 
     barajar() {
@@ -77,6 +94,7 @@ class BarajaBase {
     }
 
     anyadirAlFinal(carta) {
+        carta.puntos = carta.calcularPuntos(carta.numero);
         this.cartas.push(carta);
     }
 

@@ -10,7 +10,7 @@ import RankingModal from '../components/navegacion/RankingModal';
 import FriendsModal from '../components/navegacion/FriendsModal';
 import '/src/styles/Homepage.css'
 import usePost from '../customHooks/usePost';
-import { useUser } from '../context/UserContext';
+import { cartaToStack, useUser } from '../context/UserContext';
 import ProfilePic from '../components/navegacion/ProfilePic';
 
 
@@ -36,6 +36,9 @@ function Homepage() {
     setMail,
     profilePic,
     setProfilePic,
+    setTapete,
+    setCartas,
+    setStack,
     isUserRegistered,
     setIsUserRegistered
   } = useUser();
@@ -108,6 +111,10 @@ function Homepage() {
       setShowRegisterModal(false);
       setUsername(username);
       setMail(mail);
+      setProfilePic("default.png");
+      setTapete("default.png");
+      setCartas("default.png");
+      setStack("default.png");
     }
   };
 
@@ -130,6 +137,9 @@ function Homepage() {
       setUsername(response.responseData.nombre);
       setMail(mail);
       setProfilePic(response.responseData.foto_perfil);
+      setTapete(response.responseData.tapete);
+      setCartas(response.responseData.imagen_carta);
+      setStack(cartaToStack(response.responseData.imagen_carta));
     }
   };
 
