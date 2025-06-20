@@ -12,8 +12,8 @@ package main
 import (
 	"encoding/gob"
 	"log"
-	"os"
 	"net"
+	"os"
 	"practica1/com"
 	"strconv"
 )
@@ -59,7 +59,7 @@ func processRequests(id int, conn_chan chan(net.Conn)){
 
 func main() {
 
-	GORUTINE_POOL_SIZE := 50
+	GORUTINE_POOL_SIZE := 10
 	args := os.Args
 	if len(args) != 2 {
 		log.Println("Error: endpoint missing: go run server.go ip:port")

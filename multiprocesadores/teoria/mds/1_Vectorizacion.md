@@ -458,3 +458,59 @@ $$
 
 
 
+# Conflictos en el acceso a bancos de memoria
+
+## Propiedad fundamental
+
+Una secuencia de accesos a memoria con separación **S bancos** visita un **subconjunto de P bancos** del **total de M**.
+
+Por ejemplo:
+
+![Ejemplo](mds/resources/ejemplo_propiedad_fundamental.png)
+
+Donde:
+
+$$P = \frac{M}{mdc(S,M)}$$
+
+## Sistemas ajustados M = L
+
+Ejemplo: **L = 4 ciclos** y **M = 4 bancos**.
+
+Un acceso con stride S = 5 módulos de memoria, (**5 bancos**), da como resultado:
+
+$$P = \frac{4}{mcd(5,4)} = 4$$
+
+Cada banco diferente visitado aporta 1 dato / L ciclos.
+
+Visitamos P bancos, $Flujo = BW = \frac{P \text{datos}}{L \text{ciclos}}$
+
+$$C_{e_{mem}} = Flujo^{-1} = \frac{L}{P}$$
+
+Para el caso de S = 5, $C_{e_{mem}} = 1 cpe$, sin embargo para el caso de S = 4, $C_{e_{mem}} = 4 cpe$.
+
+Por lo general podemos decir que:
+
+$$C_e = \frac{N_{ciclos}}{N_{elementos}} = \frac{L}{P} = \frac{L*mcd(M,S)}{M} = mcd(M,S)$$
+
+### Strides IMPARES
+
+**Si el número de Strides es IMPAR no hay conflicto**.
+
+$$C_{e_{mem}} = 1$$
+
+### Strides PARES
+
+**Si el número de Strides es PAR hay conflicto**.
+
+$$C_{e_{mem}} > 1$$
+
+## Sistemas sobrados M > L
+
+Ejemplo: M = 8, L = 4.
+
+![Comparativa abstracta entre conflictos en sistemas sobrados y ajustados](mds/resources/cmp_sis_ajustados_sobrados.png)
+
+Si hay dudas o falta algo que puede ser útil ir a teoría página 71.
+
+
+

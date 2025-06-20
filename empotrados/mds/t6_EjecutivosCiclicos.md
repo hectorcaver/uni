@@ -151,6 +151,7 @@ Asignación de procesos (o subprocesos) a los marcos de forma que se cumplan los
 #### Planteamiento:
 
 Búsqueda en el espacio de estados
+
 - Estado: asignación parcial
 - Algoritmo: búsqueda en profundidad con retroceso
   - Se pretende encontrar una única solución
@@ -165,6 +166,7 @@ Búsqueda en el espacio de estados
 ### Partición de tareas
 
 Hay casos en que un conjunto de tareas que no es planificable:
+
 - Si el tiempo de cómputo de uno es mayor que el plazo de algún otro:
   - $C_i > D_k$ => No existe valor de m que cumpla a la vez:
     - $m \le min(D_i)$
@@ -185,9 +187,11 @@ Si es preciso partir alguna tarea en subtareas, **no deben partirse las seccione
 ### Tareas esporádicas
 
 Tarea esporádica E: atención a eventos externos aperiódicos
+
 - $S_E$ : separación mínima entre eventos
 - $D_E$ : plazo límite ( normalmente $D_E \le S_E$ )
 - $C_E$ : tiempo de cómputo máximo
+
 En un ejecutivo cíclico las tareas esporádicas pueden programarse de dos formas: 
 
 #### Muestreo periódico del evento

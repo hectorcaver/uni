@@ -1,11 +1,30 @@
-% Memoria Práctica 1:
-    Conceptos y Mecanismos Básicos
-    Sistemas Distribuidos
-% Autor: Héctor Lacueva Sacristán
-    NIP: 869637
-% Fecha: 31/03/2025
+% Memoria Práctica 1 \
+    Conceptos y Mecanismos Básicos \
+    Sistemas Distribuidos 
+% Autor: Héctor Lacueva Sacristán \
+    NIP: 869637 \
+    GRUPO TARDES 3-3
+% Fecha: 02/06/2025
 
 \newpage
+
+# Introducción
+
+En esta práctica, se busca abordar los conceptos clave de los sistemas distribuidos, diseñando varias arquitecturas, midiendo el rendimiento de la red y creando un mecanismo de sincronización distribuida. El objetivo principal es asignar adecuadamente las tareas a los recursos computacionales disponibles y analizar la Calidad de Servicio (QoS) bajo diferentes condiciones.
+
+Recursos Computacionales Disponibles:
+
+- Máquinas del lab102:
+  - Procesadores i5-9500 con múltiples núcleos e hilos para pruebas intermedias.
+- Cluster de Raspberry Pi 4 Model B:
+  - El procesador de una Raspberry Pi 4 Model B (ARM Cortex-A72) tiene 4 cores con 1 hilo por core, que nos van a permitir ejecutar, por lo tanto, hasta 4 instancias en
+    paralelo de nuestra aplicación. Estas máquinas cuentan con 7.6 GB.
+  - Se cuenta con 4 máquinas dentro del mismo, máquinas r13 (192.168.3.13) a r16 (192.168.3.16) del cluster.
+  - Para cada máquina tenemos a nuestra disposición 10 puertos (del 29180 al 29189).
+  - Se accede a ellas a través de ssh desde las **máquinas del lab102** o bien desde **central**.
+
+La práctica incluye la medición de tiempos en conexiones de red (TCP y UDP), la implementación de una barrera distribuida y el diseño de varias arquitecturas distribuidas (cliente-servidor y master-worker).
+
 
 # Análisis de Prestaciones de Red
 
@@ -62,7 +81,7 @@ Cuando **Dial funciona correctamente** se realiza el protocolo completo, de ahí
 
 Al ejecutar la operación en distinta máquina los paquetes deben ser enviados a través de la red del rack que conecta las diferentes máquinas, lo que conlleva un sobrecoste.
 Al ejecutar las operaciones en la misma máquina los paquetes se envían a través de la red de la propia máquina, y por lo general, esta es más rápida que la red del rack.
-De ahí que los tiempos para la ejecución en la misma máquina sean menores que para distintas máquinas.
+Es por eso que los tiempos para la ejecución en la misma máquina sean menores que para distintas máquinas.
 
 ## Prestaciones de red para conexión UDP
 
@@ -95,84 +114,80 @@ Al igual que en TCP al ejecutar en la misma máquina se obtienen resultados mejo
 
 # Sincronización Barrera Distribuida
 
-## Metodología
-
-Para este apartado se pedía completar el código proporcionado con la funcionalidad para el correcto funcionamiento de una barrera distribuida.
-Lo primero fue analizar el código para comprender el funcinamiento ya implementado de la barrera.
-Aparte de errores de sintaxis, faltaba completar la parte final del código que se encarga del fin de la sincronización.
-La barrera debe esperar a que le lleguen los mensajes de los demás procesos, lo que implica que la sincronización ha acabado.
-
-Un aspecto que se ha añadido es un tiempo de espera para que se envíen todos los mensajes antes de acabar el proceso.
-Esto se debe a que al terminar el proceso (llegar al final del `main`) todas las gorutinas son matadas y,
- por tanto, habría procesos que podrían no llegar a recibir todos los mensajes.
-
-El funcionamiento de la barrera se puede ver en el siguiente diagrama de secuencia.
-En este caso, el ejemplo se ha realizado para la sincronización de 3 procesos.
-
-| Diagrama de secuencia de la sincronización de la barrera |
-|:-:|
-| ![sd_barrier_sync](./resources/sd_barrier_sync)|
-
-Ante la sospecha de que el algoritmo no era eficiente por la cantidad de mensajes enviados, 
-se ha realizado un análisis de distintos algoritmos simples de barrera distribuida que sea más eficiente al propuesto.
-Y se ha realizado la implementación de la barrera más eficiente encontrada para verificar su correcto funcionamiento.
+Para la realización de esta parte, se nos ha proporcionado el código de una barrera distribuida simple.
 
 ## Análisis
 
-### Barrera 1: Todos informan a todos (Ejemplo propuesto)
+El funcionamiento de esta barrera es muy simple, cuando **un proceso accede a la barrera**, **envía un mensaje a todos los demás procesos** y espera a haber recibido un mensaje del resto de procesos involucrados. Una vez ha **obtenido todos los mensajes**, la **sincronización** se considera **completada** y el **proceso puede salir** de la barrera.
 
-En este caso tenemos N nodos que se quieren sincronizar.
-Al acceder a la barrera el nodo i, envía un mensaje de acceso al resto de nodos y espera recibir los N-1 mensajes del resto de nodos.
+### Funcionamiento y diagrama de secuencia
 
-Es el diseño más simple que se puede pensar pero ineficiente a gran escala por la cantidad de mensajes que se envían.
-El número de mensajes que son enviados en una sincronización es de `n*(n-1)`, cada nodo envía un mensaje al resto de nodos.
-Por tanto, la complejidad es `O(n²)`.
-
-#### Funcionamiento
-
-| Nodo 1 accede a la barrera | Nodo 1 puede salir de la barrera |
+|Entrada a la barrera|Salida de la barrera|
 |:-:|:-:|
-| ![Nodo 1 accede a la barrera](./resources/barrera1_acceso.png){width=33%} | ![Nodo 1 puede salir de la barrera](./resources/barrera1_salida.png){width=33%} |
+|![Acceso a la barrera](resources/barrera1_acceso.png)|![Salida de la barrera](resources/barrera1_salida.png)|
+|Cuando accedes a la barrera informas a todos los demás procesos|Cuando has recibido los mensajes de todos los demás procesos puedes salir|
 
-### Barrera 2: Informar a mayores y esperar respuesta
-
-En este caso tenemos N nodos que se quieren sincronizar.
-Al acceder a la barrera el nodo i, envía el mensaje a los nodos en el rango [i+1, N].
-Cuando el nodo N (nodo con mayor identificador), recibe los N-1 mensajes y está dentro de la barrera, envía un mensaje a todos los nodos para notificar de que la sincronización se ha completado.
-Cabe destacar que este algoritmo necesita que las listas de nodos deben estar en el mismo orden en todos los nodos.
-
-La cantidad de mensajes enviados para llevar a cabo un sincronización es de `n*(n-1)/2 + n-1`, cada nodo envía un mensaje a los nodos mayores a él.
-Por tanto, la complejidad sigue siendo `O(n²)`.
-
-#### Funcionamiento
-
-|Nodo 1 accede a la barrera|Nodo 3 accede a la barrera|Nodo 6 informa finalización|
-|:-:|:-:|:-:|
-|![Accede 1](./resources/barrera2_acceso1.png)|![Accede 3](./resources/barrera2_acceso3.png)| ![Sync finalizada](./resources/barrera2_3_SincFinalizada.png)|
-
-### Barrera 3: Solo se informa al nodo mayor
-
-En este caso tenemos N nodos que se quieren sincronizar.
-Al acceder a la barrera el nodo i, envía un mensaje al nodo N, que trataremos como **coordinador**.
-Cuando el **coordinador** (nodo con mayor identificador), recibe los N-1 mensajes y está dentro de la barrera, envía un mensaje a todos los nodos para notificar de que la sincronización se ha completado.
-Al igual que en la barrera anterior la lista de nodos debe estar en el mismo orden en todos los nodos.
-
-La cantidad de mensajes enviados para llevar a cabo un sincronización es de `2*(n-1)`, cada nodo envía un mensaje al nodo N, y este envía otro de vuelta.
-Por tanto, la complejidad para este caso es `O(n)`.
-Un detalle interesante sobre este algoritmo es que solo el nodo **coordinador** necesita conocer a todos los nodos que interactúan en la sincronización.
-
-#### Funcionamiento
-
-|Nodo 1 accede a la barrera|Nodo 3 accede a la barrera|Nodo 6 informa finalización|
-|:-:|:-:|:-:|
-|![Accede 1](./resources/barrera3_acceso1.png)|![Accede 3](./resources/barrera3_acceso3.png)| ![Sync finalizada](./resources/barrera2_3_SincFinalizada.png)|
-
-### Otras barreras
-
-También se ha pensado en otras barreras buscando una complejidad `O(n)`.
-Entre ellas se descartó un diseño que consistía en que el nodo i envía al nodo i+1 un mensaje de acceso cuando ya ha recibido un mensaje de acceso del nodo i-1.
-Esto se debe a lo ineficiente que sería el acceso en el caso peor. El nodo 1 le envía al 2, el 2 al 3, y así hasta el N. Si N es muy grande, se perdería mucho tiempo.
+|Diagrama de secuencia|
+|:-:|
+|![Diagrama de secuencia de la barrera distribuida](resources/barrier_sd.jpg)|
 
 
-Me cago en los muertos del profesor que hizo esta práctica
+## Solución propuesta
+
+Para el correcto funcionamiento de la barrera, se debe esperar a recibir un mensaje a través de `barrierChan`(esto indica que se han recibido todos los mensajes). Se envía un mensaje a través del canal `quitChannel`(se encarga de finalizar la gorutina que acepta solicitudes). Por último se cierra el `listener`. El orden es así porque sino se dan bloqueos en accept y la gorutina de aceptación no acabará nunca (aunque finalizarán cuando termine el programa). Por último, simulamos que el programa continúa correctamente con una espera de 6 segundos para que se envíen correctamente todos los mensajes.
+
+```go
+func main () { 
+    
+    ...
+
+    // Espero a recibir los n-1 mensajes que me toca recibir
+    <-barrierChan
+
+    // Informo de que ya no hay que recibir más peticiones
+    quitChannel <- true
+
+    // Cierro el listener para evitar el bloqueo en accept
+    listener.Close()
+
+    fmt.Println("Finished the synchronization")
+
+    // Añadimos un tiempo para que se acaben de envíar los mensajes propios.
+    time.Sleep(6 * time.Second)
+
+}
+```
+
+# Arquitecturas cliente-servidor
+
+## 1. Gorutina por petición
+
+En este caso **el servidor crea una gorutina para atender a cada petición**.
+
+|Diagrama de secuencia|
+|:-:|
+|![Diagrama de secuencia del proceso de atención a peticiones](resources/server_gorutine_sd.jpg)|
+|En el diagrma se representa proceso de respuesta del servidor ante una petición por parte de un cliente|
+
+## 2. Pool de gorutinas
+
+En este caso **el servidor crea un pool de gorutinas** y cuando recibe una petición la **asigna a una gorutina**.
+
+|Diagrama de secuencia|
+|:-:|
+|![Diagrama de secuencia del proceso de atención a peticiones](resources/server_gorutinepool_sd.jpg)|
+|En el diagrma se representa proceso de respuesta del servidor ante una petición por parte de un cliente|
+
+## 3. Master-Worker
+
+En este caso se cuenta con **un servidor master** que se encarga de **asignar las peticiones del cliente** a otros **servidores workers**. Los **workers procesan la petición** y **devuelven el resultado al master para que este se lo devuelva al cliente**.
+
+|Diagrama de secuencia|
+|:-:|
+|![Diagrama de secuencia del proceso de atención a peticiones](resources/server_masterworker_sd.jpg)|
+|En el diagrma se representa proceso de respuesta del servidor ante una petición por parte de un cliente. Todos los servidores cuentan con un pool de gorutinas y conforme se reciben peticiones, se asignana a las distintas gorutinas. |
+
+
+
+
 

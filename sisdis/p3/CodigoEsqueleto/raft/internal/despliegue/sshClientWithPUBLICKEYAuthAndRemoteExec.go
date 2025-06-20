@@ -67,7 +67,7 @@ func executeCmd(hostname string, cmd string, session *ssh.Session) string {
 	session.Stdout = &stdoutBuf
 	session.Stderr = &stdoutBuf
 
-	fmt.Println("ANTES RUN", cmd)
+	//fmt.Println("ANTES RUN", cmd)
 
 	session.Run(cmd)
 
@@ -137,6 +137,8 @@ func execOneHost(hostname string, results chan<- string, cmd string) {
 				continue
 			}
 
+
+			fmt.Println("Comando ejecutado: ", cmd)
 			// ejecuta comano con buena sesión ssh al host remoto
 			results <- executeCmd(hostname, cmd, session)
 

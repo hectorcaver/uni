@@ -1,3 +1,0 @@
-localhost:32002
-localhost:32004
-localhost:32006

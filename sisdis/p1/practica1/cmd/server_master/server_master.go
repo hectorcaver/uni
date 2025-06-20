@@ -10,38 +10,106 @@
 package main
 
 import (
+	"bufio"
 	"encoding/gob"
 	"log"
-	"os"
+	"math/rand"
 	"net"
+	"os"
 	"practica1/com"
 	"strconv"
-	"bufio"
-	//"math/rand"
+	"strings"
+
+	"golang.org/x/crypto/ssh"
 )
 
-// PRE: verdad = !foundDivisor
-// POST: IsPrime devuelve verdad si n es primo y falso en caso contrario
-func isPrime(n int) (foundDivisor bool) {
-	foundDivisor = false
-	for i := 2; (i < n) && !foundDivisor; i++ {
-		foundDivisor = (n%i == 0)
+// Función para iniciar un worker en una máquina remota usando SSH
+func startWorker(
+	ip string, 
+	port string, 
+	user string, 
+	path string, 
+	folder_path string,
+	config *ssh.ClientConfig ) (error) {
+
+	client, err := ssh.Dial("tcp", ip+":22", config)
+	if err != nil {
+		log.Fatal("Failed to dial: ", err)
+		os.Exit(1)
 	}
-	return !foundDivisor
+
+	newSession, err := client.NewSession()
+
+	if err != nil {
+		log.Fatal("Failed to create session: ", err)
+		os.Exit(1)
+	}
+
+	cmd := "cd " + folder_path + " && go run " + path + " " + ip+":"+port
+
+	payload := ssh.Marshal(struct {
+    Command string
+	}{
+		Command: cmd,
+	})
+
+	ok, err := newSession.SendRequest("exec", true, payload)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if !ok {
+		log.Fatal("request rejected by server")
+	}
+
+	return err
 }
 
-// PRE: interval.A < interval.B
-// POST: FindPrimes devuelve todos los números primos comprendidos en el
-//
-//	intervalo [interval.A, interval.B]
-func findPrimes(interval com.TPInterval) (primes []int) {
-	for i := interval.Min; i <= interval.Max; i++ {
-		if isPrime(i) {
-			primes = append(primes, i)
-		}
+func configssh(user string) (config *ssh.ClientConfig) {
+	key, err := os.ReadFile("/home/" + user + "/.ssh/id_rsa")
+	if err != nil {
+		log.Fatalf("unable to read private key: %v", err)
+		os.Exit(1)
 	}
-	return primes
+
+	// Create the Signer for this private key.
+	signer, err := ssh.ParsePrivateKey(key)
+	if err != nil {
+		log.Fatalf("unable to parse private key: %v", err)
+		os.Exit(1)
+	}
+
+	return &ssh.ClientConfig{
+		User: user,
+		Auth: []ssh.AuthMethod{
+			ssh.PublicKeys(signer),
+		},
+		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
+	}
 }
+
+// Inicia los workers de manera remota mediante SSH
+func startWorkers(
+	workers []string, 
+	user string, 
+	path string, 
+	folder_path string) {
+
+	config := configssh(user)
+
+	for _, worker := range workers {
+		parts := strings.Split(worker, ":")
+		ip := parts[0]
+		port := parts[1]
+		// Comando para ejecutar el worker en la máquina remota mediante SSH
+		err := startWorker(ip, port, user, path, folder_path, config)
+
+		if err != nil {
+			log.Fatalf("Error arrancando worker en %s: %v", ip, err)
+		}
+		log.Printf("Worker iniciado en %s\n", ip)
+	}
+}
+
 
 func processRequests(
 	id int, 
@@ -52,7 +120,7 @@ func processRequests(
 	reply_chan := make(chan(com.Reply))
 	for{
 		conn := <- conn_chan
-		log.Println("GORUTINE " + strconv.Itoa(id) + ": accepted new connection")
+		log.Println("GORUTINE "+strconv.Itoa(id)+": accepted new connection")
 
 		// Recojo una petición nueva
 		var request com.Request
@@ -64,7 +132,7 @@ func processRequests(
 		worker := getRandomWorker(workers)
 
 		// Le envío una petición al worker y un canal para recibir la respuesta
-		go sendTaskToWorker(request, worker, reply_chan)
+		sendTaskToWorker(request, worker, reply_chan)
 
 		// Recibe la respuesta del worker
 		reply := <- reply_chan
@@ -77,9 +145,11 @@ func processRequests(
 }
 
 func getRandomWorker(workers []string)(string){
-	
-	return workers[0]
-
+	if len(workers) == 0 {
+		log.Println("No workers available")
+		os.Exit(1)
+	}
+	return workers[rand.Intn(len(workers))]
 }
 
 func sendTaskToWorker(
@@ -138,9 +208,12 @@ func readWorkers(filename string) ([]string, error) {
 
 func main() {
 
-	WORKERS_FILE := "cmd/server-draft/workers.txt"
-
+	WORKERS_FILE := "cmd/server_master/workers.txt"
 	GORUTINE_POOL_SIZE := 50
+	USER := "a869637"
+	FOLDER_PATH := "/misc/alumnos/sd/sd2024/" + USER + "/practica1"
+	PATH := "cmd/server_worker/server_worker.go"
+
 	args := os.Args
 	if len(args) != 2 {
 		log.Println("Error: endpoint missing: go run server.go ip:port")
@@ -154,6 +227,15 @@ func main() {
 	
 	log.Println("Reading workers endPoints")
 	workers, err := readWorkers(WORKERS_FILE)
+
+	if err != nil {
+		log.Println("Error reading workers file:", err)
+		os.Exit(1)
+	}
+
+	log.Println("Launching workers")
+
+	startWorkers(workers, USER, PATH, FOLDER_PATH) 
 
 	conn_chan := make(chan(net.Conn))
 

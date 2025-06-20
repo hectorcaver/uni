@@ -1,6 +1,6 @@
 module raft
 
-go 1.19
+go 1.24.1
 
 require (
 	golang.org/x/crypto v0.1.0 // indirect

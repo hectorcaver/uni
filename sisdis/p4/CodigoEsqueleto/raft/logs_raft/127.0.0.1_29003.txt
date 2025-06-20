@@ -1,0 +1,4 @@
+127.0.0.1_29003 -> 18:33:48.094162 raft.go:197: logger initialized
+127.0.0.1_29003 -> 18:33:48.094337 raft.go:1184: Nodo: 2. Estado: SEGUIDOR
+127.0.0.1_29003 -> 18:33:49.824289 raft.go:1214: Nodo: 2. Vence timeout, ELECCIÓN
+127.0.0.1_29003 -> 18:33:49.824343 raft.go:1187: Nodo: 2. Estado: CANDIDATO

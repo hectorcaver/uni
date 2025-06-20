@@ -61,7 +61,7 @@ func getEndpoints() ([]string, int, error) {
 		fmt.Println("Error reading endpoints:", err)
 	} else if lineNumber > len(endpoints) {
 		fmt.Printf("Line number %d out of range\n", lineNumber)
-		err = errors.New("Line number out of range")
+		err = errors.New("line number out of range")
 	}
 	return endpoints, lineNumber, err
 }
@@ -132,6 +132,7 @@ func main() {
 
 		fmt.Println(localEndpoint, len(endPoints))
 
+		// Aceptamos y manejamos conexiones
 		go acceptAndHandleConnections(listener, quitChannel, barrierChan,
 			&receivedMap, &mu, len(endPoints))
 
@@ -143,13 +144,13 @@ func main() {
 		// Espero a recibir los n-1 mensajes que me toca recibir
 		<-barrierChan
 
-		// Informo del cierre del listener para que finalice el proceso de aceptación de peticiones
+		// Informo de que ya no hay que recibir más peticiones
 		quitChannel <- true
 
 		// Cierro el listener para evitar el bloqueo en accept
 		listener.Close()
 
-		fmt.Println("Finished the synchronization")
+		fmt.Println(localEndpoint, "Finished the synchronization")
 
 		// Añadimos un tiempo para que se acaben de envíar los mensajes propios.
 		time.Sleep(6 * time.Second)
