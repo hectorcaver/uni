@@ -457,11 +457,10 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 		// * de los nodos seguidores.
 		nr.VotacionRecibida <- true
 
-		mandatoMayor := peticion.Mandato > nr.MandatoActual
 		noVoto := (nr.MiVoto == IntNOINICIALIZADO)
 		votoCandidato := (nr.MiVoto == peticion.IdCandidato)
 
-		if (((noVoto || votoCandidato) && !mandatoMayor) || mandatoMayor) {
+		if (noVoto || votoCandidato) {
 			return nr.concederVoto(peticion, reply)
 		}
 	}
@@ -1015,7 +1014,9 @@ func (nr *NodoRaft) hacerseSeguidor(mandato int) {
 	fmt.Printf("Vuelvo a ser SEGUIDOR\n")
 	nr.MandatoActual = mandato
 	nr.Estado = Seguidor
-
+	// * Para el mandato 'mandato' no he votado así que elimino cualquier 
+	// * voto que pudiera haber
+	nr.MiVoto = IntNOINICIALIZADO
 }
 
 // #endregion
