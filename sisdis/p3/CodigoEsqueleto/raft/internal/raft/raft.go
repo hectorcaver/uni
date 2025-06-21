@@ -121,7 +121,10 @@ type NodoRaft struct {
 	// ! ------------- ESTADO VOLATIL EN TODOS LOS NODOS RAFT -----------------
 
 	// * Índice de la última entrada de registro comprometida
-	IndiceCommit int 
+	IndiceCommit int
+	// * Índice de la entrada más alta del log que ha sido aplicada a la 
+	// * máquina de estados
+	IndiceUltimoAplicado int
 
 	// ! -----------------------------------------------------------------------
 	// ! ------------- ESTADO VOLATIL EN LÍDERES RAFT --------------------------
@@ -189,11 +192,23 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	nr.MandatoActual = 0
 	nr.MiVoto = IntNOINICIALIZADO
 	nr.Log = make([]EntradaRegistro, 0)
+	nr.Log = append(nr.Log, EntradaRegistro{
+		Indice: 0,
+		Mandato: 0,
+		Comando: TipoOperacion{
+			Operacion: "start",
+			Clave: "",
+			Valor: "",
+		},
+	})
 	nr.Estado = Seguidor
+	
 	nr.Latido = make(chan bool)
 	nr.VotacionRecibida = make(chan bool)
 	nr.Parado = false
+
 	nr.IndiceCommit = 0
+	nr.IndiceUltimoAplicado = 0
 	nr.SiguienteIndice = make([]int, len(nodos))
 	nr.IndiceEntradaReplicada = make([]int, len(nodos))
 
@@ -208,7 +223,7 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 // Quizas interesante desactivar la salida de depuracion
 // de este nodo
 func (nr *NodoRaft) para() {
-	go func() { time.Sleep(2 * time.Second); os.Exit(0) }()
+	go func() { time.Sleep(500 * time.Millisecond); os.Exit(0) }()
 }
 
 // Devuelve "yo", mandato en curso y si este nodo cree ser lider
@@ -433,7 +448,7 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 	if nr.Parado { return nil }
 
 	if ! (peticion.Mandato < nr.MandatoActual) {
-
+		
 		// * Indicamos que se ha recibido una votación para resetear el timeout
 		// * de los nodos seguidores.
 		nr.VotacionRecibida <- true
@@ -442,7 +457,7 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 		noVoto := (nr.MiVoto == IntNOINICIALIZADO)
 		votoCandidato := (nr.MiVoto == peticion.IdCandidato)
 
-		if ((noVoto || votoCandidato) && !mandatoMayor || mandatoMayor) {
+		if (((noVoto || votoCandidato) && !mandatoMayor) || mandatoMayor) {
 			return nr.concederVoto(peticion, reply)
 		}
 	}
@@ -1022,15 +1037,9 @@ func (nr *NodoRaft) argumentosPeticionVoto() ArgsPeticionVoto {
 
 	indicePrevio := len(nr.Log) - 1
 
-	// * Si hay entradas en el Log --> respectivos indices y mandato
-	// * Si no hay entradas en el log --> IntNOINICIALIZADO
-	if indicePrevio >= 0 {
-		args.UltimoIndiceLog = nr.Log[indicePrevio - 1].Indice
-		args.UltimoMandatoLog = nr.Log[indicePrevio - 1].Mandato
-	}else {
-		args.UltimoIndiceLog = IntNOINICIALIZADO
-		args.UltimoMandatoLog = IntNOINICIALIZADO
-	}
+	// * Siempre hay al menos una entrada en el Log por tanto, esto nunca falla
+	args.UltimoIndiceLog = nr.Log[indicePrevio].Indice
+	args.UltimoMandatoLog = nr.Log[indicePrevio].Mandato
 
 	return args 
 }
@@ -1213,7 +1222,9 @@ func (nr *NodoRaft) argumentosLatido() ArgAppendEntries {
 			nr.IdLider = nr.Yo
 			// * Reinicializar al ganar elección
 			for i := 0; i < len(nr.Nodos); i++ {
-				nr.SiguienteIndice[i] = nr.IndiceCommit
+				// * Siguiente índice se inicializa con last log index + 1
+				nr.SiguienteIndice[i] = len(nr.Log)
+				// * Y IndiceEntradaReplicada con 0
 				nr.IndiceEntradaReplicada[i] = 0
 			}
 			nr.Mux.Unlock()
@@ -1317,5 +1328,14 @@ func printTratarAppendEntriesValido(logger *log.Logger, results *Results, nodoId
 		logger.Println("IndiceActual:", indiceActual)
 		logger.Println("NumReplicadas", *numReplicadas)
 		logger.Println("------------------------------------------------------")
+}
+
+func printPeticionVoto(logger *log.Logger, peticion *ArgsPeticionVoto) {
+	logger.Println("_______________ PETICIÓN DE VOTO ________________")
+	logger.Println("Mandato:", peticion.Mandato)
+	logger.Println("IdCandidato:", peticion.IdCandidato)
+	logger.Println("UltimoIndiceLog:", peticion.UltimoIndiceLog)
+	logger.Println("UltimoMandatoLog:", peticion.UltimoMandatoLog)
+	logger.Println("-------------------------------------------------")
 }
 // #endregion

@@ -1,11 +1,8 @@
 % Memoria Práctica 3 \
     Conceptos y Mecanismos Básicos \
     Sistemas Distribuidos 
-% Autor: Héctor Lacueva Sacristán \
-    NIP: 869637 \
-    GRUPO TARDES 3-3
-% Autor: Adrián Nasarre Sánchez \
-    NIP: 869561 \
+%   Héctor Lacueva Sacristán \ NIP: 869637 \
+    Adrián Nasarre Sánchez \ NIP: 869561 \
     GRUPO TARDES 3-3
 % Fecha: 02/06/2025
 
@@ -39,6 +36,7 @@ La estructura principal es `NodoRaft`, que representa cada réplica del sistema.
 - **SiguienteIndice** y **IndiceEntradaReplicada**: arrays para gestionar la replicación y sincronización de logs en los seguidores.
 
 Otras estructuras relevantes:
+
 - **TipoOperacion**: describe la operación a replicar (leer/escribir, clave, valor).
 - **AplicaOperacion**: mensaje para aplicar una operación comprometida.
 - **ArgsPeticionVoto** y **RespuestaPeticionVoto**: argumentos y respuesta para la petición de voto.
@@ -48,7 +46,7 @@ Otras estructuras relevantes:
 
 A continuación se describen en detalle las funciones implementadas en el algoritmo, razonando su lógica y su papel en el consenso Raft:
 
-- **NuevoNodo**: Es el constructor del nodo Raft. Inicializa todos los campos de la estructura, crea los canales de comunicación, establece el estado inicial como seguidor y lanza la goroutine principal (`tratarNodo`) que implementa el autómata de estados. Además, configura el logger para depuración. Esta función es clave para garantizar que cada nodo arranca correctamente y de forma concurrente.
+- **NuevoNodo**: Es el constructor del nodo Raft. Inicializa todos los campos de la estructura, crea los canales de comunicación, establece el estado inicial como seguidor y lanza la goroutine principal (`tratarNodo`) que implementa el autómata de estados de la operativa raft.
 
 - **para**: Marca el nodo como parado y termina su ejecución tras un breve retardo. Es útil para simular la parada de un nodo en las pruebas y para liberar recursos. Se utiliza tanto en la API como en las pruebas de integración.
 

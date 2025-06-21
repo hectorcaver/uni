@@ -148,7 +148,7 @@ func (cfg *configDespliegue) soloArranqueYparadaTest1(t *testing.T) {
 
 // Primer lider en marcha - 3 NODOS RAFT
 func (cfg *configDespliegue) elegirPrimerLiderTest2(t *testing.T) {
-	t.Skip("SKIPPED ElegirPrimerLiderTest2")
+	//t.Skip("SKIPPED ElegirPrimerLiderTest2")
 
 	fmt.Println(t.Name(), ".....................")
 
@@ -166,7 +166,7 @@ func (cfg *configDespliegue) elegirPrimerLiderTest2(t *testing.T) {
 
 // Fallo de un primer lider y reeleccion de uno nuevo - 3 NODOS RAFT
 func (cfg *configDespliegue) falloAnteriorElegirNuevoLiderTest3(t *testing.T) {
-	t.Skip("SKIPPED FalloAnteriorElegirNuevoLiderTest3")
+	//t.Skip("SKIPPED FalloAnteriorElegirNuevoLiderTest3")
 
 	fmt.Println(t.Name(), ".....................")
 
@@ -344,6 +344,9 @@ func (cfg *configDespliegue) stopDistributedProcesses() {
 			raft.Vacio{}, &reply, 10*time.Millisecond)
 		check.CheckError(err, "Error en llamada RPC Para nodo")
 	}
+
+	// * Dar tiempo para que paren las máquinas
+	time.Sleep(1 * time.Second)
 }
 
 // Comprobar estado remoto de un nodo con respecto a un estado prefijado
