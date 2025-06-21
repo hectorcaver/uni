@@ -447,7 +447,11 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 
 	if nr.Parado { return nil }
 
-	if ! (peticion.Mandato < nr.MandatoActual) {
+	if peticion.Mandato >= nr.MandatoActual {
+
+		if peticion.Mandato > nr.MandatoActual {
+			nr.MiVoto = IntNOINICIALIZADO
+		}
 		
 		// * Indicamos que se ha recibido una votación para resetear el timeout
 		// * de los nodos seguidores.
@@ -1179,7 +1183,6 @@ func (nr *NodoRaft) argumentosLatido() ArgAppendEntries {
 			nr.Estado = Candidato
 		case <-nr.Latido:
 			nr.Logger.Printf("Nodo: %d. Latido RECIBIDO\n", nr.Yo)
-			nr.MiVoto = IntNOINICIALIZADO
 		case <-nr.VotacionRecibida:
 			nr.Logger.Printf("Nodo: %d. Voto DADO\n", nr.Yo)
 		}
@@ -1212,7 +1215,6 @@ func (nr *NodoRaft) argumentosLatido() ArgAppendEntries {
 			nr.Logger.Printf("Nodo: %d. Latido RECIBIDO\n", nr.Yo)
 			nr.Mux.Lock()
 			nr.Estado = Seguidor
-			nr.MiVoto = IntNOINICIALIZADO
 			nr.Mux.Unlock()
 
 		case <-victoria:
@@ -1252,7 +1254,6 @@ func (nr *NodoRaft) argumentosLatido() ArgAppendEntries {
 		case <-nr.Latido:
 			nr.Logger.Printf("Nodo: %d. Latido RECIBIDO\n", nr.Yo)
 			nr.Estado = Seguidor
-			nr.MiVoto = IntNOINICIALIZADO
 		}
 	}
 
