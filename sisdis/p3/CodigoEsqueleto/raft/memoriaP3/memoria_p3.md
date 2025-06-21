@@ -115,107 +115,27 @@ A continuación se muestran tres diagramas de secuencia (uno por tipo de nodo) q
 
 ---
 
-### Nodo Follower
+### Nodo Seguidor
 
-```plantuml
-@startuml
-actor Follower1
-actor Candidate2
-actor Leader3
-
-loop
-    alt Timeout (TimerTimeoutHeartbeat.C)
-        Follower1 -> Follower1 : nr.Estado = Candidato
-        Follower1 -> Follower1 : tratarCandidato()
-    else AppendEntries recibido
-        Leader3 -> Follower1 : AppendEntries(args, results)
-        alt [nr.MandatoActual <= args.Mandato]
-            Follower1 -> Follower1 : hacerseSeguidor(args.Mandato)
-        end
-    else PedirVoto recibido
-        Candidate2 -> Follower1 : PedirVoto(peticion, reply)
-        alt [nr.MandatoActual < peticion.Mandato || (nr.MiVoto == IntNOINICIALIZADO || nr.MiVoto == peticion.IdCandidato)]
-            Follower1 -> Follower1 : hacerseSeguidor(peticion.Mandato)
-        end
-    end
-end
-@enduml
-```
+|Diagrama de Secuencia Seguidor|
+|:-:|
+|![Máquina de estados](resources/diagrama1.png)|
 
 ---
 
-### Nodo Candidate
+### Nodo Candidato
 
-```plantuml
-@startuml
-actor Follower1
-actor Candidate1
-actor Candidate2
-actor Leader3
-
-loop
-    alt Solicita votos
-        Candidate1 -> Follower1 : PedirVoto(peticion, reply)
-        Candidate1 -> Candidate2 : PedirVoto(peticion, reply)
-        Candidate1 -> Leader3 : PedirVoto(peticion, reply)
-        alt [nr.VotosRecibidos > len(nr.Nodos)/2 && nr.Estado == Candidato]
-            Candidate1 -> Candidate1 : nr.Estado = Lider; tratarLider()
-        else reply.Mandato > nr.MandatoActual
-            Candidate1 -> Candidate1 : hacerseSeguidor(reply.Mandato)
-        else Timeout (TiempoEntreEleccion.C)
-            Candidate1 -> Candidate1 : iniciarEleccion(victoria)
-        end
-    else AppendEntries recibido
-        Leader3 -> Candidate1 : AppendEntries(args, results)
-        alt [nr.MandatoActual <= args.Mandato]
-            Candidate1 -> Candidate1 : hacerseSeguidor(args.Mandato)
-        end
-    else PedirVoto recibido
-        Follower1 -> Candidate1 : PedirVoto(peticion, reply)
-        alt [nr.MandatoActual < peticion.Mandato || (nr.MiVoto == IntNOINICIALIZADO || nr.MiVoto == peticion.IdCandidato)]
-            Candidate1 -> Candidate1 : hacerseSeguidor(peticion.Mandato)
-        end
-    end
-end
-@enduml
-```
+|Diagrama de Secuencia Candidato|
+|:-:|
+|![Máquina de estados](resources/diagrama2.png)|
 
 ---
 
-### Nodo Leader
+### Nodo Líder
 
-```plantuml
-@startuml
-actor Follower2
-actor Leader1
-actor Leader2
-actor Candidate3
-
-loop
-    alt AppendEntries a seguidores
-        Leader1 -> Follower2 : AppendEntries(args, results)
-        opt [results.Mandato > nr.MandatoActual]
-            Leader1 -> Leader1 : hacerseSeguidor(results.Mandato)
-        end
-        Leader1 -> Candidate3 : AppendEntries(args, results)
-        opt [results.Mandato > nr.MandatoActual]
-            Leader1 -> Leader1 : hacerseSeguidor(results.Mandato)
-        end
-        Leader1 -> Leader1 : enviarLatidos()
-    else PedirVoto recibido
-        Candidate3 -> Leader1 : PedirVoto(peticion, reply)
-        opt [peticion.Mandato > nr.MandatoActual || (nr.MiVoto == IntNOINICIALIZADO || nr.MiVoto == peticion.IdCandidato)]
-            Leader1 -> Leader1 : hacerseSeguidor(peticion.Mandato)
-        end
-    else AppendEntries recibido de otro líder
-        Leader2 -> Leader1 : AppendEntries(args, results)
-        opt [args.Mandato > nr.MandatoActual]
-            Leader1 -> Leader1 : hacerseSeguidor(args.Mandato)
-        end
-    end
-end
-@enduml
-```
+|Diagrama de Secuencia Líder|
+|:-:|
+|![Máquina de estados](resources/diagrama3.png)|
 
 ---
 
