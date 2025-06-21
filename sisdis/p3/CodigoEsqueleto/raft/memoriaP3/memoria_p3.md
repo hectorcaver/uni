@@ -94,11 +94,132 @@ A continuación se debe incluir un diagrama de estados que muestre las transicio
 - Candidate/Follower → Follower:
 - Leader → Follower:
 
+## Tabla de transiciones de la máquina de estados Raft
+
+| Estado inicial | Estado final | Condición (evento/código)                                   | Salida/Acción (función/efecto)                  |
+|----------------|-------------|------------------------------------------------------------|--------------------------------------------------|
+| Seguidor       | Candidato   | Timeout: `<-timeOut.C` en `tratarSeguidor()`               | `nr.Estado = Candidato`                          |
+| Seguidor       | Seguidor    | Latido: `<-nr.Latido` en `tratarSeguidor()`                | Reinicia temporizador                            |
+| Seguidor       | Seguidor    | Voto dado: `<-nr.VotacionRecibida` en `tratarSeguidor()`   | Reinicia temporizador                            |
+| Candidato      | Líder       | Victoria: `<-victoria` en `tratarCandidato()`              | `nr.Estado = Lider`, reinicializa índices        |
+| Candidato      | Seguidor    | Latido: `<-nr.Latido` en `tratarCandidato()`               | `nr.Estado = Seguidor`                           |
+| Candidato      | Candidato   | Timeout: `<-timeOut.C` en `tratarCandidato()`              | Llama a `iniciarEleccion()`                      |
+| Candidato      | Seguidor    | reply.Mandato > nr.MandatoActual en `tratarVotoValido()` o `tratarLatidoValido()` | `hacerseSeguidor(reply.Mandato)`                 |
+| Líder          | Seguidor    | Latido: `<-nr.Latido` en `tratarLider()`                   | `nr.Estado = Seguidor`                           |
+| Líder          | Seguidor    | results.Mandato > nr.MandatoActual en `tratarLatidoValido()` | `hacerseSeguidor(results.Mandato)`               |
+| Líder          | Líder       | Timeout: `<-timeOut.C` en `tratarLider()`                  | Llama a `enviarLatidos()`                        |
+
 ## Diagramas de Secuencia
 
-- Nodo Follower:
-- Nodo Candidate:
-- Nodo Leader:
+A continuación se muestran tres diagramas de secuencia (uno por tipo de nodo) que ilustran la comunicación entre los nodos Raft. En cada mensaje o evento se indica la llamada exacta del código Go (función y argumentos relevantes).
+
+---
+
+### Nodo Follower
+
+```plantuml
+@startuml
+actor Follower1
+actor Candidate2
+actor Leader3
+
+loop
+    alt Timeout (TimerTimeoutHeartbeat.C)
+        Follower1 -> Follower1 : nr.Estado = Candidato
+        Follower1 -> Follower1 : tratarCandidato()
+    else AppendEntries recibido
+        Leader3 -> Follower1 : AppendEntries(args, results)
+        alt [nr.MandatoActual <= args.Mandato]
+            Follower1 -> Follower1 : hacerseSeguidor(args.Mandato)
+        end
+    else PedirVoto recibido
+        Candidate2 -> Follower1 : PedirVoto(peticion, reply)
+        alt [nr.MandatoActual < peticion.Mandato || (nr.MiVoto == IntNOINICIALIZADO || nr.MiVoto == peticion.IdCandidato)]
+            Follower1 -> Follower1 : hacerseSeguidor(peticion.Mandato)
+        end
+    end
+end
+@enduml
+```
+
+---
+
+### Nodo Candidate
+
+```plantuml
+@startuml
+actor Follower1
+actor Candidate1
+actor Candidate2
+actor Leader3
+
+loop
+    alt Solicita votos
+        Candidate1 -> Follower1 : PedirVoto(peticion, reply)
+        Candidate1 -> Candidate2 : PedirVoto(peticion, reply)
+        Candidate1 -> Leader3 : PedirVoto(peticion, reply)
+        alt [nr.VotosRecibidos > len(nr.Nodos)/2 && nr.Estado == Candidato]
+            Candidate1 -> Candidate1 : nr.Estado = Lider; tratarLider()
+        else reply.Mandato > nr.MandatoActual
+            Candidate1 -> Candidate1 : hacerseSeguidor(reply.Mandato)
+        else Timeout (TiempoEntreEleccion.C)
+            Candidate1 -> Candidate1 : iniciarEleccion(victoria)
+        end
+    else AppendEntries recibido
+        Leader3 -> Candidate1 : AppendEntries(args, results)
+        alt [nr.MandatoActual <= args.Mandato]
+            Candidate1 -> Candidate1 : hacerseSeguidor(args.Mandato)
+        end
+    else PedirVoto recibido
+        Follower1 -> Candidate1 : PedirVoto(peticion, reply)
+        alt [nr.MandatoActual < peticion.Mandato || (nr.MiVoto == IntNOINICIALIZADO || nr.MiVoto == peticion.IdCandidato)]
+            Candidate1 -> Candidate1 : hacerseSeguidor(peticion.Mandato)
+        end
+    end
+end
+@enduml
+```
+
+---
+
+### Nodo Leader
+
+```plantuml
+@startuml
+actor Follower2
+actor Leader1
+actor Leader2
+actor Candidate3
+
+loop
+    alt AppendEntries a seguidores
+        Leader1 -> Follower2 : AppendEntries(args, results)
+        opt [results.Mandato > nr.MandatoActual]
+            Leader1 -> Leader1 : hacerseSeguidor(results.Mandato)
+        end
+        Leader1 -> Candidate3 : AppendEntries(args, results)
+        opt [results.Mandato > nr.MandatoActual]
+            Leader1 -> Leader1 : hacerseSeguidor(results.Mandato)
+        end
+        Leader1 -> Leader1 : enviarLatidos()
+    else PedirVoto recibido
+        Candidate3 -> Leader1 : PedirVoto(peticion, reply)
+        opt [peticion.Mandato > nr.MandatoActual || (nr.MiVoto == IntNOINICIALIZADO || nr.MiVoto == peticion.IdCandidato)]
+            Leader1 -> Leader1 : hacerseSeguidor(peticion.Mandato)
+        end
+    else AppendEntries recibido de otro líder
+        Leader2 -> Leader1 : AppendEntries(args, results)
+        opt [args.Mandato > nr.MandatoActual]
+            Leader1 -> Leader1 : hacerseSeguidor(args.Mandato)
+        end
+    end
+end
+@enduml
+```
+
+---
+
+En cada diagrama se representan los bucles de espera, las alternativas de eventos y las llamadas exactas del código Go que implementan la lógica de Raft en cada estado.
 
 # Pruebas Realizadas
 
