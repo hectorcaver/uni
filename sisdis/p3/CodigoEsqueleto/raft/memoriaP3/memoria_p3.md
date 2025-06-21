@@ -113,7 +113,6 @@ A continuación se debe incluir un diagrama de estados que muestre las transicio
 
 A continuación se muestran tres diagramas de secuencia (uno por tipo de nodo) que ilustran la comunicación entre los nodos Raft. En cada mensaje o evento se indica la llamada exacta del código Go (función y argumentos relevantes).
 
----
 
 ### Nodo Seguidor
 
@@ -121,7 +120,6 @@ A continuación se muestran tres diagramas de secuencia (uno por tipo de nodo) q
 |:-:|
 |![Máquina de estados](resources/diagrama1.png)|
 
----
 
 ### Nodo Candidato
 
@@ -129,7 +127,6 @@ A continuación se muestran tres diagramas de secuencia (uno por tipo de nodo) q
 |:-:|
 |![Máquina de estados](resources/diagrama2.png)|
 
----
 
 ### Nodo Líder
 
@@ -137,7 +134,6 @@ A continuación se muestran tres diagramas de secuencia (uno por tipo de nodo) q
 |:-:|
 |![Máquina de estados](resources/diagrama3.png)|
 
----
 
 En cada diagrama se representan los bucles de espera, las alternativas de eventos y las llamadas exactas del código Go que implementan la lógica de Raft en cada estado.
 
