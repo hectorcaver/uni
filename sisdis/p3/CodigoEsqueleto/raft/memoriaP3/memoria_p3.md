@@ -87,15 +87,12 @@ A continuación se describen en detalle las funciones implementadas en el algori
 # Diagramas de Estados y Secuencia
 
 ## Diagrama de Estados
-A continuación se debe incluir un diagrama de estados que muestre las transiciones entre los estados de Follower, Candidate y Leader:
-<!-- Tabla invisible para centrar la imagen -->
-<table>
-<tr>
-<td align="center">
-    <img src="resources/maquina_estados.png" alt="Diagrama de la máquina de estados Raft" width="600"/>
-</td>
-</tr>
-</table>
+
+A continuación se debe incluir un diagrama de estados que muestre las transiciones entre los estados de Seguidor, Candidato y Líder:
+
+|Máquina de estados|
+|:-:|
+|![Máquina de estados](resources/maquina_estados.png)|
 
 ### Tabla de transiciones de la máquina de estados
 

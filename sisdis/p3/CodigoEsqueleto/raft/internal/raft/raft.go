@@ -742,11 +742,9 @@ func (nr *NodoRaft) tratarAppendEntriesValido(results *Results,
 		if (*numReplicadas) == mayoria {
 			mayoriaChan <- true
 			nr.IndiceCommit = indiceActual - 1
-		}
-
-		// * Si todos han replicado correctamente, damos por finalizada la 
-		// * replicación.
-		if (*numReplicadas) == len(nr.Nodos) {
+		} else if (*numReplicadas) == len(nr.Nodos) {
+			// * Si todos han replicado correctamente, damos por finalizada la 
+			// * replicación.
 			finChan <- true
 		}
 
@@ -758,9 +756,7 @@ func (nr *NodoRaft) tratarAppendEntriesValido(results *Results,
 
 	} else {
 
-		if nr.SiguienteIndice[nodoId] > 1 {
-			nr.SiguienteIndice[nodoId]--
-		}
+		nr.SiguienteIndice[nodoId]--
 
 		return false
 	}
@@ -902,10 +898,6 @@ func (nr *NodoRaft) enviarOperacionNodo(nodoId int, mayoriaChan chan bool,
 				numReplicadas, mayoria, mayoriaChan, finChan)
 		} else {
 			fmt.Printf("ERROR al enviar operacióno al Nodo %d\n", nodoId)
-		}
-		if (!fin) {
-			// * Separamos entre envíos consecutivos
-			time.Sleep(500 * time.Millisecond)
 		}
 	}
 }
@@ -1062,16 +1054,9 @@ func (nr *NodoRaft) argumentosAppendEntries(nodoId int) ArgAppendEntries {
 
 	var entradas []EntradaRegistro
 
-	if ultimaEntradaReplicada < 0 {
-		entradas = nr.Log
-		indicePrevio = IntNOINICIALIZADO
-		mandatoPrevio = IntNOINICIALIZADO
-	} else {
-		indicePrevio = nr.Log[ultimaEntradaReplicada].Indice
-		mandatoPrevio = nr.Log[ultimaEntradaReplicada].Mandato
-		entradas = nr.Log[nr.SiguienteIndice[nodoId]:]
-	}
-	
+	indicePrevio = nr.Log[ultimaEntradaReplicada].Indice
+	mandatoPrevio = nr.Log[ultimaEntradaReplicada].Mandato
+	entradas = nr.Log[nr.SiguienteIndice[nodoId]:]
 
 	return ArgAppendEntries{
 		Mandato:          nr.MandatoActual,
