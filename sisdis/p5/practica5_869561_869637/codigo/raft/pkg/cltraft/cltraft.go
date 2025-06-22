@@ -32,12 +32,12 @@ var clusterNodes = rpctimeout.StringArrayToHostPortArray([]string{
 // Muestra el menú de comandos disponibles al usuario
 func mostrarMenu() {
 	fmt.Println("\nComandos disponibles:")
-	fmt.Println("  estado <nodo>      			# Estado de un nodo específico")
-	fmt.Println("  commit <nodo>      			# Estado de commit de un nodo")
-	fmt.Println("  detener <nodo>     			# Detener un nodo")
-	fmt.Println("  get <lider> <clave>        	# Leer valor de una clave")
-	fmt.Println("  put <lider> <clave> <valor> 	# Escribir valor en una clave")
-	fmt.Println("  exit               			# Salir del cliente")
+	fmt.Println("  estado <nodo>                     # Estado de un nodo específico")
+	fmt.Println("  estadoReplicacion <nodo>          # Estado de Log y Almacen de un nodo")
+	fmt.Println("  detener <nodo>                    # Detener un nodo")
+	fmt.Println("  leer <lider> <clave>              # Leer valor de una clave")
+	fmt.Println("  escribir <lider> <clave> <valor>  # Escribir valor en una clave")
+	fmt.Println("  exit                              # Salir del cliente")
 }
 
 // Imprime el estado general de un nodo
@@ -53,9 +53,9 @@ func imprimirEstadoReplicasYAlamacen(reply raft.EstadoReplicacionRemoto) {
 }
 
 func printLog(log []raft.EntradaRegistro) {
-	fmt.Printf("Log (len=%d):", len(log))
+	fmt.Printf("Log (len=%d):\n", len(log))
 	for i, entrada := range log {
-		fmt.Printf("  [%d] %v", i, entrada)
+		fmt.Printf("  [%d] %v\n", i, entrada)
 	}
 }
 
@@ -65,10 +65,10 @@ func printAlmacen(almacen map[string]string) {
 	maxKeys := 10
 	count := 0
 	for k, v := range almacen {
-		fmt.Printf("  %s: %s", k, v)
+		fmt.Printf("  %s: %s\n", k, v)
 		count++
 		if count >= maxKeys {
-			fmt.Printf("  ...y %d más", len(almacen)-maxKeys)
+			fmt.Printf("  ...y %d más\n", len(almacen)-maxKeys)
 			break
 		}
 	}
@@ -76,10 +76,19 @@ func printAlmacen(almacen map[string]string) {
 	fmt.Println("==========================================")
 }
 
+func printResultadoRemoto(reply raft.ResultadoRemoto) {
+	fmt.Println("----- RESPUESTA REMOTA -----")
+	fmt.Println("- ValorADevolver:", reply.ValorADevolver)
+	fmt.Println("- IndiceRegistro:", reply.IndiceRegistro)
+	fmt.Println("- Mandato:", reply.Mandato)
+	fmt.Println("- EsLider:", reply.EsLider)
+	fmt.Println("- IdLider:", reply.IdLider)
+	fmt.Println("----- FIN RESPUESTA REMOTA -----")
+}
+
 // Imprime el resultado de una operación (lectura o escritura)
 func imprimirResultadoOp(res raft.ResultadoRemoto) {
-	fmt.Println("\n[Resultado de Operación]")
-	fmt.Printf("Índice: %d | Mandato: %d | EsLíder: %v | Líder: %d | Valor: %s\n", res.IndiceRegistro, res.Mandato, res.EsLider, res.IdLider, res.ValorADevolver)
+	
 }
 
 func comandoEstado(args []string) {
@@ -94,7 +103,8 @@ func comandoEstado(args []string) {
 		return
 	}
 	var res raft.EstadoRemoto
-	err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoNodo", raft.Vacio{}, &res, 1200*time.Millisecond)
+	err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoNodo", 
+			raft.Vacio{}, &res, 1200*time.Millisecond)
 	check.CheckError(err, "Fallo al obtener estado del nodo")
 	imprimirEstadoNodo(res)
 }
@@ -111,9 +121,78 @@ func comandoCommit(args []string) {
 		return
 	}
 	var res raft.EstadoReplicacionRemoto
-	err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoReplicacionNodo", raft.Vacio{}, &res, 1200*time.Millisecond)
-	check.CheckError(err, "Fallo en la operacion RPC ObtenerEstadoReplicacionNodo")
+	err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoReplicacionNodo",
+				 raft.Vacio{}, &res, 1200*time.Millisecond)
+	check.CheckError(err, 
+		"Fallo en la operacion RPC ObtenerEstadoReplicacionNodo")
 	imprimirEstadoReplicasYAlamacen(res)
+}
+
+func comandoDetener(args []string) {
+	// Detener un nodo
+	if len(args) != 2 {
+		fmt.Println("Uso: detener <nodo>")
+		return
+	}
+	idx, err := strconv.Atoi(args[1])
+	if err != nil || idx < 0 || idx >= len(clusterNodes) {
+		fmt.Println("Nodo inválido.")
+		return
+	}
+	var res raft.Vacio
+	err = clusterNodes[idx].CallTimeout("NodoRaft.ParaNodo", raft.Vacio{}, 
+					&res, 1200*time.Millisecond)
+	check.CheckError(err, "Fallo al detener nodo")
+	fmt.Printf("Nodo %d detenido correctamente.\n", idx)
+}
+
+func comandoLeer(args []string) {
+	// Leer valor de una clave
+	if len(args) != 3 {
+		fmt.Println("Uso: leer <lider> <clave>")
+		return
+	}
+	idx, err := strconv.Atoi(args[1])
+	if err != nil || idx < 0 || idx >= len(clusterNodes) {
+		fmt.Println("Nodo líder inválido.")
+		return
+	}
+
+	op := raft.TipoOperacion{
+		Operacion: "leer",
+		Clave: args[2],
+	}
+	
+	var res raft.ResultadoRemoto
+	err = clusterNodes[idx].CallTimeout("NodoRaft.SometerOperacionRaft", op, 
+				&res, 5000*time.Millisecond)
+	check.CheckError(err, "Fallo en operación de lectura")
+	printResultadoRemoto(res)
+}
+
+func comandoEscribir(args []string) {
+	// Escribir valor en una clave
+	if len(args) != 4 {
+		fmt.Println("Uso: escribir <lider> <clave> <valor>")
+		return
+	}
+	idx, err := strconv.Atoi(args[1])
+	if err != nil || idx < 0 || idx >= len(clusterNodes) {
+		fmt.Println("Nodo líder inválido.")
+		return
+	}
+
+	op := raft.TipoOperacion {
+		Operacion: "escribir",
+		Clave: args[2],
+		Valor: args[3],
+	}
+	
+	var res raft.ResultadoRemoto
+	err = clusterNodes[idx].CallTimeout("NodoRaft.SometerOperacionRaft", op,
+				&res, 10000*time.Millisecond)
+	check.CheckError(err, "Fallo en operación de escritura")
+	printResultadoRemoto(res)
 }
 
 // Función principal: ciclo interactivo de comandos para el cliente Raft
@@ -139,70 +218,12 @@ func main() {
 		case "exit":
 			fmt.Println("Finalizando cliente.")
 			return
-		case "estado":
-
-			comandoEstado(args)
-
-		case "commit":
-
-			comandoCommit(args)
-
+		case "estado": comandoEstado(args)
+		case "estadoReplicacion": comandoCommit(args)	
+		case "detener": comandoDetener(args)
+		case "leer": comandoLeer(args)
+		case "escribir": comandoEscribir(args)
 			
-		case "detener":
-			// Detener un nodo
-			if len(args) != 2 {
-				fmt.Println("Uso: detener <nodo>")
-				continue
-			}
-			idx, err := strconv.Atoi(args[1])
-			if err != nil || idx < 0 || idx >= len(clusterNodes) {
-				fmt.Println("Nodo inválido.")
-				continue
-			}
-			var res raft.Vacio
-			err = clusterNodes[idx].CallTimeout("NodoRaft.ParaNodo", raft.Vacio{}, &res, 1200*time.Millisecond)
-			check.CheckError(err, "Fallo al detener nodo")
-			fmt.Printf("Nodo %d detenido correctamente.\n", idx)
-		case "get":
-			// Leer valor de una clave
-			if len(args) != 3 {
-				fmt.Println("Uso: get <lider> <clave>")
-				continue
-			}
-			idx, err := strconv.Atoi(args[1])
-			if err != nil || idx < 0 || idx >= len(clusterNodes) {
-				fmt.Println("Nodo líder inválido.")
-				continue
-			}
-			clave := args[2]
-			var op raft.TipoOperacion
-			op.Operacion = "leer"
-			op.Clave = clave
-			var res raft.ResultadoRemoto
-			err = clusterNodes[idx].CallTimeout("NodoRaft.SometerOperacionRaft", op, &res, 5000*time.Millisecond)
-			check.CheckError(err, "Fallo en operación de lectura")
-			imprimirResultadoOp(res)
-		case "put":
-			// Escribir valor en una clave
-			if len(args) != 4 {
-				fmt.Println("Uso: put <lider> <clave> <valor>")
-				continue
-			}
-			idx, err := strconv.Atoi(args[1])
-			if err != nil || idx < 0 || idx >= len(clusterNodes) {
-				fmt.Println("Nodo líder inválido.")
-				continue
-			}
-			clave := args[2]
-			valor := args[3]
-			var op raft.TipoOperacion
-			op.Operacion = "escribir"
-			op.Clave = clave
-			op.Valor = valor
-			var res raft.ResultadoRemoto
-			err = clusterNodes[idx].CallTimeout("NodoRaft.SometerOperacionRaft", op, &res, 10000*time.Millisecond)
-			check.CheckError(err, "Fallo en operación de escritura")
-			imprimirResultadoOp(res)
 		default:
 			fmt.Println("Comando no reconocido. Intente de nuevo.")
 		}

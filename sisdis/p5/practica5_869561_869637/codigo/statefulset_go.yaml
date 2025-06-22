@@ -42,9 +42,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        command:
-        - servidor
-        - $(MINOMBREPOD)
+        command: ["servidor"]
+        args: ["$(MINOMBREPOD)"]
         ports:
         - containerPort: 6000
 
