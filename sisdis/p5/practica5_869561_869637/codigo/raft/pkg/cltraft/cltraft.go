@@ -32,12 +32,12 @@ var clusterNodes = rpctimeout.StringArrayToHostPortArray([]string{
 // Muestra el menú de comandos disponibles al usuario
 func mostrarMenu() {
 	fmt.Println("\nComandos disponibles:")
-	fmt.Println("  estado <nodo>      # Estado de un nodo específico")
-	fmt.Println("  commit <nodo>      # Estado de commit de un nodo")
-	fmt.Println("  detener <nodo>     # Detener un nodo")
-	fmt.Println("  get <lider> <clave>        # Leer valor de una clave")
-	fmt.Println("  put <lider> <clave> <valor> # Escribir valor en una clave")
-	fmt.Println("  exit               # Salir del cliente")
+	fmt.Println("  estado <nodo>      			# Estado de un nodo específico")
+	fmt.Println("  commit <nodo>      			# Estado de commit de un nodo")
+	fmt.Println("  detener <nodo>     			# Detener un nodo")
+	fmt.Println("  get <lider> <clave>        	# Leer valor de una clave")
+	fmt.Println("  put <lider> <clave> <valor> 	# Escribir valor en una clave")
+	fmt.Println("  exit               			# Salir del cliente")
 }
 
 // Imprime el estado general de un nodo
@@ -47,15 +47,73 @@ func imprimirEstadoNodo(info raft.EstadoRemoto) {
 }
 
 // Imprime el estado de commit de un nodo
-func imprimirCommit(info raft.ResPruebas) {
-	fmt.Println("\n[Estado de Commit]")
-	fmt.Printf("Commit: %d | Mandato: %d | Log: %d entradas\n", info.Commit, info.Mandatocommit, info.NumOperaciones)
+func imprimirEstadoReplicasYAlamacen(reply raft.EstadoReplicacionRemoto) {
+	printLog(reply.Log)
+	printAlmacen(reply.Almacen)
+}
+
+func printLog(log []raft.EntradaRegistro) {
+	fmt.Printf("Log (len=%d):", len(log))
+	for i, entrada := range log {
+		fmt.Printf("  [%d] %v", i, entrada)
+	}
+}
+
+func printAlmacen(almacen map[string]string) {
+	// Almacen (claves limitadas para evitar saturación visual)
+	fmt.Println("------ Almacén (claves limitadas) ------")
+	maxKeys := 10
+	count := 0
+	for k, v := range almacen {
+		fmt.Printf("  %s: %s", k, v)
+		count++
+		if count >= maxKeys {
+			fmt.Printf("  ...y %d más", len(almacen)-maxKeys)
+			break
+		}
+	}
+
+	fmt.Println("==========================================")
 }
 
 // Imprime el resultado de una operación (lectura o escritura)
 func imprimirResultadoOp(res raft.ResultadoRemoto) {
 	fmt.Println("\n[Resultado de Operación]")
 	fmt.Printf("Índice: %d | Mandato: %d | EsLíder: %v | Líder: %d | Valor: %s\n", res.IndiceRegistro, res.Mandato, res.EsLider, res.IdLider, res.ValorADevolver)
+}
+
+func comandoEstado(args []string) {
+	// Consultar estado de un nodo
+	if len(args) != 2 {
+		fmt.Println("Uso: estado <nodo>")
+		return
+	}
+	idx, err := strconv.Atoi(args[1])
+	if err != nil || idx < 0 || idx >= len(clusterNodes) {
+		fmt.Println("Nodo inválido.")
+		return
+	}
+	var res raft.EstadoRemoto
+	err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoNodo", raft.Vacio{}, &res, 1200*time.Millisecond)
+	check.CheckError(err, "Fallo al obtener estado del nodo")
+	imprimirEstadoNodo(res)
+}
+
+func comandoCommit(args []string) {
+	// Consultar commit de un nodo
+	if len(args) != 2 {
+		fmt.Println("Uso: commit <nodo>")
+		return
+	}
+	idx, err := strconv.Atoi(args[1])
+	if err != nil || idx < 0 || idx >= len(clusterNodes) {
+		fmt.Println("Nodo inválido.")
+		return
+	}
+	var res raft.EstadoReplicacionRemoto
+	err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoReplicacionNodo", raft.Vacio{}, &res, 1200*time.Millisecond)
+	check.CheckError(err, "Fallo en la operacion RPC ObtenerEstadoReplicacionNodo")
+	imprimirEstadoReplicasYAlamacen(res)
 }
 
 // Función principal: ciclo interactivo de comandos para el cliente Raft
@@ -82,35 +140,14 @@ func main() {
 			fmt.Println("Finalizando cliente.")
 			return
 		case "estado":
-			// Consultar estado de un nodo
-			if len(args) != 2 {
-				fmt.Println("Uso: estado <nodo>")
-				continue
-			}
-			idx, err := strconv.Atoi(args[1])
-			if err != nil || idx < 0 || idx >= len(clusterNodes) {
-				fmt.Println("Nodo inválido.")
-				continue
-			}
-			var res raft.EstadoRemoto
-			err = clusterNodes[idx].CallTimeout("NodoRaft.ObtenerEstadoNodo", raft.Vacio{}, &res, 1200*time.Millisecond)
-			check.CheckError(err, "Fallo al obtener estado del nodo")
-			imprimirEstadoNodo(res)
+
+			comandoEstado(args)
+
 		case "commit":
-			// Consultar commit de un nodo
-			if len(args) != 2 {
-				fmt.Println("Uso: commit <nodo>")
-				continue
-			}
-			idx, err := strconv.Atoi(args[1])
-			if err != nil || idx < 0 || idx >= len(clusterNodes) {
-				fmt.Println("Nodo inválido.")
-				continue
-			}
-			var res raft.ResPruebas
-			err = clusterNodes[idx].CallTimeout("NodoRaft.EstadoPruebas", raft.Vacio{}, &res, 1200*time.Millisecond)
-			check.CheckError(err, "Fallo al consultar commit")
-			imprimirCommit(res)
+
+			comandoCommit(args)
+
+			
 		case "detener":
 			// Detener un nodo
 			if len(args) != 2 {
