@@ -1,3 +1,11 @@
+/****************************************
+ * Autor: Adrián Nasarre Sánchez 869561
+ * Autor: Héctor Lacueva Sacristán 869637
+ * Fecha: Curso 24-25
+ * Asignatura: Sistemas Distribuidos
+ * Archivo: testintegracionraft1_test.go
+ *****************************************/
+ 
 package testintegracionraft1
 
 import (

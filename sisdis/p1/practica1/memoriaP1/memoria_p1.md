@@ -1,7 +1,8 @@
 % Memoria Práctica 1 \
     Conceptos y Mecanismos Básicos \
     Sistemas Distribuidos 
-% Autor: Héctor Lacueva Sacristán \
+%   Héctor Lacueva Sacristán \ NIP: 869637 \
+    Adrián Nasarre Sánchez \ NIP: 869561 \
     NIP: 869637 \
     GRUPO TARDES 3-3
 % Fecha: 02/06/2025
