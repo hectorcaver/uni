@@ -117,8 +117,9 @@ type NodoRaft struct {
 	
 	// * Canal aplicar operación
 	CanalAplicarOperacion chan AplicaOperacion
-	// * Canal por el que recibes el resultado de aplicar una operación
-	ValorADevolver chan string
+	// * Map de canales por el que recibes el resultado de aplicar una operación
+	canalesValorADevolver map[int]chan string // clave: índice del log
+
 	// * Almacen donde se escribirán o leerán datos
 	Almacen map[string]string
 
@@ -128,8 +129,6 @@ type NodoRaft struct {
 	VotacionRecibida chan bool
 	// * Canal para recibir latidos por parte del líder
 	Latido chan bool
-	// * SIMULACIÓN DE PARADA DEL NODO RAFT
-	Parado bool
 
 	// ! ------------- ESTADO VOLATIL EN TODOS LOS NODOS RAFT -----------------
 
@@ -174,7 +173,7 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 
 	if kEnableDebugLogs {
 		nombreNodo := nodos[yo].Host() + "_" + nodos[yo].Port()
-		fmt.Println("nombreNodo: ", nombreNodo)
+		//fmt.Println("nombreNodo: ", nombreNodo)
 
 		if kLogToStdout {
 			nr.Logger = log.New(os.Stdout, nombreNodo+" -->> ",
@@ -217,12 +216,11 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	nr.Estado = Seguidor
 
 	nr.CanalAplicarOperacion = canalAplicarOperacion
-	nr.ValorADevolver = make(chan string)
-	nr.Almacen = make(map[string]string, 0)
+	nr.canalesValorADevolver = make(map[int] chan string)
+	nr.Almacen = make(map[string]string)
 
 	nr.Latido = make(chan bool)
 	nr.VotacionRecibida = make(chan bool)
-	nr.Parado = false
 
 	nr.IndiceCommit = 0
 	nr.IndiceUltimoAplicado = 0
@@ -243,7 +241,11 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 // Quizas interesante desactivar la salida de depuracion
 // de este nodo
 func (nr *NodoRaft) para() {
-	go func() { time.Sleep(2 * time.Second); os.Exit(0) }()
+	
+	go func() { 
+		time.Sleep(10 * time.Millisecond);
+		os.Exit(0)
+	}()
 }
 
 // Devuelve "yo", mandato en curso y si este nodo cree ser lider
@@ -257,14 +259,33 @@ func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
 	var yo int = nr.Yo
 	var mandato int
 	var esLider bool
-	var idLider int = nr.IdLider
+	var idLider int 
 
 	// Vuestro codigo aqui
+	nr.Mux.Lock()
 	mandato = nr.MandatoActual
 	esLider = (nr.IdLider == nr.Yo)
+	idLider = nr.IdLider
+	nr.Mux.Unlock()
 
 	return yo, mandato, esLider, idLider
 }
+
+func (nr *NodoRaft) obtenerEstadoReplicacion() ([]EntradaRegistro, 
+	map[string]string) {
+		nr.Mux.Lock()
+		log := nr.Log
+		almacen := nr.Almacen
+
+		nr.Logger.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+		nr.Logger.Println("---------- Estado del log y el almacen ---------")
+		printLog(nr.Logger, log)
+		printAlmacen(nr.Logger, almacen)
+		nr.Logger.Println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+		nr.Mux.Unlock()
+
+		return log, almacen
+	}
 
 // El servicio que utilice Raft (base de datos clave/valor, por ejemplo)
 // Quiere buscar un acuerdo de posicion en registro para siguiente operacion
@@ -292,9 +313,12 @@ func (nr *NodoRaft) someterOperacion(operacion TipoOperacion) (int, int,
 	idLider := -1
 	valorADevolver := ""
 
-	fmt.Println("Nodo: ", nr.Yo, ", recibida: ", operacion)
-
 	nr.Mux.Lock()
+
+	nr.Logger.Println("Operación recibida: ", operacion)
+
+	nr.Logger.Println("Nodo: ", nr.Yo, ", recibida: ", operacion)
+
 	EsLider = (nr.IdLider == nr.Yo)
 	idLider = nr.IdLider
 
@@ -315,16 +339,18 @@ func (nr *NodoRaft) someterOperacion(operacion TipoOperacion) (int, int,
 		// * Establecemos los valores de retorno
 		mandato = nr.MandatoActual
 
-		resultadoChan := make(chan string)
-
 		nr.Logger.Println("Añadida entrada al log")
 		nr.Logger.Println(nr.Log)
 
+		ch := make(chan string, 1)
+		nr.canalesValorADevolver[indice] = ch
+
 		nr.Logger.Println("Intentando comprometer la operación")
 		nr.Mux.Unlock()
-		go nr.comprometerOperacion(resultadoChan)
+		go nr.comprometerOperacion()
 
-		valorADevolver = <-resultadoChan
+		nr.Logger.Println("SometerOperacion: Esperando al resultado de aplicar operación")
+		valorADevolver = <-nr.canalesValorADevolver[indice]
 
 	} else {
 		nr.Mux.Unlock()
@@ -352,18 +378,6 @@ type Vacio struct{}
 func (nr *NodoRaft) ParaNodo(args Vacio, reply *Vacio) error {
 
 	defer nr.para()
-	nr.Logger.Println("Parando nodo")
-
-	return nil
-}
-
-func (nr *NodoRaft) DesconectarNodo(args Vacio, reply *Vacio) error {
-
-	nr.Mux.Lock()
-	nr.Parado = true
-	nr.Logger.Println("Desactivando nodo")
-	nr.Mux.Unlock()
-
 	return nil
 }
 
@@ -378,8 +392,20 @@ type EstadoRemoto struct {
 	EstadoParcial
 }
 
+type EstadoReplicacionRemoto struct {
+	Log []EntradaRegistro
+	Almacen map[string]string
+}
+
+func (nr *NodoRaft) ObtenerEstadoReplicacionNodo(args Vacio, 
+	reply *EstadoReplicacionRemoto) error {
+		reply.Log, reply.Almacen = nr.obtenerEstadoReplicacion()
+		return nil
+	}
+
 func (nr *NodoRaft) ObtenerEstadoNodo(args Vacio, reply *EstadoRemoto) error {
-	reply.IdNodo, reply.Mandato, reply.EsLider, reply.IdLider = nr.obtenerEstado()
+	reply.IdNodo, reply.Mandato, 
+	reply.EsLider, reply.IdLider = nr.obtenerEstado()
 	return nil
 }
 
@@ -392,12 +418,8 @@ type ResultadoRemoto struct {
 func (nr *NodoRaft) SometerOperacionRaft(operacion TipoOperacion,
 	reply *ResultadoRemoto) error {
 
-	nr.Logger.Println("Operación recibida: ", operacion)
-
 	reply.IndiceRegistro, reply.Mandato, reply.EsLider,
 		reply.IdLider, reply.ValorADevolver = nr.someterOperacion(operacion)
-
-	printReply(nr.Logger, reply)
 
 	return nil
 }
@@ -467,24 +489,34 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 	nr.Mux.Lock()
 	defer nr.Mux.Unlock()
 
-	if nr.Parado {
-		return nil
-	}
+	if peticion.Mandato >= nr.MandatoActual {
 
-	if !(peticion.Mandato < nr.MandatoActual) {
+		// * Si la petición tiene un mandato mayor al mio quiere decir que
+		// * no he votado en ese mandato y, por tanto, mi voto debe ser nulo
+		if(peticion.Mandato > nr.MandatoActual) {
+			nr.MiVoto = IntNOINICIALIZADO
+		}
 
 		// * Indicamos que se ha recibido una votación para resetear el timeout
 		// * de los nodos seguidores.
 		nr.VotacionRecibida <- true
 
-		alDia := (peticion.UltimoIndiceLog >= len(nr.Log)) && 
-		(peticion.UltimoMandatoLog == nr.Log[peticion.UltimoIndiceLog].Mandato)
+		ultimoIndiceLogLocal := len(nr.Log) - 1
+		ultimoMandatoLogLocal := nr.Log[ultimoIndiceLogLocal].Mandato
+
+		distintoMandato := peticion.UltimoMandatoLog != ultimoMandatoLogLocal 
+		mandatoLocalMayor := peticion.Mandato < ultimoMandatoLogLocal
+		indiceLocalMayor := peticion.UltimoIndiceLog < ultimoIndiceLogLocal
+
+		logCandidatoAlDia := !( (distintoMandato && mandatoLocalMayor) || 
+						(!distintoMandato && indiceLocalMayor))
+		
 		noVoto := (nr.MiVoto == IntNOINICIALIZADO)
 		votoCandidato := (nr.MiVoto == peticion.IdCandidato)
 
 		// * Si no ha votado o ya me ha votado y el log del candidato 
 		// * está, por lo menos, al día con respecto al del receptor
-		if (noVoto || votoCandidato) && (alDia) {
+		if ((noVoto || votoCandidato)) && (logCandidatoAlDia) {
 
 			// * Concedemos el voto
 			return nr.concederVoto(peticion, reply)
@@ -522,13 +554,6 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
 	nr.Mux.Lock()
 	defer nr.Mux.Unlock()
 
-	// ! PARADO --> preguntar al profesor porque no funciona de la otra manera
-	if nr.Parado {
-		(*results).Exito = true
-		(*results).Mandato = args.Mandato
-		return nil
-	}
-
 	if len(args.Entradas) == 0 {
 		nr.Logger.Println("LATIDO RECIBIDO -------------------------------------------------------------")
 
@@ -549,18 +574,28 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
 		nr.Logger.Println("-----------------------------------------------------------------------------")
 	}
 
-	(*results).Exito = false
+	results.Exito = false
 
 	if args.Mandato < nr.MandatoActual {
-		(*results).Mandato = nr.MandatoActual
+		results.Mandato = nr.MandatoActual
 		return nil
+	}
+
+	if len(args.Entradas) != 0 {
+		nr.Logger.Println("appendEntries: args.Mandato >= nr.MandatoActual")
 	}
 
 	// * Si args.Mandato es mayor o igual al mandato actual, hay un líder vivo
 	// * Actualizo el IdLider y el MandatoActual
 	nr.IdLider = args.IdLider
 	nr.MandatoActual = args.Mandato
-	(*results).Mandato = args.Mandato
+	results.Mandato = args.Mandato
+
+	if len(args.Entradas) != 0 {
+		nr.Logger.Println("appendEntries: Results.Mandato:", results.Mandato)
+		nr.Logger.Println("appendEntries: nr.MandatoActual:", nr.MandatoActual)
+		nr.Logger.Println("appendEntries: args.Mandato:", args.Mandato)
+	}
 
 	// * y se considera que se ha recibido un latido.
 	nr.Latido <- true
@@ -574,31 +609,36 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
 			nr.Logger.Println("Log previo incorrecto")
 			return nil
 		}
+
+		nr.Logger.Println("appendEntries: Voy a actualizar el log")
 		// * Si hay entradas hay que actualizar el log
 		nr.actualizarLog(args)
+		
 	}
 
 	// * Actualizo el IndiceCommit
 	if args.CommitLider > nr.IndiceCommit {
+		
 		nr.IndiceCommit = min(args.CommitLider, len(nr.Log)-1)
 		
+		if len(args.Entradas) != 0 {
+			nr.Logger.Println("appendEntries: nuevo indiceCommit", nr.IndiceCommit)
+		}
+
 		// * Si ha cambiado el indice de commit del líder
 		for i:=nr.IndiceUltimoAplicado+1;
-		 i <= nr.IndiceCommit && i < len(nr.Log); i++ {
-			
-			nr.aplicarOperacion()
-
+		 i <= nr.IndiceCommit ; i++ {
+			go nr.aplicarOperacion(i)
 		}
 	
 	}
 
-	// * RPC AppendEntries exitosa
-	(*results).Exito = true
-
 	if len(args.Entradas) != 0 {
-		nr.printNodo()
-		printResultados(nr.Logger, results)
+		nr.Logger.Println("appendEntries: exitoso")
 	}
+
+	// * RPC AppendEntries exitosa
+	results.Exito = true
 
 	return nil
 
@@ -648,7 +688,7 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
 func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto,
 	reply *RespuestaPeticionVoto) bool {
 
-	fmt.Println("Petición: ", nodo, args, reply)
+	//fmt.Println("Petición: ", nodo, args, reply)
 
 	Nodo := nr.Nodos[nodo]
 
@@ -656,7 +696,7 @@ func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto,
 	err := Nodo.CallTimeout("NodoRaft.PedirVoto", args,
 		reply, 300*time.Millisecond)
 
-	fmt.Println("Respuesta: ", nodo, reply)
+	//fmt.Println("Respuesta: ", nodo, reply)
 
 	// Si se produce algún error durante la petición devuelve false
 	// Sino, devuelve true
@@ -671,14 +711,29 @@ func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto,
 func (nr *NodoRaft) enviarAppendEntries(nodo int, args *ArgAppendEntries,
 	reply *Results) bool {
 
-	fmt.Println("Latido:", nodo, args, reply)
+	//fmt.Println("Latido:", nodo, args, reply)
 
 	Nodo := nr.Nodos[nodo]
+
+	if len(args.Entradas) != 0 {
+		nr.Mux.Lock()
+		nr.Logger.Println("enviarAppendEntries: ENVIANDO APPEND ENTRIES", nodo)
+		nr.Mux.Unlock()
+	}
 
 	// * Pedimos el voto al nodo
 	err := Nodo.CallTimeout("NodoRaft.AppendEntries", args,
 		reply, 300*time.Millisecond)
 
+	if len(args.Entradas) != 0 {
+		nr.Mux.Lock()
+		nr.Logger.Println("enviarAppendEntries: RESPUESTA RECIBIDA DEL NODO", nodo)
+		printArgsAppendEntries(nr.Logger, *args)
+		printResultados(nr.Logger, reply)
+		nr.Logger.Println("------------------------------------------------------")
+		nr.Mux.Unlock()
+	}
+	
 	// * Si se produce algún error durante la petición devuelve false
 	// * Sino, devuelve true
 	return (err == nil)
@@ -711,14 +766,14 @@ func (nr *NodoRaft) tratarVotoValido(reply *RespuestaPeticionVoto,
 	if reply.VotoDado {
 
 		(*votosRecibidos)++
-		fmt.Println("Voto recibido, ya van: ", *votosRecibidos)
+		//fmt.Println("Voto recibido, ya van: ", *votosRecibidos)
 
 		// * Y no ha acabado la votación
 		if !(*votacionFinalizada) {
 
 			(*votacionFinalizada) = (*votosRecibidos >= *mayoria)
 			if *votacionFinalizada {
-				fmt.Println("-------- VICTORIA --------")
+				//fmt.Println("-------- VICTORIA --------")
 				victoria <- true
 			}
 		}
@@ -745,11 +800,11 @@ func (nr *NodoRaft) tratarLatidoValido(results *Results, nodoID int) {
 
 	//printResultados(nr.Logger, results)
 
-	fmt.Printf("Nodo %d, ha respondido al latido\n", nodoID)
+	//fmt.Printf("Nodo %d, ha respondido al latido\n", nodoID)
 	if !(*results).Exito {
 		// * Si (!exito) --> mandato mayor en nodoID
 		// * Pasar a follower y actualizar el mandato
-		fmt.Printf("Nodo %d, con mandato superior\n", nodoID)
+		//fmt.Printf("Nodo %d, con mandato superior\n", nodoID)
 		nr.hacerseSeguidor(results.Mandato)
 	}
 
@@ -760,49 +815,62 @@ func (nr *NodoRaft) tratarLatidoValido(results *Results, nodoID int) {
  ** a AppendEntries por parte del líder.
  */
 func (nr *NodoRaft) tratarAppendEntriesValido(results *Results,
-	nodoId int, indiceActual int, numReplicadas *int,
-	mayoria int, resultadoChan chan string, finChan chan bool) bool {
+	nodoId int, indiceActual int, numReplicadas *int, primerIndiceEnviado int,
+	mayoria int, finChan chan bool) bool {
 
 	nr.Mux.Lock()
-	defer nr.Mux.Unlock()
 
-	printTratarAppendEntriesValido(nr.Logger, results,
-		nodoId, indiceActual, numReplicadas)
+	// printTratarAppendEntriesValido(nr.Logger, results,
+	//	nodoId, indiceActual, numReplicadas)
 
 	if results.Exito {
 
-		nr.SiguienteIndice[nodoId] = indiceActual
-		nr.IndiceEntradaReplicada[nodoId] = indiceActual - 1
+		nr.SiguienteIndice[nodoId] = max(nr.SiguienteIndice[nodoId], indiceActual)
+		nr.IndiceEntradaReplicada[nodoId] = nr.SiguienteIndice[nodoId] - 1
 
 		// * Marco como replicada
 		(*numReplicadas)++
 
 		// * Si se alcanza la mayoría se informará al cliente
 		if (*numReplicadas) == mayoria {
-
+			nr.Logger.Println("tratarAppendEntriesValido: Mayoría alcanzada, aplicar operación en máquina de estados")
 			// * Si se alcanza la mayoría aplico la operación y 
 			// * devuelvo el resultado
-			resultadoChan <- nr.aplicarOperacion()
-			nr.IndiceCommit = indiceActual - 1
+			nr.IndiceCommit = max(nr.IndiceCommit, nr.IndiceEntradaReplicada[nodoId])
+			indiceaAplicar := nr.IndiceUltimoAplicado + 1
+			nr.Mux.Unlock()
+			nr.aplicarOperacion(indiceaAplicar)
 
 		} else if (*numReplicadas) == len(nr.Nodos) {
 			// * Si todos han replicado correctamente, damos por finalizada la
 			// * replicación.
 			finChan <- true
+			nr.Mux.Unlock()
 		}
 
+		nr.Mux.Lock()
+		nr.Logger.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		nr.Logger.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		nr.Logger.Println(" SALIENDO DEL BUCLE FOR NODOid:", nodoId, "numReplicadas:", *numReplicadas )
+		nr.Logger.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		nr.Logger.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		nr.Mux.Unlock()
 		return true
 
 	} else if results.Mandato > nr.MandatoActual {
+		
 		nr.hacerseSeguidor(results.Mandato)
+		nr.Mux.Unlock()
 		return true
 
 	} else {
-
-		if nr.SiguienteIndice[nodoId] > 1 {
-			nr.SiguienteIndice[nodoId]--
-		}
-
+		nr.SiguienteIndice[nodoId] = primerIndiceEnviado - 1
+		nr.Logger.Println("=========================================")
+		nr.Logger.Println("=========================================")
+		nr.printNodo()
+		nr.Logger.Println("=========================================")
+		nr.Logger.Println("=========================================")
+		nr.Mux.Unlock()
 		return false
 	}
 }
@@ -839,7 +907,7 @@ func (nr *NodoRaft) enviarLatidos() {
 					nr.tratarLatidoValido(&reply, nodoID)
 
 				} else {
-					fmt.Printf("ERROR al enviar latido al Nodo %d\n", nodoID)
+					//fmt.Printf("ERROR al enviar latido al Nodo %d\n", nodoID)
 				}
 			}(i)
 		}
@@ -868,8 +936,8 @@ func (nr *NodoRaft) enviarPeticionesVoto(args ArgsPeticionVoto,
 					nr.tratarVotoValido(&reply, &votosRecibidos,
 						&mayoria, &votacionFinalizada, victoria)
 				} else {
-					fmt.Printf("ERROR al enviar petición de voto al Nodo %d\n",
-						nodoID)
+					//fmt.Printf("ERROR al enviar petición de voto al Nodo %d\n",
+						//nodoID)
 				}
 
 			}(i)
@@ -882,10 +950,10 @@ func (nr *NodoRaft) enviarPeticionesVoto(args ArgsPeticionVoto,
 // * Si consigue consolidar, aplica a maquina de estados y manda
 // * resultado a través de resultadoChan. El envío de AppendEntries
 // * se mantiene hasta conseguir replicar en todos los nodos.
-func (nr *NodoRaft) comprometerOperacion(resultadoChan chan string) {
+func (nr *NodoRaft) comprometerOperacion() {
 
 	// * Si estoy parado o no soy el líder dejo de comprometer
-	if nr.Parado || nr.Estado != Lider {
+	if nr.Estado != Lider {
 		return
 	}
 
@@ -896,14 +964,16 @@ func (nr *NodoRaft) comprometerOperacion(resultadoChan chan string) {
 
 	finChan := make(chan bool)
 
+	nr.Mux.Lock()
 	mayoria := (len(nr.Nodos) / 2) + 1
+	nr.Mux.Unlock()
 
 	nr.Logger.Println("Enviando mensajes a los seguidores")
 	// * AppendEntries a los nodos hasta que repliquen la operación
 	// * en todos los nodos
 	for i := 0; i < len(nr.Nodos); i++ {
 		if i != nr.Yo {
-			go nr.enviarOperacionNodo(i, resultadoChan, &numReplicadas,
+			go nr.enviarOperacionNodo(i, &numReplicadas,
 				finChan, mayoria)
 		}
 	}
@@ -915,27 +985,35 @@ func (nr *NodoRaft) comprometerOperacion(resultadoChan chan string) {
  ** Método que se encarga de enviar una operación a un nodo hasta que este
  ** consiga replicar la operación o nos demos cuenta que ya no somos líderes.
  */
-func (nr *NodoRaft) enviarOperacionNodo(nodoId int, resultadoChan chan string,
+func (nr *NodoRaft) enviarOperacionNodo(nodoId int,
 	numReplicadas *int, finChan chan bool, mayoria int) {
 
 	var results Results
 
-	args := nr.argumentosAppendEntries(nodoId)
-
-	indiceActual := len(nr.Log)
-
 	fin := false
 
 	for !fin {
-		if nr.enviarAppendEntries(nodoId, &args, &results) {
-			fin = nr.tratarAppendEntriesValido(&results, nodoId, indiceActual,
-				numReplicadas, mayoria, resultadoChan, finChan)
-		} else {
-			fmt.Printf("ERROR al enviar operacióno al Nodo %d\n", nodoId)
+
+		nr.Logger.Println("enviarOperacionNodo: Preparo argumentos para el nodo", nodoId)
+		args := nr.argumentosAppendEntries(nodoId)
+
+		// * Si al preparar los argumentos no hay entradas por añadir salgo
+		// * ya que entonces el nodo réplica ya está actualizado.
+		if len(args.Entradas) == 0{
+			break
 		}
-		if !fin {
-			// * Separamos entre envíos consecutivos
-			time.Sleep(500 * time.Millisecond)
+
+		if nr.enviarAppendEntries(nodoId, &args, &results) {
+			fin = nr.tratarAppendEntriesValido(&results, nodoId,
+				args.Entradas[len(args.Entradas)-1].Indice + 1,
+				numReplicadas, args.Entradas[0].Indice, mayoria,
+				finChan)
+			
+		} else {
+			//fmt.Printf("ERROR al enviar operacióno al Nodo %d\n", nodoId)
+		}
+		if (!fin) {
+			time.Sleep(10 * time.Millisecond)
 		}
 	}
 }
@@ -953,9 +1031,10 @@ func (nr *NodoRaft) enviarOperacionNodo(nodoId int, resultadoChan chan string,
 
 func (nr *NodoRaft) actualizarLog(args *ArgAppendEntries) {
 	// Buscar el primer conflicto entre el log local y las nuevas entradas
+
 	indiceConflicto := -1
-	for i, entrada := range args.Entradas {
-		indiceLog := args.IndicePrevioLog + 1 + i
+	for _, entrada := range args.Entradas {
+		indiceLog := entrada.Indice
 		if indiceLog < len(nr.Log) {
 			if nr.Log[indiceLog].Mandato != entrada.Mandato {
 				indiceConflicto = indiceLog
@@ -970,6 +1049,11 @@ func (nr *NodoRaft) actualizarLog(args *ArgAppendEntries) {
 		// Añadir las entradas nuevas a partir del conflicto
 		nr.Log = append(nr.Log, args.Entradas[indiceConflicto-(args.IndicePrevioLog+1):]...)
 	} else {
+		// * Si no hay conflicto y además todas las entradas de los argumentos
+		// * ya están en el Log acabo
+		if (len(args.Entradas) + args.IndicePrevioLog) < len(nr.Log) {
+			return
+		}
 		// No hay conflicto, pero puede que falten entradas al final
 		comienzo := len(nr.Log) - (args.IndicePrevioLog + 1)
 		if comienzo < 0 {
@@ -984,25 +1068,20 @@ func (nr *NodoRaft) actualizarLog(args *ArgAppendEntries) {
  */
 func (nr *NodoRaft) logPrevioCorrecto(args *ArgAppendEntries, lenLog int) bool {
 
-	fmt.Println("Indice previo log: ", args.IndicePrevioLog)
-	fmt.Println("LenLog: ", lenLog)
+	//fmt.Println("Indice previo log: ", args.IndicePrevioLog)
+	//fmt.Println("LenLog: ", lenLog)
 
-	if lenLog != 0 {
-		// * Si no hay entradas en el log local con dicho índice, devolver falso
-		if lenLog < args.IndicePrevioLog {
-			return false
-		}
-
-		// * Si no coinciden los mandatos, devolveer falso
-		if nr.Log[args.IndicePrevioLog].Mandato != args.MandatoPrevioLog {
-			return false
-		}
-	} else {
-		if args.IndicePrevioLog == IntNOINICIALIZADO {
-			return true
-		}
+	// * Si no hay entradas en el log local con dicho índice, devolver falso
+	if lenLog <= args.IndicePrevioLog {
+		return false
 	}
 
+	// * Si no coinciden los mandatos, devolveer falso
+	if nr.Log[args.IndicePrevioLog].Mandato != args.MandatoPrevioLog {
+		return false
+	}
+
+	nr.Logger.Println("Log previo correcto")
 	// * Sino, la entrada previa es correcta
 	return true
 }
@@ -1026,8 +1105,8 @@ func (nr *NodoRaft) iniciarEleccion(victoria chan bool) {
 	// * Establecemos la mayoría
 	mayoria := (len(nr.Nodos) / 2) + 1
 
-	fmt.Printf("Votos para mayoría: %d --- TENGO: %d --- FALTAN: %d\n",
-		mayoria, 1, mayoria-1)
+	//fmt.Printf("Votos para mayoría: %d --- TENGO: %d --- FALTAN: %d\n",
+	//	mayoria, 1, mayoria-1)
 
 	// * Enviar las peticiones a los nodos
 	nr.enviarPeticionesVoto(args, mayoria, victoria)
@@ -1039,10 +1118,27 @@ func (nr *NodoRaft) iniciarEleccion(victoria chan bool) {
  ** El mutex debe estar bloqueado para un funcionamiento correcto
  */
 func (nr *NodoRaft) hacerseSeguidor(mandato int) {
-	fmt.Printf("Vuelvo a ser SEGUIDOR\n")
+	//fmt.Printf("Vuelvo a ser SEGUIDOR\n")
 	nr.MandatoActual = mandato
 	nr.Estado = Seguidor
 
+}
+
+// Funcion auxiliar para mínimo
+func min(a int, b int) int {
+	if a > b {
+		return b
+	} else {
+		return a
+	}
+}
+
+func max(a int, b int) int {
+	if a > b {
+		return a
+	} else {
+		return b
+	}
 }
 
 // #endregion
@@ -1068,23 +1164,20 @@ func (nr *NodoRaft) argumentosPeticionVoto() ArgsPeticionVoto {
 
 	indicePrevio := len(nr.Log) - 1
 
-	// * Si hay entradas en el Log --> respectivos indices y mandato
-	// * Si no hay entradas en el log --> IntNOINICIALIZADO
-	if indicePrevio >= 0 {
-		args.UltimoIndiceLog = nr.Log[indicePrevio-1].Indice
-		args.UltimoMandatoLog = nr.Log[indicePrevio-1].Mandato
-	} else {
-		args.UltimoIndiceLog = IntNOINICIALIZADO
-		args.UltimoMandatoLog = IntNOINICIALIZADO
-	}
+	// * Siempre hay al menos una entrada en el Log por tanto, esto nunca falla
+	args.UltimoIndiceLog = nr.Log[indicePrevio].Indice
+	args.UltimoMandatoLog = nr.Log[indicePrevio].Mandato
 
-	return args
+	return args 
 }
 
 /**
  ** Método que prepara los argumentos para AppendEntries
  */
 func (nr *NodoRaft) argumentosAppendEntries(nodoId int) ArgAppendEntries {
+
+	nr.Mux.Lock()
+	defer nr.Mux.Unlock()
 
 	var indicePrevio int
 	var mandatoPrevio int
@@ -1093,15 +1186,10 @@ func (nr *NodoRaft) argumentosAppendEntries(nodoId int) ArgAppendEntries {
 
 	var entradas []EntradaRegistro
 
-	if ultimaEntradaReplicada < 0 {
-		entradas = nr.Log
-		indicePrevio = IntNOINICIALIZADO
-		mandatoPrevio = IntNOINICIALIZADO
-	} else {
-		indicePrevio = nr.Log[ultimaEntradaReplicada].Indice
-		mandatoPrevio = nr.Log[ultimaEntradaReplicada].Mandato
-		entradas = nr.Log[nr.SiguienteIndice[nodoId]:]
-	}
+	indicePrevio = nr.Log[ultimaEntradaReplicada].Indice
+	mandatoPrevio = nr.Log[ultimaEntradaReplicada].Mandato
+	entradas = nr.Log[nr.SiguienteIndice[nodoId]:]
+
 
 	return ArgAppendEntries{
 		Mandato:          nr.MandatoActual,
@@ -1118,6 +1206,9 @@ func (nr *NodoRaft) argumentosAppendEntries(nodoId int) ArgAppendEntries {
  ** Método que prepara los argumentos para el envío de un latido
  */
 func (nr *NodoRaft) argumentosLatido() ArgAppendEntries {
+
+	nr.Mux.Lock()
+	defer nr.Mux.Unlock()
 
 	// Creamos los argumentos del latido
 	args := ArgAppendEntries{
@@ -1175,10 +1266,6 @@ func getRandomMilliseconds(minTime int, maxTime int) time.Duration {
 func (nr *NodoRaft) tratarNodo() {
 	for {
 
-		if nr.Parado {
-			continue
-		}
-
 		switch nr.Estado {
 		case Seguidor:
 			nr.Logger.Printf("Nodo: %d. Estado: SEGUIDOR\n", nr.Yo)
@@ -1207,7 +1294,7 @@ func (nr *NodoRaft) tratarNodo() {
  */
 func (nr *NodoRaft) tratarSeguidor() {
 
-	timeOut := time.NewTimer(getRandomMilliseconds(1000, 5000))
+	timeOut := time.NewTimer(getRandomMilliseconds(300, 500))
 
 	select {
 	case <-timeOut.C:
@@ -1215,7 +1302,6 @@ func (nr *NodoRaft) tratarSeguidor() {
 		nr.Estado = Candidato
 	case <-nr.Latido:
 		nr.Logger.Printf("Nodo: %d. Latido RECIBIDO\n", nr.Yo)
-		nr.MiVoto = IntNOINICIALIZADO
 	case <-nr.VotacionRecibida:
 		nr.Logger.Printf("Nodo: %d. Voto DADO\n", nr.Yo)
 	}
@@ -1235,7 +1321,7 @@ func (nr *NodoRaft) tratarSeguidor() {
  */
 func (nr *NodoRaft) tratarCandidato() {
 
-	timeOut := time.NewTimer(getRandomMilliseconds(1000, 3000))
+	timeOut := time.NewTimer(getRandomMilliseconds(150, 300))
 	victoria := make(chan bool)
 	go nr.iniciarEleccion(victoria)
 
@@ -1247,7 +1333,6 @@ func (nr *NodoRaft) tratarCandidato() {
 		nr.Logger.Printf("Nodo: %d. Latido RECIBIDO\n", nr.Yo)
 		nr.Mux.Lock()
 		nr.Estado = Seguidor
-		nr.MiVoto = IntNOINICIALIZADO
 		nr.Mux.Unlock()
 
 	case <-victoria:
@@ -1257,7 +1342,7 @@ func (nr *NodoRaft) tratarCandidato() {
 		nr.IdLider = nr.Yo
 		// * Reinicializar al ganar elección
 		for i := 0; i < len(nr.Nodos); i++ {
-			nr.SiguienteIndice[i] = nr.IndiceCommit
+			nr.SiguienteIndice[i] = len(nr.Log)
 			nr.IndiceEntradaReplicada[i] = 0
 		}
 		nr.Mux.Unlock()
@@ -1285,7 +1370,6 @@ func (nr *NodoRaft) tratarLider() {
 	case <-nr.Latido:
 		nr.Logger.Printf("Nodo: %d. Latido RECIBIDO\n", nr.Yo)
 		nr.Estado = Seguidor
-		nr.MiVoto = IntNOINICIALIZADO
 	}
 }
 
@@ -1305,51 +1389,70 @@ func (nr *NodoRaft) tratarLider() {
  ** Método para aplicar operaciones y devolver el resultado
  */
 func (nr *NodoRaft) tratarOperaciones() {
+
+	var valorADevolver string
+
 	for {
-		operacion := <-nr.CanalAplicarOperacion
+		comando := <-nr.CanalAplicarOperacion
 
-		var valorADevolver string
+		nr.Mux.Lock()
 
-		switch operacion.Operacion.Operacion {
+		nr.Logger.Println("Aplicando operacion:", comando)
+		
+		switch comando.Operacion.Operacion {
 		case "leer":
-			valorADevolver =  nr.Almacen[operacion.Operacion.Clave]
+			nr.Logger.Println("Intentando leer de la clave:", comando.Operacion.Clave)
+			// * Si la clave no existe devuelve una cadena vacía
+			valorADevolver = nr.Almacen[comando.Operacion.Clave]
+			nr.Logger.Println("Valor leído:", valorADevolver)
 		case "escribir":
-			nr.Mux.Lock()
-			nr.Almacen[operacion.Operacion.Clave] = operacion.Operacion.Valor
-			nr.Mux.Unlock()
+			nr.Logger.Println("Intentando escribir en la clave:", comando.Operacion.Clave)
+			nr.Almacen[comando.Operacion.Clave] = comando.Operacion.Valor
 			valorADevolver = "Escrito correctamente"
 		default:
+			nr.Logger.Println("Intentando aplicar operación desconocida")
 			valorADevolver = "Operación desconocida"
 		}
 		
 		// * Si soy líder envío el resultado de la operación sino solo hago 
 		// * los cambios
 		if (nr.IdLider == nr.Yo) {
-			nr.ValorADevolver <- valorADevolver
-		} else {
-			nr.ValorADevolver <- ""
+			if ch, ok := nr.canalesValorADevolver[comando.Indice]; ok {
+				select {
+				case ch <- valorADevolver:
+				default:
+					// si el cliente ya se fue o hubo timeout
+				}
+				delete(nr.canalesValorADevolver, comando.Indice) // limpieza
+			}
 		}
+		nr.Mux.Unlock()
+
 	}
 }
 
 
 // * Cada vez que esta operación es realizada, toma el valor el último aplicado
-func (nr *NodoRaft) aplicarOperacion() string {
+func (nr *NodoRaft) aplicarOperacion(IndiceSiguienteParaAplicar int) {
 
-	nr.Mux.Lock()
+	for {
+		nr.Mux.Lock()
 
-	siguienteIndiceAplicado := nr.IndiceUltimoAplicado + 1
+		if nr.IndiceUltimoAplicado + 1 == IndiceSiguienteParaAplicar {
+				// * Aplicamos en máquina de estados
+			nr.CanalAplicarOperacion <- AplicaOperacion{
+				Indice: IndiceSiguienteParaAplicar,
+				Operacion: nr.Log[IndiceSiguienteParaAplicar].Comando,
+			}
 
-	// * Aplicamos en máquina de estados
-	nr.CanalAplicarOperacion <- AplicaOperacion{
-		Indice: siguienteIndiceAplicado,
-		Operacion: nr.Log[siguienteIndiceAplicado].Comando,
+			nr.IndiceUltimoAplicado++
+
+			nr.Mux.Unlock()
+			break
+		}
+		nr.Mux.Unlock()
 	}
-
-	nr.IndiceUltimoAplicado = siguienteIndiceAplicado
-	nr.Mux.Unlock()
-
-	return <- nr.ValorADevolver
+	
 }
 
 // #endregion
@@ -1364,24 +1467,45 @@ func (nr *NodoRaft) aplicarOperacion() string {
 // #region 11. Métodos print
 
 func (nr *NodoRaft) printNodo() {
+	nr.Logger.Println("========== Estado del NodoRaft ==========")
+	nr.Logger.Printf("ID Nodo (Yo): %d", nr.Yo)
+	nr.Logger.Printf("ID Líder: %d", nr.IdLider)
+	nr.Logger.Printf("Nodos: %v", nr.Nodos)
+	nr.Logger.Printf("Estado: %v", nr.Estado)
 
-	nr.Logger.Println("----- Estado del NodoRaft -----")
-	nr.Logger.Printf("Yo (ID): %d\n", nr.Yo)
-	nr.Logger.Printf("IdLider: %d\n", nr.IdLider)
-	nr.Logger.Printf("Nodos: %v\n", nr.Nodos)
-	nr.Logger.Printf("MandatoActual: %d\n", nr.MandatoActual)
-	nr.Logger.Printf("MiVoto: %d\n", nr.MiVoto)
-	nr.Logger.Printf("Estado: %v\n", nr.Estado)
-	nr.Logger.Printf("Parado: %v\n", nr.Parado)
-	nr.Logger.Printf("IndiceCommit: %d\n", nr.IndiceCommit)
-	nr.Logger.Printf("SiguienteIndice: %v\n", nr.SiguienteIndice)
-	nr.Logger.Printf("IndiceEntradaReplicada: %v\n", nr.IndiceEntradaReplicada)
+	// Estado persistente
+	nr.Logger.Println("------ Estado Persistente ------")
+	nr.Logger.Printf("MandatoActual: %d", nr.MandatoActual)
+	nr.Logger.Printf("MiVoto: %d", nr.MiVoto)
 	nr.Logger.Printf("Log (len=%d):", len(nr.Log))
 	for i, entrada := range nr.Log {
-		nr.Logger.Printf("  [%d] %v\n", i, entrada)
+		nr.Logger.Printf("  [%d] %v", i, entrada)
 	}
-	nr.Logger.Println("----- Fin del Estado del NodoRaft -----")
 
+	// Estado volátil común
+	nr.Logger.Println("------ Estado Volátil (Todos) ------")
+	nr.Logger.Printf("IndiceCommit: %d", nr.IndiceCommit)
+	nr.Logger.Printf("IndiceUltimoAplicado: %d", nr.IndiceUltimoAplicado)
+
+	// Estado volátil en líderes
+	nr.Logger.Println("------ Estado Volátil (Líderes) ------")
+	nr.Logger.Printf("SiguienteIndice: %v", nr.SiguienteIndice)
+	nr.Logger.Printf("IndiceEntradaReplicada: %v", nr.IndiceEntradaReplicada)
+
+	// Almacen (claves limitadas para evitar saturación visual)
+	nr.Logger.Println("------ Almacén (claves limitadas) ------")
+	maxKeys := 5
+	count := 0
+	for k, v := range nr.Almacen {
+		nr.Logger.Printf("  %s: %s", k, v)
+		count++
+		if count >= maxKeys {
+			nr.Logger.Printf("  ...y %d más", len(nr.Almacen)-maxKeys)
+			break
+		}
+	}
+
+	nr.Logger.Println("==========================================")
 }
 
 func printArgsAppendEntries(logger *log.Logger, args ArgAppendEntries) {
@@ -1423,6 +1547,39 @@ func printTratarAppendEntriesValido(logger *log.Logger, results *Results, nodoId
 	logger.Println("IndiceActual:", indiceActual)
 	logger.Println("NumReplicadas", *numReplicadas)
 	logger.Println("------------------------------------------------------")
+}
+
+func printPeticionVoto(logger *log.Logger, peticion *ArgsPeticionVoto) {
+	logger.Println("_______________ PETICIÓN DE VOTO ________________")
+	logger.Println("Mandato:", peticion.Mandato)
+	logger.Println("IdCandidato:", peticion.IdCandidato)
+	logger.Println("UltimoIndiceLog:", peticion.UltimoIndiceLog)
+	logger.Println("UltimoMandatoLog:", peticion.UltimoMandatoLog)
+	logger.Println("-------------------------------------------------")
+}
+
+func printLog(logger *log.Logger, log []EntradaRegistro) {
+	logger.Printf("Log (len=%d):", len(log))
+	for i, entrada := range log {
+		logger.Printf("  [%d] %v", i, entrada)
+	}
+}
+
+func printAlmacen(logger *log.Logger, almacen map[string]string) {
+	// Almacen (claves limitadas para evitar saturación visual)
+	logger.Println("------ Almacén (claves limitadas) ------")
+	maxKeys := 5
+	count := 0
+	for k, v := range almacen {
+		logger.Printf("  %s: %s", k, v)
+		count++
+		if count >= maxKeys {
+			logger.Printf("  ...y %d más", len(almacen)-maxKeys)
+			break
+		}
+	}
+
+	logger.Println("==========================================")
 }
 
 // #endregion

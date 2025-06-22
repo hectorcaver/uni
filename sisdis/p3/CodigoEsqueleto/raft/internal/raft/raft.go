@@ -115,8 +115,6 @@ type NodoRaft struct {
 	VotacionRecibida chan bool
 	// * Canal para recibir latidos por parte del líder
 	Latido chan bool
-    // * SIMULACIÓN DE PARADA DEL NODO RAFT
-	Parado bool
 
 	// ! ------------- ESTADO VOLATIL EN TODOS LOS NODOS RAFT -----------------
 
@@ -205,7 +203,6 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	
 	nr.Latido = make(chan bool)
 	nr.VotacionRecibida = make(chan bool)
-	nr.Parado = false
 
 	nr.IndiceCommit = 0
 	nr.IndiceUltimoAplicado = 0
@@ -223,7 +220,7 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 // Quizas interesante desactivar la salida de depuracion
 // de este nodo
 func (nr *NodoRaft) para() {
-	go func() { time.Sleep(500 * time.Millisecond); os.Exit(0) }()
+	go func() { time.Sleep(20 * time.Millisecond); os.Exit(0) }()
 }
 
 // Devuelve "yo", mandato en curso y si este nodo cree ser lider
@@ -244,6 +241,14 @@ func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
 	esLider = (nr.IdLider == nr.Yo)
 
 	return yo, mandato, esLider, idLider
+}
+
+func (nr *NodoRaft) obtenerEstadoReplicacion() ([]EntradaRegistro) {
+	nr.Mux.Lock()
+	log := nr.Log
+	nr.Mux.Unlock()
+
+	return log
 }
 
 // El servicio que utilice Raft (base de datos clave/valor, por ejemplo)
@@ -331,18 +336,7 @@ type Vacio struct{}
 func (nr *NodoRaft) ParaNodo(args Vacio, reply *Vacio) error {
 	
 	defer nr.para()
-	nr.Logger.Println("Parando nodo")
 	
-	return nil
-}
-
-func (nr *NodoRaft) DesconectarNodo(args Vacio, reply *Vacio) error {
-
-	nr.Mux.Lock()
-	nr.Parado = true
-	nr.Logger.Println("Desactivando nodo")
-	nr.Mux.Unlock()
-
 	return nil
 }
 
@@ -357,10 +351,20 @@ type EstadoRemoto struct {
 	EstadoParcial
 }
 
+type EstadoReplicacionRemoto struct {
+	Log []EntradaRegistro
+}
+
 func (nr *NodoRaft) ObtenerEstadoNodo(args Vacio, reply *EstadoRemoto) error {
 	reply.IdNodo, reply.Mandato, reply.EsLider, reply.IdLider = nr.obtenerEstado()
 	return nil
 }
+
+func (nr *NodoRaft) ObtenerEstadoReplicacionNodo (args Vacio, 
+	reply *EstadoReplicacionRemoto) error {
+		reply.Log = nr.obtenerEstadoReplicacion()
+		return nil
+	}
 
 type ResultadoRemoto struct {
 	ValorADevolver string
@@ -445,8 +449,6 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 	nr.Mux.Lock()
 	defer nr.Mux.Unlock()
 
-	if nr.Parado { return nil }
-
 	if peticion.Mandato >= nr.MandatoActual {
 
 		if peticion.Mandato > nr.MandatoActual {
@@ -495,13 +497,6 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
 	// Completar....
 	nr.Mux.Lock()
 	defer nr.Mux.Unlock()
-
-	// ! PARADO --> preguntar al profesor porque no funciona de la otra manera
-	if nr.Parado { 
-		results.Exito = true
-		results.Mandato = args.Mandato
-		return nil
-	}
 
 	if len(args.Entradas) == 0 {
 		nr.Logger.Println("LATIDO RECIBIDO -------------------------------------------------------------")
@@ -839,7 +834,7 @@ func (nr *NodoRaft) comprometerOperacion(resultadoChan chan string) {
 
 	
 	// * Si estoy parado o no soy el líder dejo de comprometer
-	if nr.Parado || nr.Estado != Lider {
+	if nr.Estado != Lider {
 		return
 	}
 
@@ -1130,8 +1125,6 @@ func (nr *NodoRaft) argumentosLatido() ArgAppendEntries {
 	func (nr *NodoRaft) tratarNodo() {
 		for {
 
-			if nr.Parado { continue }
-
 			switch nr.Estado {
 			case Seguidor:
 				nr.Logger.Printf("Nodo: %d. Estado: SEGUIDOR\n", nr.Yo)
@@ -1262,7 +1255,6 @@ func (nr *NodoRaft) printNodo() {
 	nr.Logger.Printf("MandatoActual: %d\n", nr.MandatoActual)
 	nr.Logger.Printf("MiVoto: %d\n", nr.MiVoto)
 	nr.Logger.Printf("Estado: %v\n", nr.Estado)
-	nr.Logger.Printf("Parado: %v\n", nr.Parado)
 	nr.Logger.Printf("IndiceCommit: %d\n", nr.IndiceCommit)
 	nr.Logger.Printf("SiguienteIndice: %v\n", nr.SiguienteIndice)
 	nr.Logger.Printf("IndiceEntradaReplicada: %v\n", nr.IndiceEntradaReplicada)

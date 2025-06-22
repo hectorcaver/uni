@@ -156,7 +156,8 @@ func (cfg *configDespliegue) elegirPrimerLiderTest2(t *testing.T) {
 
 	// Se ha elegido lider ?
 	fmt.Printf("Probando lider en curso\n")
-	cfg.pruebaUnLider(3)
+	IdLider := cfg.pruebaUnLider(cfg.numReplicas)
+	fmt.Println("Nodo", IdLider, "es el lider")
 
 	// Parar réplicas alamcenamiento en remoto
 	cfg.stopDistributedProcesses() // Parametros
@@ -173,16 +174,18 @@ func (cfg *configDespliegue) falloAnteriorElegirNuevoLiderTest3(t *testing.T) {
 	cfg.startDistributedProcesses()
 
 	fmt.Printf("Lider inicial\n")
-	cfg.pruebaUnLider(3)
+	liderId := cfg.pruebaUnLider(3)
 
 	// Desconectar lider
-	cfg.desconectarLider(3)
+	cfg.pararNodo(liderId, 3)
 
 	// Esperar a que el lider se desconecte
-	time.Sleep(6 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	fmt.Printf("Comprobar nuevo lider\n")
-	cfg.pruebaUnLider(3)
+	nuevoLider := cfg.pruebaUnLider(3)
+
+	fmt.Printf("Nuevo lider %d", nuevoLider)
 
 	// Parar réplicas almacenamiento en remoto
 	cfg.stopDistributedProcesses() //parametros
@@ -200,43 +203,48 @@ func (cfg *configDespliegue) tresOperacionesComprometidasEstable(t *testing.T) {
 
 	cfg.startDistributedProcesses()
 
-	fmt.Println("Lider inicial")
+	fmt.Println("Probando lider inicial")
 
-	cfg.pruebaUnLider(3)
+	IdLider := cfg.pruebaUnLider(3)
 
-	fmt.Println("Se supone que hay un lider")
+	fmt.Println("Lider en nodo:", IdLider)
 
-	// * Sabes que hay un líder
+	nodoNoLider := (IdLider + 1) % len(cfg.nodosRaft)
 
-
-	// * Obtengo el id del líder
-	IdNodo, _, EsLider, IdLider := cfg.obtenerEstadoRemoto(0)
-
-	fmt.Println(IdNodo, EsLider, IdLider)
-
-	var nodoNoLider int
-
-	if (EsLider) {
-		nodoNoLider = (IdNodo + 1) % len(cfg.nodosRaft)
-	} else {
-		nodoNoLider = IdNodo
+	leer1 := raft.TipoOperacion{ 
+		Operacion: "leer", 
+		Clave: "0x0000",
+	}
+	escribir1 := raft.TipoOperacion{ 
+		Operacion: "escribir", 
+		Clave: "0x0000", 
+		Valor: "chocolate",
 	}
 
 	// * Envío una operación a un no líder 
 	// * para comprobar funcionamiento correcto
-	_,_,_,lider,resultado := cfg.enviarOperacion(nodoNoLider)
+	_,_,_,_,resultado := cfg.enviarOperacion(nodoNoLider, escribir1, true)
 
-	fmt.Println(nodoNoLider, "Resultado de operación en nodo no lider --> ", resultado, " y lider: ", lider, ", IdLider == ", IdLider)
+	fmt.Println(nodoNoLider, "Resultado de operación en nodo no lider --> ",
+				 resultado)
 
 	times := 3
 
-	for i := 0; i < times; i++ {
+	_,_,_,_,resultado = cfg.enviarOperacion(IdLider, escribir1, true)
 
-		_,_,_,_,resultado := cfg.enviarOperacion(IdLider)
+	fmt.Println("Resultado de operación ", 0, " --> ", resultado)
+
+	for i := 1; i < times; i++ {
+
+		_,_,_,_,resultado := cfg.enviarOperacion(IdLider, leer1, true)
 
 		fmt.Println("Resultado de operación ", i, " --> ", resultado)
 
 	}
+
+	time.Sleep(300 * time.Millisecond)
+
+	cfg.comprobarEstadoReplicacion(IdLider)
 
 	// Parar réplicas almacenamiento en remoto
 	cfg.stopDistributedProcesses() //parametros
@@ -284,27 +292,21 @@ func (cfg *configDespliegue) pruebaUnLider(numreplicas int) int {
 	return -1 // Termina
 }
 
-func (cfg *configDespliegue) desconectarLider(numreplicas int) {
+func (cfg *configDespliegue) pararNodo(nodo int, numReplicas int) {
 
-	_, _, _, IdLider := cfg.obtenerEstadoRemoto(0)
+	if nodo >= 0 && nodo < numReplicas {
+		var args, reply raft.Vacio
+		err := cfg.nodosRaft[nodo].CallTimeout("NodoRaft.ParaNodo",
+			&args, &reply, 50*time.Millisecond)
 
-	if IdLider >= 0 && IdLider < numreplicas {
-
-		cfg.t.Logf("Lider en replica: %d", IdLider)
-		cfg.t.Logf("Desconectando lider %d", IdLider)
-
-		cfg.conectados[IdLider] = false
-
-		var reply raft.Vacio
-		err := cfg.nodosRaft[IdLider].CallTimeout("NodoRaft.DesconectarNodo",
-			raft.Vacio{}, &reply, 6*time.Second)
-
-		check.CheckError(err, "Error en llamada RPC Para nodo")
+		if err != nil {
+			check.CheckError(err, "Error en llamada RPC Para nodo")
+		} else {
+			cfg.conectados[nodo] = false
+		}
 	} else {
-		cfg.t.Fatalf("IdLider %d no en nodo valido", IdLider)
+		cfg.t.Fatalf("Nodo %d no es un nodo valido", nodo)
 	}
-	cfg.t.Logf("Lider %d desconectado", IdLider)
-
 }
 
 func (cfg *configDespliegue) obtenerEstadoRemoto(
@@ -316,6 +318,18 @@ func (cfg *configDespliegue) obtenerEstadoRemoto(
 
 	return reply.IdNodo, reply.Mandato, reply.EsLider, reply.IdLider
 }
+
+func (cfg *configDespliegue) obtenerEstadoReplicacionRemoto(indiceNodo int) (
+	[]raft.EntradaRegistro) {
+		var reply raft.EstadoReplicacionRemoto
+		err := cfg.nodosRaft[indiceNodo].CallTimeout(
+			"NodoRaft.ObtenerEstadoReplicacionNodo", raft.Vacio{}, &reply,
+			 300 * time.Millisecond)
+		check.CheckError(err, 
+			"Error en llamada RPC ObtenerEstadoReplicacionRemoto")
+
+		return reply.Log
+	}
 
 // start  gestor de vistas; mapa de replicas y maquinas donde ubicarlos;
 // y lista clientes (host:puerto)
@@ -339,10 +353,12 @@ func (cfg *configDespliegue) startDistributedProcesses() {
 func (cfg *configDespliegue) stopDistributedProcesses() {
 	var reply raft.Vacio
 
-	for _, endPoint := range cfg.nodosRaft {
-		err := endPoint.CallTimeout("NodoRaft.ParaNodo",
+	for i, endPoint := range cfg.nodosRaft {
+		if cfg.conectados[i] {
+			err := endPoint.CallTimeout("NodoRaft.ParaNodo",
 			raft.Vacio{}, &reply, 10*time.Millisecond)
-		check.CheckError(err, "Error en llamada RPC Para nodo")
+			check.CheckError(err, "Error en llamada RPC Para nodo")
+		}
 	}
 
 	// * Dar tiempo para que paren las máquinas
@@ -364,18 +380,58 @@ func (cfg *configDespliegue) comprobarEstadoRemoto(idNodoDeseado int,
 
 }
 
+func (cfg *configDespliegue) comprobarEstadoReplicacionRemoto(idNodoDeseado int,
+	logDeseado []raft.EntradaRegistro) {
+
+	logNodo := cfg.obtenerEstadoReplicacionRemoto(idNodoDeseado)
+
+	// Comparar logs
+	if len(logDeseado) != len(logNodo) {
+		cfg.t.Fatalf("Diferencia en longitud del log para nodo %d: esperado %d, obtenido %d\n",
+			idNodoDeseado, len(logDeseado), len(logNodo))
+	} else {
+		for i := range logDeseado {
+			if logDeseado[i] != logNodo[i] {
+				cfg.t.Fatalf("Diferencia en log en índice %d para nodo %d: esperado %+v, obtenido %+v\n",
+					i, idNodoDeseado, logDeseado[i], logNodo[i])
+			}
+		}
+	}
+}
+
 func (cfg *configDespliegue) enviarOperacion(
-		indiceNodo int) (int, int, bool, int, string) {
+		indiceNodo int, args raft.TipoOperacion, checkError bool) (int,
+			 int, bool, int, string) {
 
 	var reply raft.ResultadoRemoto
 
-	args := raft.TipoOperacion{ Operacion: "leer", Clave: "clave", Valor: "valor" }
-
 	err := cfg.nodosRaft[indiceNodo].CallTimeout("NodoRaft.SometerOperacionRaft",
 		args, &reply, 1 * time.Second)
-	check.CheckError(err, "Error en llamada RPC SometerOperacionRaft")
-
+	
+	if checkError {
+		check.CheckError(err, "Error en llamada RPC SometerOperacionRaft")
+	} else {
+		if err != nil {
+			fmt.Println("Error en llamada RPC SometerOperacionRaft:", err.Error())
+		}
+	}
+	
 	return reply.IndiceRegistro, reply.Mandato, reply.EsLider, reply.IdLider,
 		reply.ValorADevolver
 
+}
+
+func (cfg *configDespliegue) comprobarEstadoReplicacion(IdLider int) {
+	fmt.Println(
+		"Comprobando estado de los logs y de los almacenes de todos los nodos")
+
+	logLider := cfg.obtenerEstadoReplicacionRemoto(IdLider)
+
+	for i := 0; i < cfg.numReplicas; i++ {
+		if i != IdLider {
+			cfg.comprobarEstadoReplicacionRemoto(i, logLider)
+		}
+	}
+
+	fmt.Println("Todo correcto")
 }
