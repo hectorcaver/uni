@@ -89,10 +89,6 @@ func printResultadoRemoto(reply raft.ResultadoRemoto) {
 	fmt.Println("----- FIN RESPUESTA REMOTA -----")
 }
 
-// Imprime el resultado de una operación (lectura o escritura)
-func imprimirResultadoOp(res raft.ResultadoRemoto) {
-	
-}
 
 func comandoEstado(args []string) {
 	// Consultar estado de un nodo
