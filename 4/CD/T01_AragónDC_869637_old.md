@@ -1,0 +1,47 @@
+% Ejercicios Tema 0  
+  Centros de Datos UZ, 2025-26  
+% Lacueva Sacristán, Héctor
+% 14/09/2025
+
+
+# T0.1 Aragón DC (xx min)
+
+IA: (no) (si, cual, 🙂🙁 🙄)
+
+_Centros de Datos: ¿ubicación, potencia eléctrica máxima, refrigeración por agua ?, año de puesta en marcha real o proyectado: haced una tabla._
+
+|Centro de datos|Ubicación|Potencia eléctrica máxima|Refrigeración por agua|Año (puesta en marcha o proyectado)|
+|:-:|:-:|:-:|:-:|:-:|
+|Microsoft La Muela [1]|Pol. Ind. Centrovía Fase 5, 50198, La Muela, España|Proyectado|Proyectado|2023 se anunció [2] y puesta en marcha en 10 años (2033)|
+|Microsoft Zaragoza [1]|Rda. Externa Anillar (Z-40), 50007, Zaragoza, España|Proyectado|Proyectado|Inicio construcción en 2026, año de finalización prevista en 2029|
+|Microsoft Villamayor de Gallego [1]|Pol. Ind. Malpica, 50162, Villamayor de Gállego, España|a BUSCAR|a BUSCAR|a BUSCAR|
+|Amazon AWS MAD - Gallego [1]|Ctra A-1102 km 2, 50830, Villanueva de Gállego, España|100MW|755.000 $m^3$ (entre los 3 centros ya en funcionamiento)|a BUSCAR|
+|Amazon AWS MAD - Huesca [1]|Ronda De Valdabra, 23, 22197, Huesca, España|100MW|755.000 $m^3$ (entre los 3 centros ya en funcionamiento)|a BUSCAR|
+|Amazon AWS MAD - Zaragoza [1]|Polígono El Burgo, 50730, Zaragoza, España|100MW|755.000 $m^3$ (entre los 3 centros ya en funcionamiento)|a BUSCAR|
+|Amazon AWS MAD - Cartuja [4]|Polígono Empresarium, La Cartuja, Zaragoza, España|3.279 GWh cuando esté construido según [4]|210.000 $m^3$ de agua al año según [4]|Proyectado|
+|Iridium Zaragoza, Meta, Microsoft [1]|Parque Tecnológico de Reciclado, 50720, Cartuja Baja, España|No encontrado|No encontrado|No proyectados|
+|Grupo Aire OASIX Zaragoza [1]|Edificio World Trade Center, 50178, Zaragoza, España|a BUSCAR|a BUSCAR|a BUSCAR|
+|Redestel Data Center [1]|C. del Veintitrés de Abril, 26, 50014, Zaragoza, España|a BUSCAR|a BUSCAR|a BUSCAR|
+|DXC Zaragoza Data Center [1]|Calle de Bari, 11, 50197, Zaragoza, España|No encontrado|No encontrado|Puesta en marcha en Septiembre de 2024 [3]|
+
+||||||
+||||||
+
+||||||
+
+
+Según la información publicada en [1], bla bla [2].
+…
+
+
+
+## Referencias
+
+[1] Información de centros de datos en Aragón: [www.datacentermap.com](www.datacentermap.com).
+
+[2] Enlace noticia: [https://www.xataka.com/robotica-e-ia/aragon-se-llena-centros-datos-microsoft-invertira-otros-2-900-millones-euros-nueva-instalacion-zaragoza](https://www.xataka.com/robotica-e-ia/aragon-se-llena-centros-datos-microsoft-invertira-otros-2-900-millones-euros-nueva-instalacion-zaragoza)
+
+[3] Enlaces noticias: [https://www.datacenterdynamics.com/es/noticias/dxc-technology-abre-un-nuevo-centro-de-excelencia-en-zaragoza-para-impulsar-la-adopcion-de-ia-y-cloud/](https://www.datacenterdynamics.com/es/noticias/dxc-technology-abre-un-nuevo-centro-de-excelencia-en-zaragoza-para-impulsar-la-adopcion-de-ia-y-cloud/) o [https://dxc.com/us/en/newsroom/09122024](https://dxc.com/us/en/newsroom/09122024)
+
+[4] Enlace a noticia "Los nuevos centros de datos de Amazon Web Services consumirán más energía que todo Aragón" publicada el 19 diciembre 2024
+05:00h: [https://www.elespanol.com/aragon/economia/20241219/nuevos-centros-datos-amazon-web-services-consumiran-energia-aragon/909659624_0.html](https://www.elespanol.com/aragon/economia/20241219/nuevos-centros-datos-amazon-web-services-consumiran-energia-aragon/909659624_0.html)
