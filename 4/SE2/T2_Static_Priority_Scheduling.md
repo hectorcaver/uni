@@ -24,8 +24,6 @@ Para ello se presentan:
 
 Medida de la **carga de un procesador**. El objetivo es encontrar métodos que produzcan una planificación aceptable con factores de utilización lo más altos posibles.
 
-
-
 |Utilización de una tarea $T_i$|Utilización del sistema|
 |:-:|:-:|
 |$U_i = \frac{C_i}{P_i}$|$U = \sum_{i = 1}^{n}{U_i} = \sum_{i = 1}^{n}{\frac{C_i}{P_i}}$|
