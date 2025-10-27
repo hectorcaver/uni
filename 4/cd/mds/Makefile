@@ -22,3 +22,9 @@ add:
 	@printf "\t\$${HEAD} $(NAME)\n" >> Makefile
 	@echo "Entrada añadida con éxito."
 
+
+T51: T51_Eficiencia2008.md
+	${HEAD} T51_Eficiencia2008
+
+T91: T91_Estudio_Mercado.md
+	${HEAD} T91_Estudio_Mercado
