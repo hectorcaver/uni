@@ -65,21 +65,17 @@ done
 # =============================
 # Conversión con Pandoc
 # =============================
-pandoc -f markdown+smart \
-  --standalone \
-  --filter=pandoc-crossref \
+pandoc \
+  -f markdown \
   -V papersize="$PAPERSIZE" \
   -V geometry="$GEOMETRY" \
   -V toc-title="Índice" \
   -V colorlinks=true \
   -V urlcolor=blue \
   --toc \
+  --number-sections \
   --toc-depth=$TOC_DEPTH \
   --pdf-engine=pdflatex \
-  --number-sections \
-  --syntax-highlighting=idiomatic \
-  --from=markdown \
-  --to=latex \
   $BIBLIO_OPTS \
   "$INPUT_PATH" -o "$OUTPUT_PATH"
 

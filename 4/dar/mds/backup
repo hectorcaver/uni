@@ -1,0 +1,54 @@
+% Práctica 1.2 Diseño y gestión de escenarios IPv4. NAT. \
+  Diseño y administración de redes
+% Héctor Lacueva Sacristán
+% 27/10/2025
+
+\newpage
+
+# Cuestiones previas
+
+## Cuestión 1. Indica cómo debe configurarse el NAT en los router PCA3 y PCB3. El NAT que acabas de configurar, ¿es estático o dinámico?
+
+Para la primera configuración se debe tener en cuenta lo siguiente:
+
+- No se necesita acceder desde el exterior a servidores internos de la red.
+- Pueden realizarse conexiones desde varios equipos a la vez.
+- El router sólo dispone de una dirección IP de la red C.
+- No se activa ninguna capacidad de filtrado (firewall).
+- Para configurar adecuadamente el control de tráfico (Traffic Control, TC) en los router de salida, se debe utilizar el comando tc.
+
+Configuración del NAT en los router PCA3 y PCB3:
+
+`iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE`
+
+Esta regla se encarga de que los paquetes que salgan por eth0 en cualquiera de los dos router (PCA3 y PCB3) se vean modificados. El router asocia la dirección IP:puerto de origen dentro de la red privada con la IP de salida de cada router a la red C y un puerto que se asocia dinámicamente.
+
+Un ejemplo de cómo funcionaría en PCA3:
+
+|Dentro|Fuera|
+|:-:|:-:|
+|192.168.10.1:1108|192.168.7.1:61001|
+|192.168.10.2:1108|192.168.7.1:61002|
+|192.168.10.1:80|192.168.7.1:61003|
+
+Un paquete con origen 192.168.0.4:1108 se asocia a la dirección del router en la LAN_C junto a un puerto no en uso (por ejemplo 192.168.7.1:61001). Cuando se reciba un paquete con esa IP:puerto, al pasar por la tabla NAT se sabrá a quién va dirigido.
+
+Se trata de un NAPT dinámico ya que queremos que múltiples hosts puedan hacer cualquier petición simultáneamente, y me explico:
+
+- No es un NAT básico estático porque el número de direcciones públicas no es igual al de privadas (contamos con 1 dirección para varios servidores).
+- No es un NAPT estático porque se deberían definir relaciones para muchos puertos y no es práctico.
+- Podría tratarse de un NAT básico dinámico pero no es práctico, ya que solo contamos con una dirección de salida y al no incluir puertos no sería fácil distinguir el destino de los mensajes entrantes desde la LAN_C.
+
+## Cuestión 4. Indica cómo has configurado el NAT y qué comandos has utilizado. Tal y como has configurado el NAT, ¿es estático o dinámico?
+
+Se desea ahora establecer una conexión SSH desde PCA1 (cliente) a PCB1 (servidor) de otra bancada (B). Tener en cuenta que lo que se pretende ahora es permitir que una petición de conexión que llegue a la salida del NAT (pública) pueda asociarse al servidor SSH interno (privada). Consultando de nuevo el Anexo I, apartado específico "Utilización de iptables como NAT", configura apropiadamente el NAT en el router correspondiente (PC3).
+
+Para permitir que una conexión SSH dirigida a la IP pública de PC3 llegue al servidor interno PCB1, se añade una regla de Destination NAT (DNAT):
+
+NAT de entrada (port forwarding SSH):
+
+`iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 22 -j DNAT --to 192.168.10.3:22`
+
+De esta forma, cualquier paquete recibido en eth1 con destino al puerto 22 (SSH) se redirige al host interno 192.168.10.3 (PCB1).
+
+Se trata de un NAPT estático, ya que asocia de forma fija el puerto 22 público con el servidor interno 192.168.10.3:22.
