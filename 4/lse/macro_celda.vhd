@@ -31,58 +31,84 @@ architecture Behavioral of macro_celda is
 -- Os pongo las entradas de la macrocelda. Recibe informaci�n de las ocho entradas y 
 -- a partir de cada entrada y la celda 8input) genera la salida contraria y los movimientos posibles
 component micro_celda 
-Port (  info_in : in STD_LOGIC_VECTOR (1 downto 0);
-        celda : in STD_LOGIC_VECTOR (1 downto 0);
+    Port (  
+        info_in  : in  STD_LOGIC_VECTOR (1 downto 0);
+        celda    : in  STD_LOGIC_VECTOR (1 downto 0);
         info_out : out STD_LOGIC_VECTOR (1 downto 0);
-        SALIDA : out std_logic);
-end component;
+        SALIDA   : out std_logic
+    );
+    end component;
 
--- signal matrix es un tipo que nos permite definir las matrices de se�ales que van a conectar nuestra red.
--- Su tama�o es uno mayor que el n�mero de celdas porque tambi�n incluimos las entradas de las fronteras
--- Esas entradas ser�n siempre "00" 
-type signal_wire is STD_LOGIC_Vector(1 downto 0);
-signal wire:  signal_wire;
+    -- Señales para recoger la SALIDA de cada micro_celda
+    signal s : std_logic_vector(7 downto 0);
 
 begin
-    
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
+
+    -- 1. Arriba Izquierda -> Abajo Derecha
+    mc_ul: micro_celda port map (
+        info_in  => up_left_in,
+        celda    => input,
         info_out => down_right_out,
+        SALIDA   => s(0)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 2. Arriba -> Abajo
+    mc_u: micro_celda port map (
+        info_in  => up_in,
+        celda    => input,
+        info_out => down_out,
+        SALIDA   => s(1)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 3. Arriba Derecha -> Abajo Izquierda
+    mc_ur: micro_celda port map (
+        info_in  => up_right_in,
+        celda    => input,
+        info_out => down_left_out,
+        SALIDA   => s(2)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 4. Izquierda -> Derecha
+    mc_l: micro_celda port map (
+        info_in  => left_in,
+        celda    => input,
+        info_out => right_out,
+        SALIDA   => s(3)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 5. Derecha -> Izquierda
+    mc_r: micro_celda port map (
+        info_in  => right_in,
+        celda    => input,
+        info_out => left_out,
+        SALIDA   => s(4)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 6. Abajo Izquierda -> Arriba Derecha
+    mc_dl: micro_celda port map (
+        info_in  => down_left_in,
+        celda    => input,
+        info_out => up_right_out,
+        SALIDA   => s(5)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 7. Abajo -> Arriba
+    mc_d: micro_celda port map (
+        info_in  => down_in,
+        celda    => input,
+        info_out => up_out,
+        SALIDA   => s(6)
     );
 
-    microc_up_l: micro_celda port map (
-        up_left_in => info_in,
-        info_out => down_right_out,
+    -- 8. Abajo Derecha -> Arriba Izquierda
+    mc_dr: micro_celda port map (
+        info_in  => down_right_in,
+        celda    => input,
+        info_out => up_left_out,
+        SALIDA   => s(7)
     );
+
+    -- La salida final es '1' si CUALQUIERA de las direcciones genera un movimiento válido
+    output <= s(0) or s(1) or s(2) or s(3) or s(4) or s(5) or s(6) or s(7);
                
 end Behavioral;
