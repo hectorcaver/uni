@@ -1,0 +1,15 @@
+# Objetos de compilación de GHDL/GCC/LLVM
+*.o
+*.cf
+*.obj
+
+# Directorio de trabajo de GHDL
+WORK/
+work-obj93.cf
+
+# Ejecutables (nombres de tus entidades principales)
+test_microcelda
+sim_matrix
+
+# Makefile
+Makefile

@@ -36,7 +36,7 @@ entity test_microcelda is
 end test_microcelda;
 
 architecture Behavioral of test_microcelda is
-component celda_base is
+component micro_celda is
     Port ( info_in : in STD_LOGIC_VECTOR (1 downto 0);
            celda : in STD_LOGIC_VECTOR (1 downto 0);
            info_out : out STD_LOGIC_VECTOR (1 downto 0);
@@ -45,35 +45,35 @@ end component;
 signal INFO_IN, celda, INFO_OUT : std_logic_vector (1 downto 0);
 signal SALIDA : std_logic;
 begin
-celda_uut: celda_base port map (INFO_IN => INFO_IN, celda => celda, SALIDA => SALIDA, INFO_OUT => INFO_OUT);
+celda_uut: micro_celda port map (INFO_IN => INFO_IN, celda => celda, SALIDA => SALIDA, INFO_OUT => INFO_OUT);
 process
 begin
     INFO_IN <= "00";
     celda <= "00";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "00";
     celda <= "01";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "00";
     celda <= "10";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "01";
     celda <= "00";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "01";
     celda <= "01";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "01";
     celda <= "10";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "10";
     celda <= "00";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "10";
     celda <= "01";
-    wait for 10ns;
+    wait for 10 ns;
     INFO_IN <= "10";
     celda <= "10";
-    wait for 10ns;
+    wait for 10 ns;
 end process;
 end Behavioral;
