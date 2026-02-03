@@ -48,33 +48,29 @@ begin
     --tablero vacio
     board <= (others => '0');
     wait for 10 ns;
-   -- siguiendo este esquema pod�is poner las casillas que quer�is:
-   -- primero se pone el tablero vacio 
+    -- siguiendo este esquema pod�is poner las casillas que quer�is:
+    -- primero se pone el tablero vacio 
     board <= (others => '0');
-   -- despu�s colocas las casillas una a una
-   -- en este ejemplo pongo una casilla negra en la posici�n (4,3)
+    -- despu�s colocas las casillas una a una
 
-    -- Blancas (01) en cruz y diagonales desde (2,2) 
-    board(16*1 + 2*2 + 1 downto 16*1 + 2*2) <= "01"; -- Arriba (1,2)
-    board(16*3 + 2*2 + 1 downto 16*3 + 2*2) <= "01"; -- Abajo (3,2)
-    board(16*2 + 1*2 + 1 downto 16*2 + 1*2) <= "01"; -- Izquierda (2,1)
-    board(16*2 + 3*2 + 1 downto 16*2 + 3*2) <= "01"; -- Derecha (2,3)
-    board(16*1 + 1*2 + 1 downto 16*1 + 1*2) <= "01"; -- Diag UL (1,1)
-    board(16*3 + 3*2 + 1 downto 16*3 + 3*2) <= "01"; -- Diag DR (3,3)
+    -- Posición inicial de Reversi, debería haber cuatro aperturas posibles
+     -- Blancas en posiciones (3, 3) y (4, 4)
+    board(16*3 + 3*2 + 1 downto 16*3 + 3*2) <= "10";
+    board(16*4 + 4*2 + 1 downto 16*4 + 4*2) <= "10";
 
-    -- Negras (10) al final de cada línea para "cerrar" el flanqueo 
-    board(16*0 + 2*2 + 1 downto 16*0 + 2*2) <= "10"; -- Cierra arriba (0,2)
-    board(16*4 + 2*2 + 1 downto 16*4 + 2*2) <= "10"; -- Cierra abajo (4,2)
-    board(16*2 + 0*2 + 1 downto 16*2 + 0*2) <= "10"; -- Cierra izquierda (2,0)
-    board(16*2 + 4*2 + 1 downto 16*2 + 4*2) <= "10"; -- Cierra derecha (2,4)
-    board(16*0 + 0*2 + 1 downto 16*0 + 0*2) <= "10"; -- Cierra UL (0,0)
-    board(16*4 + 4*2 + 1 downto 16*4 + 4*2) <= "10"; -- Cierra DR (4,4)
+    -- Negras en posiciones (3, 4) y (4, 3)
+    board(16*3 + 4*2 + 1 downto 16*3 + 4*2) <= "01";
+    board(16*4 + 3*2 + 1 downto 16*4 + 3*2) <= "01";
 
-    -- salida(2*8 + 2) DEBERÍA SER '1' porque se puede jugar en (2,2)
+    -- Blanca en (2, 2) para probar diagonales
+    board(16*2 + 2*2 + 1 downto 16*2 + 2*2) <= "01";
 
     --finalmente pones un wait para que el resultado se vea
     wait for 10 ns;
     -- Poned unas cuantas casillas con sentido y comprobad que la salida es correcta
+    -- Salida esperada:
+    -- Negras en posiciones (2, 3), (3, 2), (4, 5), (5, 4) y (5, 5)
+    -- Bits de salida a '1' -> 19, 26, 37, 44, 45 
     wait;
 end process;
 
