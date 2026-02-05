@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: 
+-- Engineer: Pablo Plumed y Hector Lacueva
 -- 
 -- Create Date: 17.02.2016 19:24:40
 -- Design Name: 

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: 
+-- Engineer: Pablo Plumed (874167) y Hector Lacueva (869637)
 -- 
 -- Create Date: 18.02.2016 14:33:12
 -- Design Name: 
@@ -62,15 +62,19 @@ begin
     board(16*3 + 4*2 + 1 downto 16*3 + 4*2) <= "01";
     board(16*4 + 3*2 + 1 downto 16*4 + 3*2) <= "01";
 
-    -- Blanca en (2, 2) para probar diagonales
+    -- Negra en (2, 2) y (5, 5) para probar diagonales 
     board(16*2 + 2*2 + 1 downto 16*2 + 2*2) <= "01";
+
+    -- Se añaden una negra y una blanca, en (5, 5) y (6, 6) respectivamente, para probar con intercaladas
+    board(16*5 + 5*2 + 1 downto 16*5 + 5*2) <= "01";
+    board(16*6 + 6*2 + 1 downto 16*6 + 6*2) <= "10";
 
     --finalmente pones un wait para que el resultado se vea
     wait for 10 ns;
     -- Poned unas cuantas casillas con sentido y comprobad que la salida es correcta
     -- Salida esperada:
-    -- Negras en posiciones (2, 3), (3, 2), (4, 5), (5, 4) y (5, 5)
-    -- Bits de salida a '1' -> 19, 26, 37, 44, 45 
+    -- Negras en posiciones  (2, 3), (3, 2), (4, 5), (5, 4) y (7, 7)
+    -- Bits de salida a '1' -> 19,     26,     37,     44   y   62
     wait;
 end process;
 

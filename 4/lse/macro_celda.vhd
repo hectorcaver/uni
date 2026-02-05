@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: Hector Lacueva y Pablo Plumed 
+-- Engineer:  Pablo Plumed (874167) y Hector Lacueva (869637)
 -- 
 -- Create Date: 1.02.2026 19:50
 -- Design Name: 
