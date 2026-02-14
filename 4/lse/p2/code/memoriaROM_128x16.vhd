@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: 
+-- Engineer: Pablo Plumed (874167) y Hector Lacueva (869637)
 -- 
 -- Create Date:    14:12:11 04/04/2014 
 -- Design Name: 
@@ -35,7 +35,7 @@ entity memoriaROM_128x16 is port (
         	Dout : out std_logic_vector (15 downto 0));
 end memoriaROM_128x16;
 
--- Esta RAM est· inicializada con 4 ·rboles tipo GDBT, cada uno de ellos procesa dos features y pone 1  en el bit correspondiente de la salida si su valor es mayor que x"0F"
+-- Esta RAM est√° inicializada con 4 √°rboles tipo GDBT, cada uno de ellos procesa dos features y pone 1 en el bit correspondiente de la salida si su valor es mayor que x"0F"
 -- Ejemplo: 
 -- Entrada= X"A0B1C30E00F10200"; Salida final = "11100100" 
 

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: Universidad de Zaragoza
--- Engineer: Javier Resano
+-- Engineer: Pablo Plumed (874167) y Hector Lacueva (869637) (ft. Javier Resano)
 -- 
 -- Create Date:    22/02/2022 
 -- Design Name: 
@@ -23,7 +23,7 @@ use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+-- use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -69,14 +69,14 @@ component mux8_1 is
          Dout: out std_logic_vector(DATA_LENGTH - 1 downto 0));
     end component;
     
--- Se�ales orientativas. Pod�is usarlas o crear las vuestras
--- Si alguna no la usais la pod�is quitar
+-- Señales orientativas. Podéis usarlas o crear las vuestras
+-- Si alguna no la usais la podéis quitar
 signal node : STD_LOGIC_VECTOR (15 downto 0);
 signal feature_addr: STD_LOGIC_VECTOR (2 downto 0);
 signal addr_distance: STD_LOGIC_VECTOR (3 downto 0);
 signal comparisom_value, Feature_selected, leaf_value, Int_Dout, addition: STD_LOGIC_VECTOR (7 downto 0);
 signal curr_addr, next_addr, left_addr, right_addr: STD_LOGIC_VECTOR (6 downto 0);
-signal next_node, reg_reset, node_type, internal_done, load_addr, Trees_finished, load_output, int_reset, cmp_result: std_logic;
+signal next_node, reg_reset, node_type, internal_done, rom_finished, load_addr, Trees_finished, load_output, int_reset, cmp_result: std_logic;
 type state_type is (Processing, Finished);
 signal state, next_state : state_type; 
 begin
@@ -117,7 +117,8 @@ begin
 
 -- CMP
     -- Cmp result = 1 if entry <= Value
-    cmp_result <= '1' when (Feature_selected <= comparisom_value) else '0';
+    --cmp_result <= '1' when (Feature_selected <= comparisom_value) else '0';
+    cmp_result <= '1' when (IEEE.std_logic_unsigned."<="(Feature_selected, comparisom_value)) else '0';
     -- Addr left node (curr_addr + 1)
     left_addr <= (curr_addr + 1);
     -- Addr right node (curr_addr + addr_distance)
@@ -131,7 +132,8 @@ begin
     -- Load output (if node_type = 1 (leaf), update reg with addition)
     load_output <= (node_type);
     -- Si addr_distance es "1111" --> Done = 1
-    internal_done <= '1' when (addr_distance = "1111") else '0';
+    --internal_done <= '1' when (addr_distance = "1111") else '0';
+    rom_finished <= '1' when (IEEE.std_logic_unsigned."="(addr_distance, "1111")) else '0';
 
 -- Output register
 output_reg: reg
@@ -141,8 +143,8 @@ output_reg: reg
                  Load  => load_output,
                  Din   => addition,
                  Dout  => Int_Dout);
-	Dout <= Int_Dout; -- en vhdl no puedes leer las salidas. Si necesitas leerlas, declaras una se�al interna que puedes leer, y la usas para generar la salida
-	Done <= Internal_Done;
+	Dout <= Int_Dout; -- en vhdl no puedes leer las salidas. Si necesitas leerlas, declaras una señal interna que puedes leer, y la usas para generar la salida
+	Done <= internal_done;
 
 ----------------------------
 ---------
@@ -161,23 +163,28 @@ output_reg: reg
    end process;
 
    --State-Machine
-   OUTPUT_DECODE: process (state, Trees_finished, start)-- recordad que en la lista de sensibilidad deben estar todas las se�ales que provoquen que el proceso pueda cambiar sus salidas. Si met�is nuevas entradas, incluidlas. 
+   OUTPUT_DECODE: process (state, Trees_finished, start)-- recordad que en la lista de sensibilidad deben estar todas las señales que provoquen que el proceso pueda cambiar sus salidas. Si metéis nuevas entradas, incluidlas. 
    begin
- -- valores por defecto, si no se asigna otro valor en un estado valdr�n lo que se asigna aqu�
- -- si necesit�is m�as se�ales a�adirlas
+ -- valores por defecto, si no se asigna otro valor en un estado valdrán lo que se asigna aquí
+ -- si necesitáis más señales añadirlas
 		next_state <= state; 
 		load_addr <= '0'; 
-		Internal_Done <= '0';
+		internal_done <= '0';
 		int_reset <= '0';
  	-- Estado Inicio          
- 	-- Esta m�quina de estados y sus salidas la tene�s que dise�ar vosotros. Estas l�neas son s�lo un ejemplo.
+ 	-- Esta máquina de estados y sus salidas la tenéis que diseñar vosotros. Estas líneas son sólo un ejemplo.
         if (state = Processing) then
         	load_addr <= '1';
-            if (internal_done = '1') then
+            if (rom_finished = '1') then
                 next_state <= Finished;
             end if;
         else 
-        	Internal_Done <= '1';
+        	internal_done <= '1';
+
+            if (start = '1') then
+                int_reset <= '1';
+                next_state <= Processing;
+            end if;
      	end if;
   	end process;	     
 end Behavioral;

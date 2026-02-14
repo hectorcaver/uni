@@ -2,7 +2,7 @@
 
   LIBRARY ieee;
   USE ieee.std_logic_1164.ALL;
-  USE ieee.numeric_std.ALL;
+  --USE ieee.numeric_std.ALL;
 
   ENTITY testbench IS
   END testbench;
@@ -40,23 +40,27 @@
    CLK_process :process
    begin
 		CLK <= '0';
-		wait for CLK_period/2;
+		wait for CLK_period / 2;
 		CLK <= '1';
-		wait for CLK_period/2;
+		wait for CLK_period / 2;
    end process;
 
  stim_proc: process
    begin		
     reset <= '1';
-    Din <= X"A0B1C30E00F10200"; --Salida final = "11100100" 
-    wait for CLK_period*2;
+    Din <= X"0A0B0C131E00F1F2"; --Salida final = "11100100" 
+    wait for CLK_period * 2;
 	reset <= '0';
 	start <= '1';
 	wait for CLK_period;
 	start <= '0';
+
 	wait until (Done = '1');
-	wait for CLK_period*2;
-	Din <= X"0A0B0C131E00F1F2"; --Salida final = "00011011" 
+
+	reset <= '1';
+	Din <= X"A0B1C30E00F10200"; --Salida final = "00011011" 
+	wait for CLK_period * 2;
+	reset <= '0';
 	start <= '1';
 	wait for CLK_period;
 	start <= '0';
