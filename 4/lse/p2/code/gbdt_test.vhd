@@ -64,7 +64,38 @@
 	start <= '1';
 	wait for CLK_period;
 	start <= '0';
-	wait;
+
+	wait until (Done = '1');
+
+	reset <= '1';
+    Din <= X"050A0F0301090C0E"; -- Salida final = "00000000"
+    wait for CLK_period  * 2;
+	reset <= '0';
+    start <= '1';
+    wait for CLK_period;
+    start <= '0';
+
+	wait until (Done = '1');
+
+	reset <= '1';
+    Din <= X"FFEEEEDD01020304"; -- Salida final = "11110000"
+    wait for CLK_period  * 2;
+	reset <= '0';
+    start <= '1';
+    wait for CLK_period;
+    start <= '0';
+
+	wait until (Done = '1');
+
+	reset <= '1';
+    Din <= X"00000000000000FF"; -- Salida final = "00000001" 
+    wait for CLK_period  * 2;
+	reset <= '0';
+    start <= '1';
+    wait for CLK_period;
+    start <= '0';
+
+	wait until (Done = '1');
    end process;
 
   END;
