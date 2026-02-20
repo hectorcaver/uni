@@ -1,4 +1,22 @@
--- TestBench Template 
+---------------------------------------------------------------------------------
+-- Company: Universidad de Zaragoza
+-- Engineer: Pablo Plumed (874167) y Hector Lacueva (869637) (ft. Javier Resano)
+-- 
+-- Create Date:    20/02/2026
+-- Design Name: 
+-- Module Name:    gbdt 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: Testbench para el módulo gbdt. Se han incluido 5 casos de prueba
+--              para verificar su correcto funcionamiento.
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
 
   LIBRARY ieee;
   USE ieee.std_logic_1164.ALL;
