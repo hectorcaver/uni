@@ -48,7 +48,7 @@
  stim_proc: process
    begin		
     reset <= '1';
-    Din <= X"0A0B0C131E00F1F2"; --Salida final = "11100100" 
+    Din <= X"0A0B0C131E00F1F2"; --Salida final = "00011011º" 
     wait for CLK_period * 2;
 	reset <= '0';
 	start <= '1';
@@ -58,7 +58,7 @@
 	wait until (Done = '1');
 
 	reset <= '1';
-	Din <= X"A0B1C30E00F10200"; --Salida final = "00011011" 
+	Din <= X"A0B1C30E00F10200"; --Salida final = "11100100" 
 	wait for CLK_period * 2;
 	reset <= '0';
 	start <= '1';
@@ -96,6 +96,8 @@
     start <= '0';
 
 	wait until (Done = '1');
+
+    wait;
    end process;
 
   END;
